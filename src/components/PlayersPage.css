@@ -1,0 +1,28 @@
+/* src/components/PlayersPage.css */
+.players-page {
+  padding: 20px;
+}
+
+.players-page form {
+  margin-bottom: 20px;
+}
+
+.players-page input {
+  margin-right: 10px;
+  padding: 5px;
+}
+
+.player-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.player-item span {
+  flex: 1;
+}
+
+.player-item button {
+  margin-left: 10px;
+  padding: 5px 10px;
+}
