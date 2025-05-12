@@ -2,55 +2,96 @@
   min-height: 100vh;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* subtle shadow */
-  background-color: white; /* ensure shadow is visible */
-  position: relative; /* needed for shadow to show properly */
-}
-
-.header-title {
-  margin: 0;
-  text-align: center;
-}
-
 .header-button {
-  padding: 0.5rem 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.header-button:hover {
-  background-color: #0056b3;
+  position: absolute;
+  right: 1rem;
+  padding: 0.5rem 0.5rem;
 }
 
 .players-page form {
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
 }
 
 .players-page input {
-  margin-right: 10px;
-  padding: 5px;
+  margin-right: 0.5rem;
+  padding: 0.4rem;
+}
+
+.players-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 20rem;
 }
 
 .player-item {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 4px;
 }
 
 .player-item span {
   flex: 1;
+  margin: 8px;
+  overflow: hidden;
+  text-wrap: nowrap;
 }
 
 .player-item button {
-  margin-left: 10px;
-  padding: 5px 10px;
+  margin-left: 5px;
+  padding: 5px 5px;
+}
+
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #eeeeee;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.icon-button:hover {
+  color: #333;
+  background-color: #dddddd;
+}
+
+.icon-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* For the header done button specifically */
+
+.header-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.header-button:hover {
+  background-color: #0056b3;
+  color: #e7e7e7;
+}
+
+/* Styling for the delete/trash icon */
+.icon-button .fa-trash {
+  color: #ff3b30;
+}
+
+.icon-button:hover .fa-trash {
+  color: #dc3545;
 }

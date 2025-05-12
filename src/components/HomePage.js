@@ -15,7 +15,9 @@ function HomePage() {
           <button
             onClick={() => navigate('/players')}
             className="navigate-button"
-          >Manage Players</button>
+          >
+            Manage Players
+          </button>
         </div>
       </main>
     </div>

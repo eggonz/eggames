@@ -1,6 +1,7 @@
 import './PlayersPage.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaCheck, FaTrash, FaPencilAlt, FaPlus } from 'react-icons/fa';
 
 function PlayersPage() {
   const navigate = useNavigate();
@@ -29,9 +30,11 @@ function PlayersPage() {
     <div className="players-page">
       <header className="header">
         <h1 className="header-title">Players</h1>
-        <button className="header-button"
+        <button className="header-button icon-button"
                 onClick={() => navigate('/')}
-        >Done</button>
+        >
+          <FaCheck />
+        </button>
       </header>
       <main>
         {/* Add Player Form */}
@@ -42,7 +45,9 @@ function PlayersPage() {
             value={newPlayer.name}
             onChange={(e) => setNewPlayer({ ...newPlayer, name: e.target.value })}
           />
-          <button type="submit">Add Player</button>
+          <button type="submit" className="icon-button">
+            <FaPlus />
+          </button>
         </form>
 
         {/* Players List */}
@@ -50,13 +55,23 @@ function PlayersPage() {
           {players.map(player => (
             <div key={player.id} className="player-item">
               <span>{player.name}</span>
-              <button onClick={() => handleDeletePlayer(player.id)}>Delete</button>
-              <button onClick={() => {
-                const newName = prompt('Enter new name:', player.name);
-                if (newName) {
-                  handleEditPlayer(player.id, { name: newName });
-                }
-              }}>Edit</button>
+              <button
+                className="icon-button"
+                onClick={() => {
+                  const newName = prompt('Enter new name:', player.name);
+                  if (newName) {
+                    handleEditPlayer(player.id, { name: newName });
+                  }
+                }}
+              >
+                <FaPencilAlt />
+              </button>
+              <button 
+                className="icon-button"
+                onClick={() => handleDeletePlayer(player.id)}
+              >
+                <FaTrash className="fa-trash"/>
+              </button>
             </div>
           ))}
         </div>

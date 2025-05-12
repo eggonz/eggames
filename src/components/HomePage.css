@@ -6,27 +6,35 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* subtle shadow */
   background-color: white; /* ensure shadow is visible */
   position: relative; /* needed for shadow to show properly */
+  width: 100%;
+  padding: 1rem 0;
 }
 
 .header-title {
+  flex: 1;
   margin: 0;
   text-align: center;
-  flex-grow: 1;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
 }
 
 .button-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 2rem;
 }
 
 .navigate-button {
-  padding: 10px 20px;
+  padding: 0.5rem 1rem;
   font-size: 16px;
   background-color: #007bff;
   color: white;
