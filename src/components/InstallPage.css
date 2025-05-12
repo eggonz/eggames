@@ -3,7 +3,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+}
+
+.install-logo {
+  height: 10rem;
 }
 
 .install-button {
@@ -18,6 +21,7 @@
   cursor: pointer;
   border-radius: 4px;
   gap: 1rem;
+  margin-top: 2rem;
 }
 
 .install-button:hover {
@@ -28,8 +32,10 @@
   margin: 0;
 }
 
-.app-logo img {
-  height: 8rem;
+.install-version {
+  font-size: 0.8rem;
+  color: #555;
+  margin: 1rem 0 0;
 }
 
 .install-message {

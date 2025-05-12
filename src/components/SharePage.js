@@ -33,10 +33,6 @@ function SharePage() {
           <p className="share-text">Scan to play eggames!</p>
         </div>
       </main>
-      <footer>
-        <p>2025 eggames</p>
-        <p>v1.0.0</p>
-      </footer>
     </div>
   );
 }
