@@ -41,7 +41,10 @@ function InstallPage() {
       </header>
       <main>
         <div className="install-content">
-          {deferredPrompt && (
+          {/*{deferredPrompt && (*/}
+            <div className="app-logo">
+              <img src="/logo192.png" alt="App Logo" />
+            </div>
             <button
               onClick={handleInstallClick}
               className="install-button"
@@ -49,12 +52,12 @@ function InstallPage() {
                 <FaDownload />
                 <p>Install App</p>
             </button>
-          )}
-          {!deferredPrompt && (
-            <div className="install-message">
-              <p>Either the app is already installed or your browser doesn't support PWA installation.</p>
-            </div>
-          )}
+          {/*)}*/}
+          {/*{!deferredPrompt && (*/}
+          {/*  <div className="install-message">*/}
+          {/*    <p>Either the app is already installed or your browser doesn't support PWA installation.</p>*/}
+          {/*  </div>*/}
+          {/*)}*/}
         </div>
       </main>
     </div>
