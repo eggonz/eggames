@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';  // BrowserRouter not working for GH-Pages hosting
 import HomePage from './components/HomePage';
 import InstallPage from './components/InstallPage';
 import PlayersPage from './components/PlayersPage';
