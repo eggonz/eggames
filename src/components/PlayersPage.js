@@ -1,3 +1,4 @@
+import './common.css';
 import './PlayersPage.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -27,10 +28,10 @@ function PlayersPage() {
   };
 
   return (
-    <div className="players-page">
-      <header className="header">
+    <div className="page players-page">
+      <header>
         <h1 className="header-title">Players</h1>
-        <button className="header-button icon-button"
+        <button className="header-button"
                 onClick={() => navigate('/')}
         >
           <FaCheck />

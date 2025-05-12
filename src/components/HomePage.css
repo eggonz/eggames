@@ -1,32 +1,3 @@
-.home-page {
-  min-height: 100vh;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* subtle shadow */
-  background-color: white; /* ensure shadow is visible */
-  position: relative; /* needed for shadow to show properly */
-  width: 100%;
-  padding: 1rem 0;
-}
-
-.header-title {
-  flex: 1;
-  margin: 0;
-  text-align: center;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-}
-
 .button-container {
   display: flex;
   flex-direction: column;

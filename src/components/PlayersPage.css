@@ -1,13 +1,3 @@
-.players-page {
-  min-height: 100vh;
-}
-
-.header-button {
-  position: absolute;
-  right: 1rem;
-  padding: 0.5rem 0.5rem;
-}
-
 .players-page form {
   display: flex;
   justify-content: center;
@@ -73,18 +63,6 @@
 .icon-button svg {
   width: 16px;
   height: 16px;
-}
-
-/* For the header done button specifically */
-
-.header-button {
-  background-color: #007bff;
-  color: white;
-}
-
-.header-button:hover {
-  background-color: #0056b3;
-  color: #e7e7e7;
 }
 
 /* Styling for the delete/trash icon */

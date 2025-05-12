@@ -1,4 +1,5 @@
 import React from 'react';
+import './common.css';
 import './GamesPage.css';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
@@ -16,23 +17,25 @@ function GamesPage() {
   ];
 
   return (
-    <div className="games-page">
-      <header className="header">
+    <div className="page games-page">
+      <header>
         <button 
-          className="header-button back-button"
+          className="header-button"
           onClick={() => navigate('/')}
         >
           <FaArrowLeft />
         </button>
         <h1 className="header-title">Games</h1>
       </header>
-      <main className="games-grid">
-        {games.map(game => (
-          <div key={game.id} className="game-card" onClick={() => console.log(`Selected ${game.name}`)}>
-            <h3>{game.name}</h3>
-            <p>{game.description}</p>
-          </div>
-        ))}
+      <main>
+        <div className="games-grid">
+          { games.map(game => (
+            <div key={game.id} className="game-card" onClick={() => console.log(`Selected ${game.name}`)}>
+              <h3>{game.name}</h3>
+              <p>{game.description}</p>
+            </div>
+          ))}
+        </div>
       </main>
     </div>
   );
