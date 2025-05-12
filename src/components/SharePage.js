@@ -7,7 +7,10 @@ import { FaArrowLeft } from 'react-icons/fa';
 
 function SharePage() {
   const navigate = useNavigate();
-  const qrUrl = `${window.location.origin}/install`;
+  const qrUrl = `${window.location.origin}${window.location.pathname}#/install`;  // "#/" for HashRouter
+  console.log("origin:", window.location.origin);
+  console.log("pathname:", window.location.pathname);
+  console.log("qrUrl:", qrUrl);
 
   return (
     <div className="page share-page">
