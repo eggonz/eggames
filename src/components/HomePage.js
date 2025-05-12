@@ -13,6 +13,12 @@ function HomePage() {
       <main>
         <div className="button-container">
           <button
+            onClick={() => navigate('/games')}
+            className="navigate-button"
+          >
+            Play Games
+          </button>
+          <button
             onClick={() => navigate('/players')}
             className="navigate-button"
           >
