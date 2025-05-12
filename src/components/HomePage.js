@@ -2,6 +2,7 @@ import React from 'react';
 import './common.css';
 import './HomePage.css';
 import { useNavigate } from 'react-router-dom';
+import {FaShareAlt} from "react-icons/fa";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -9,6 +10,11 @@ function HomePage() {
   return (
     <div className="page home-page">
       <header>
+        <button className="header-button"
+                onClick={() => navigate('/share')}
+        >
+          <FaShareAlt />
+        </button>
         <h1 className="header-title">eggames</h1>
       </header>
       <main>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import './common.css';
 import './InstallPage.css';
+import {FaHome, FaShareAlt} from "react-icons/fa";
 
 function InstallPage() {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
@@ -33,21 +35,31 @@ function InstallPage() {
   };
 
   return (
-    <div className="install-page">
-      <h1>Install Our App</h1>
-      {deferredPrompt && (
-        <button 
-          onClick={handleInstallClick}
-          className="install-button"
-        >
-          Install App
-        </button>
-      )}
-      {!deferredPrompt && (
-        <p>
-          Either the app is already installed or your browser doesn't support PWA installation.
-        </p>
-      )}
+    <div className="page install-page">
+      <header>
+        <h1 className="header-title">Install</h1>
+      </header>
+      <main>
+        {deferredPrompt && (
+          <button
+            onClick={handleInstallClick}
+            className="install-button"
+          >
+            Install App
+          </button>
+        )}
+        {!deferredPrompt && (
+          <div className="install-message">
+            <p>Either the app is already installed or your browser doesn't support PWA installation.</p>
+            <button
+              onClick={() => window.location.href = '/'}
+              className="home-button"
+            >
+              <FaHome />
+            </button>
+          </div>
+        )}
+      </main>
     </div>
   );
 }

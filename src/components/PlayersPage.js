@@ -30,12 +30,12 @@ function PlayersPage() {
   return (
     <div className="page players-page">
       <header>
-        <h1 className="header-title">Players</h1>
         <button className="header-button"
                 onClick={() => navigate('/')}
         >
           <FaCheck />
         </button>
+        <h1 className="header-title">Players</h1>
       </header>
       <main>
         {/* Add Player Form */}
