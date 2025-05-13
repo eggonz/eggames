@@ -2,9 +2,10 @@ import React from 'react';
 import './common.css';
 import './GamesPage.css';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowLeft } from 'react-icons/fa';
+import {FaArrowLeft, FaUsers} from 'react-icons/fa';
 import GameCard from './GameCard';
 import { AVAILABLE_GAMES } from '../data/gameData';
+import {getStoredPlayersCount} from "../utils/playersStorage";
 
 function GamesPage() {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ function GamesPage() {
           <FaArrowLeft />
         </button>
         <h1 className="header-title">Games</h1>
+        <div className="header-fixed-right player-count"><FaUsers /><span>{getStoredPlayersCount()}</span></div>
       </header>
       <main>
         <div className="games-grid">
