@@ -12,14 +12,17 @@ header {
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* subtle shadow */
   background-color: white; /* ensure shadow is visible */
-  position: relative; /* needed for shadow to show properly */
   padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* ensure header is above other content */
 }
 
 .header-title {
   flex: 1;
   margin: 0;
   text-align: center;
+  height: 2rem;
 }
 
 main {
