@@ -2,7 +2,7 @@ import React from 'react';
 import '../common.css';
 import './TruthOrDarePage.css';
 import { useNavigate, useLocation } from 'react-router-dom';
-import {FaArrowLeft, FaCog} from 'react-icons/fa';
+import {FaArrowLeft, FaCog, FaDice} from 'react-icons/fa';
 import TruthOrDareSettings from './TruthOrDareSettings';
 import TruthOrDarePlay from './TruthOrDarePlay';
 
@@ -28,12 +28,23 @@ function TruthOrDarePage() {
         <div className="header-title">
           <h1>Truth or Dare</h1>
         </div>
-        <button
-          className="header-fixed-left header-button"
-          onClick={() => navigate(-1)}
-        >
-          <FaArrowLeft/>
-        </button>
+        {view === 'play' && (
+          <button
+            className="header-fixed-left header-button"
+            onClick={() => navigate('/games')}
+          >
+            <FaArrowLeft />
+            <FaDice />
+          </button>
+        )}
+        {view === 'config' && (
+          <button
+            className="header-fixed-left header-button"
+            onClick={() => navigate(-1)}
+          >
+            <FaArrowLeft />
+          </button>
+        )}
         {view === 'play' && (
           <button
             className="header-fixed-right header-button"
@@ -41,9 +52,6 @@ function TruthOrDarePage() {
           >
             <FaCog />
           </button>
-        )}
-        {view === 'config' && (
-          <h2 className="header-fixed-right">Settings</h2>
         )}
       </header>
       <main>
