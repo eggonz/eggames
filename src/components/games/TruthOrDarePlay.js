@@ -13,9 +13,10 @@ function TruthOrDarePlay() {
   });
 
   const config = location.state?.config || {
-    truthProbability: 50,
-    minPlayers: 2,
-    timeLimit: 30,
+    truthProbability: 50,  // slider 0-100
+    spicyLevel: 0,  // select 0-2
+    timeLimit: 30,  // seconds (+-15)
+    useGenAi: false,  // toggle
   };
 
   const generateChallenge = () => {

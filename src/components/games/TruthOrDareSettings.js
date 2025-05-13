@@ -3,21 +3,42 @@ import { useNavigate } from 'react-router-dom';
 import '../common.css';
 import './TruthOrDarePage.css';
 
+const TRUTH_PROB_DEFAULT = 50;
+const TRUTH_PROB_MIN = 0;
+const TRUTH_PROB_MAX = 100;
+const TIME_LIMIT_MIN = 15;
+const TIME_LIMIT_MAX = 120;
+const TIME_LIMIT_STEP = 15;
+const TIME_LIMIT_DEFAULT = 30;
+const SpicyLevel = {
+  MILD: 0,
+  MEDIUM: 1,
+  HOT: 2
+}
+const USE_GEN_AI_DEFAULT = false;
+
 function TruthOrDareSettings() {
   const navigate = useNavigate();
   const [config, setConfig] = useState({
-    truthProbability: 50,
-    minPlayers: 2,
-    timeLimit: 30,
-    customTruths: [],
-    customDares: []
+    truthProbability: TRUTH_PROB_DEFAULT,
+    spicyLevel: SpicyLevel.MILD,
+    timeLimit: TIME_LIMIT_DEFAULT,
+    useGenAi: USE_GEN_AI_DEFAULT
   });
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setConfig(prev => ({
       ...prev,
-      [name]: value
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleTimeLimitChange = (direction) => {
+    setConfig(prev => ({
+      ...prev,
+      timeLimit: Math.max(TIME_LIMIT_MIN, Math.min(TIME_LIMIT_MAX,
+        prev.timeLimit + (direction * TIME_LIMIT_STEP)))
     }));
   };
 
@@ -35,8 +56,8 @@ function TruthOrDareSettings() {
               type="range"
               id="truthProbability"
               name="truthProbability"
-              min="0"
-              max="100"
+              min={TRUTH_PROB_MIN}
+              max={TRUTH_PROB_MAX}
               value={config.truthProbability}
               onChange={handleInputChange}
               className="slider"
@@ -46,30 +67,53 @@ function TruthOrDareSettings() {
         </div>
 
         <div className="config-item">
-          <label htmlFor="minPlayers">Minimum Players</label>
-          <input
-            type="number"
-            id="minPlayers"
-            name="minPlayers"
-            min="2"
-            max="20"
-            value={config.minPlayers}
+          <label htmlFor="spicyLevel">Spicy Level</label>
+          <select
+            id="spicyLevel"
+            name="spicyLevel"
+            value={config.spicyLevel}
             onChange={handleInputChange}
-            className="number-input"
-          />
+            className="select-input"
+          >
+            <option value="0">Mild</option>
+            <option value="1">Medium</option>
+            <option value="2">Hot</option>
+          </select>
         </div>
 
         <div className="config-item">
-          <label htmlFor="timeLimit">Time Limit (seconds)</label>
+          <label htmlFor="timeLimit">Time Limit</label>
+          <div className="time-limit-container">
+            <button
+              type="button"
+              onClick={() => handleTimeLimitChange(-1)}
+              disabled={config.timeLimit <= TIME_LIMIT_MIN}
+              className="time-button"
+            >
+              -{TIME_LIMIT_STEP}s
+            </button>
+            <span className="time-display">{config.timeLimit}s</span>
+            <button
+              type="button"
+              onClick={() => handleTimeLimitChange(1)}
+              disabled={config.timeLimit >= TIME_LIMIT_MAX}
+              className="time-button"
+            >
+              +{TIME_LIMIT_STEP}s
+            </button>
+          </div>
+
+        </div>
+
+        <div className="config-item">
+          <label htmlFor="useGenAi">Use AI Generation</label>
           <input
-            type="number"
-            id="timeLimit"
-            name="timeLimit"
-            min="10"
-            max="120"
-            value={config.timeLimit}
+            type="checkbox"
+            id="useGenAi"
+            name="useGenAi"
+            checked={config.useGenAi}
             onChange={handleInputChange}
-            className="number-input"
+            className="checkbox-input"
           />
         </div>
 
