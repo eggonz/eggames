@@ -1,13 +1,19 @@
 import './common.css';
 import './PlayersPage.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaCheck, FaTrash, FaPencilAlt, FaPlus } from 'react-icons/fa';
+import { storePlayers, getStoredPlayers } from '../utils/playersStorage';
 
 function PlayersPage() {
   const navigate = useNavigate();
-  const [players, setPlayers] = useState([]);
+  const [players, setPlayers] = useState(getStoredPlayers());
   const [newPlayer, setNewPlayer] = useState({ name: '' });
+
+  // Update localStorage whenever players change
+  useEffect(() => {
+    storePlayers(players);
+  }, [players]);
 
   const handleAddPlayer = (e) => {
     e.preventDefault();
@@ -22,7 +28,7 @@ function PlayersPage() {
   };
 
   const handleEditPlayer = (id, updatedPlayer) => {
-    setPlayers(players.map(player => 
+    setPlayers(players.map(player =>
       player.id === id ? { ...player, ...updatedPlayer } : player
     ));
   };
