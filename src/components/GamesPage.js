@@ -4,18 +4,10 @@ import './GamesPage.css';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import GameCard from './GameCard';
+import { AVAILABLE_GAMES } from './gameData';
 
 function GamesPage() {
   const navigate = useNavigate();
-  
-  const games = [
-    { id: 1, name: "Tic Tac Toe", description: "Classic X's and O's game" },
-    { id: 2, name: "Memory Match", description: "Test your memory skills" },
-    { id: 3, name: "Snake", description: "Classic snake game" },
-    { id: 4, name: "Puzzle", description: "Sliding puzzle challenge" },
-    { id: 5, name: "Word Hunt", description: "Find hidden words" },
-    { id: 6, name: "Chess", description: "Strategic board game" }
-  ];
 
   return (
     <div className="page games-page">
@@ -30,7 +22,7 @@ function GamesPage() {
       </header>
       <main>
         <div className="games-grid">
-          {games.map((game) => (
+          {AVAILABLE_GAMES.map((game) => (
             <GameCard key={game.id} game={game} />
           ))}
         </div>
