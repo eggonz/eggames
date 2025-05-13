@@ -71,3 +71,13 @@ footer p {
   background-color: #0056b3;
   color: #e7e7e7;
 }
+
+.header-player-count {
+  position: absolute;
+  right: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}

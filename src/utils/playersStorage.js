@@ -15,4 +15,8 @@ const getStoredPlayersCount = () => {
   return storedPlayers.length;
 };
 
-export { getStoredPlayers, storePlayers, getStoredPlayersCount };
+const clearPlayers = () => {
+  localStorage.removeItem(STORAGE_KEY);
+}
+
+export { getStoredPlayers, storePlayers, getStoredPlayersCount, clearPlayers };

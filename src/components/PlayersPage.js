@@ -2,12 +2,13 @@ import './common.css';
 import './PlayersPage.css';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaCheck, FaTrash, FaPencilAlt, FaPlus } from 'react-icons/fa';
-import { storePlayers, getStoredPlayers } from '../utils/playersStorage';
+import {FaCheck, FaTrash, FaPencilAlt, FaPlus, FaUsers} from 'react-icons/fa';
+import {storePlayers, getStoredPlayers, getStoredPlayersCount, clearPlayers} from '../utils/playersStorage';
 
 function PlayersPage() {
   const navigate = useNavigate();
   const [players, setPlayers] = useState(getStoredPlayers());
+  const [playerCount, setPlayersCount] = useState(getStoredPlayersCount());
   const [newPlayer, setNewPlayer] = useState({ name: '' });
 
   // Update localStorage whenever players change
@@ -20,11 +21,13 @@ function PlayersPage() {
     if (newPlayer.name) {
       setPlayers([...players, { ...newPlayer, id: Date.now() }]);
       setNewPlayer({ name: ''});
+      setPlayersCount(players.length + 1);
     }
   };
 
   const handleDeletePlayer = (id) => {
     setPlayers(players.filter(player => player.id !== id));
+    setPlayersCount(players.length - 1);
   };
 
   const handleEditPlayer = (id, updatedPlayer) => {
@@ -32,6 +35,12 @@ function PlayersPage() {
       player.id === id ? { ...player, ...updatedPlayer } : player
     ));
   };
+
+  const handleClearPlayers = () => {
+    clearPlayers();
+    setPlayers([]);
+    setPlayersCount(0);
+  }
 
   return (
     <div className="page players-page">
@@ -42,6 +51,7 @@ function PlayersPage() {
           <FaCheck />
         </button>
         <h1 className="header-title">Players</h1>
+        <div className="header-player-count"><FaUsers /><span>{playerCount}</span></div>
       </header>
       <main>
         {/* Add Player Form */}
@@ -81,6 +91,12 @@ function PlayersPage() {
               </button>
             </div>
           ))}
+          <button
+            className="clear-players-button"
+            onClick={handleClearPlayers}
+          >
+            <FaTrash /> Clear All
+          </button>
         </div>
       </main>
     </div>
