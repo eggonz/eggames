@@ -19,7 +19,9 @@ function GamesPage() {
         >
           <FaArrowLeft />
         </button>
-        <h1 className="header-title">Games</h1>
+        <div className="header-title">
+          <h1>Games</h1>
+        </div>
         <div className="header-fixed-right icon-detail"><FaUsers /><span>{getStoredPlayersCount()}</span></div>
       </header>
       <main>

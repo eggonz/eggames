@@ -37,7 +37,9 @@ function InstallPage() {
   return (
     <div className="page install-page">
       <header>
-        <h1 className="header-title">Install</h1>
+        <div className="header-title">
+          <h1>Install</h1>
+        </div>
       </header>
       <main>
         <div className="install-content">

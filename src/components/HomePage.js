@@ -16,7 +16,9 @@ function HomePage() {
         >
           <FaShareAlt />
         </button>
-        <h1 className="header-title">eggames</h1>
+        <div className="header-title">
+          <h1>eggames</h1>
+        </div>
       </header>
       <main>
         <div className="home-menu-container">

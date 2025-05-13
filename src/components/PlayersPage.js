@@ -50,7 +50,9 @@ function PlayersPage() {
         >
           <FaCheck />
         </button>
-        <h1 className="header-title">Players</h1>
+        <div className="header-title">
+          <h1>Players</h1>
+        </div>
         <div className="header-fixed-right icon-detail"><FaUsers /><span>{playerCount}</span></div>
       </header>
       <main>

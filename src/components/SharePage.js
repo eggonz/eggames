@@ -21,7 +21,9 @@ function SharePage() {
         >
           <FaArrowLeft />
         </button>
-        <h1 className="header-title">Share</h1>
+        <div className="header-title">
+          <h1>Share</h1>
+        </div>
       </header>
       <main>
         <div className="qr-container">
