@@ -3,7 +3,7 @@ import './common.css';
 import './GameCard.css';
 import { useNavigate } from 'react-router-dom';
 import { FaStopwatch, FaUsers, FaBirthdayCake } from "react-icons/fa";
-import {DISPLAY_AGE} from "./gameData";
+import { DISPLAY_AGE } from "../data/gameData";
 
 function GameCard({ key, game }) {
   const navigate = useNavigate();

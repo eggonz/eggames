@@ -4,7 +4,7 @@ import './GamesPage.css';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import GameCard from './GameCard';
-import { AVAILABLE_GAMES } from './gameData';
+import { AVAILABLE_GAMES } from '../data/gameData';
 
 function GamesPage() {
   const navigate = useNavigate();
