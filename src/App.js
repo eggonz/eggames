@@ -5,6 +5,7 @@ import InstallPage from './components/InstallPage';
 import PlayersPage from './components/PlayersPage';
 import GamesPage from './components/GamesPage';
 import SharePage from './components/SharePage';
+import TruthOrDarePage from './components/games/TruthOrDarePage';
 
 function App() {
   return (
@@ -12,10 +13,11 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/share" element={<SharePage />} />
           <Route path="/install" element={<InstallPage />} />
           <Route path="/players" element={<PlayersPage />} />
           <Route path="/games" element={<GamesPage />} />
-          <Route path="/share" element={<SharePage />} />
+          <Route path="/games/truth-or-dare" element={<TruthOrDarePage />} />
         </Routes>
       </div>
     </Router>
