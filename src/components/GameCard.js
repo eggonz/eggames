@@ -2,8 +2,7 @@ import React from 'react';
 import './common.css';
 import './GameCard.css';
 import { useNavigate } from 'react-router-dom';
-import { FaStopwatch, FaUsers, FaBirthdayCake } from "react-icons/fa";
-import { DISPLAY_AGE } from "../data/gameData";
+import { FaStopwatch, FaUsers, FaExclamationCircle } from "react-icons/fa";
 
 function GameCard({ key, game }) {
   const navigate = useNavigate();
@@ -16,10 +15,12 @@ function GameCard({ key, game }) {
     <div key={key} className="game-card" onClick={handleClick}>
       <h3>{game.name}</h3>
       <p className="game-card-details">
-        <span><FaStopwatch className="icon"/> <span className="detail">{game.time}</span></span>
-        <span><FaUsers className="icon"/> <span className="detail">{game.people}</span></span>
-        {DISPLAY_AGE && game.age && (
-          <span><FaBirthdayCake className="icon" /> <span className="detail">Age {game.age}</span></span>
+        <div className="icon-detail"><FaUsers className="icon"/> <span className="detail">{game.people}</span></div>
+        {game.time && (
+          <div className="icon-detail"><FaStopwatch className="icon"/> <span className="detail">{game.time}</span></div>
+        )}
+        {game.age && (
+          <div className="icon-detail"><FaExclamationCircle className="icon" /> <span className="detail">Age {game.age}</span></div>
         )}
       </p>
       <p className="game-card-desc">{game.description}</p>

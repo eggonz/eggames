@@ -21,6 +21,7 @@
   color: #666;
   font-size: 0.9rem;
   margin: 0 0 1rem 0;
+  text-wrap: nowrap;
 }
 
 .game-card p:last-child {
@@ -31,23 +32,6 @@
   display: flex;
   flex-direction: row;
   justify-content: start;
-  gap: 1.5rem;
+  gap: 1rem;
   align-items: center;
-}
-
-.game-card-details .icon {
-  vertical-align: middle;
-  margin-left: 0.5rem;
-  margin-right: 0.25rem;
-  width: 16px;
-  height: 16px;
-}
-
-.game-card-details .icon:first-child {
-  margin-left: 0;
-}
-
-.game-card-details .detail {  /* align with icons */
-  position: relative;
-  top: 0.1rem;
 }

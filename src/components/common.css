@@ -82,9 +82,9 @@ footer p {
   color: #e7e7e7;
 }
 
-.player-count {
+.icon-detail {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }

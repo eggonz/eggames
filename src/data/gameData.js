@@ -8,15 +8,16 @@
  * @property {string} age - Recommended minimum age
  */
 
-/**
- * Configuration flag to control age restriction display
- * @type {boolean}
- */
-export const DISPLAY_AGE = false;
-
 
 /** @type {Game[]} */
 export const AVAILABLE_GAMES = [
+  {
+    id: "truth-or-dare",
+    name: "Truth or Dare",
+    description: "Classic party game",
+    people: "3+",
+    age: "18+"
+  },
   {
     id: "tic-tac-toe",
     name: "Tic Tac Toe",

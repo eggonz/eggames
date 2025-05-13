@@ -51,7 +51,7 @@ function PlayersPage() {
           <FaCheck />
         </button>
         <h1 className="header-title">Players</h1>
-        <div className="header-fixed-right player-count"><FaUsers /><span>{playerCount}</span></div>
+        <div className="header-fixed-right icon-detail"><FaUsers /><span>{playerCount}</span></div>
       </header>
       <main>
         {/* Add Player Form */}

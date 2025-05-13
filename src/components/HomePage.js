@@ -32,7 +32,7 @@ function HomePage() {
           >
             <FaUserEdit /> <span>Manage Players</span>
           </button>
-          <div className="player-count"><FaUsers /><span>{getStoredPlayersCount()}</span></div>
+          <div className="icon-detail"><FaUsers /><span>{getStoredPlayersCount()}</span></div>
         </div>
       </main>
       <footer>
