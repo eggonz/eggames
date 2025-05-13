@@ -1,16 +1,68 @@
 /**
  * @typedef {Object} Game
- * @property {number} id - Unique identifier for the game
+ * @property {string} id - Unique URL-friendly identifier for the game
  * @property {string} name - Name of the game
  * @property {string} description - Short description of the game
+ * @property {string} time - Estimated play time
+ * @property {string} people - Recommended number of players
+ * @property {string} age - Recommended minimum age
  */
+
+/**
+ * Configuration flag to control age restriction display
+ * @type {boolean}
+ */
+export const DISPLAY_AGE = false;
+
 
 /** @type {Game[]} */
 export const AVAILABLE_GAMES = [
-  { id: 1, name: "Tic Tac Toe", description: "Classic X's and O's game" },
-  { id: 2, name: "Memory Match", description: "Test your memory skills" },
-  { id: 3, name: "Snake", description: "Classic snake game" },
-  { id: 4, name: "Puzzle", description: "Sliding puzzle challenge" },
-  { id: 5, name: "Word Hunt", description: "Find hidden words" },
-  { id: 6, name: "Chess", description: "Strategic board game" }
+  {
+    id: "tic-tac-toe",
+    name: "Tic Tac Toe",
+    description: "Classic X's and O's game",
+    time: "2 min",
+    people: "2",
+    age: "5+"
+  },
+  {
+    id: "memory-match",
+    name: "Memory Match",
+    description: "Test your memory skills",
+    time: "15 min",
+    people: "1-4",
+    age: "6+"
+  },
+  {
+    id: "snake",
+    name: "Snake",
+    description: "Classic snake game",
+    time: "10 min",
+    people: "1",
+    age: "8+"
+  },
+  {
+    id: "puzzle",
+    name: "Puzzle",
+    description: "Sliding puzzle challenge",
+    time: "20 min",
+    people: "1",
+    age: "10+"
+  },
+  {
+    id: "word-hunt",
+    name: "Word Hunt",
+    description: "Find hidden words",
+    time: "15 min",
+    people: "1-6",
+    age: "12+"
+  },
+  {
+    id: "chess",
+    name: "Chess",
+    description: "Strategic board game",
+    time: "20-30 min",
+    people: "2",
+    age: "8+"
+  }
 ];
