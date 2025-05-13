@@ -1,22 +1,27 @@
-.button-container {
+.home-menu-container {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
   justify-content: center;
   align-items: center;
 }
 
-.navigate-button {
-  padding: 0.5rem 1rem;
-  font-size: 16px;
+.home-menu-button {
+  width: 12rem;
+  padding: 1rem 1rem;
+  font-size: 1.1rem;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
-.navigate-button:hover {
+.home-menu-button:hover {
   background-color: #0056b3;
 }

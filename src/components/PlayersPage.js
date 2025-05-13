@@ -45,13 +45,13 @@ function PlayersPage() {
   return (
     <div className="page players-page">
       <header>
-        <button className="header-button"
+        <button className="header-fixed-left header-button"
                 onClick={() => navigate('/')}
         >
           <FaCheck />
         </button>
         <h1 className="header-title">Players</h1>
-        <div className="header-player-count"><FaUsers /><span>{playerCount}</span></div>
+        <div className="header-fixed-right player-count"><FaUsers /><span>{playerCount}</span></div>
       </header>
       <main>
         {/* Add Player Form */}

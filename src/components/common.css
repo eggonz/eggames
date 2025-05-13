@@ -47,15 +47,22 @@ footer p {
   margin: 0;
 }
 
-.header-button {
+.header-fixed-left {
   position: absolute;
   left: 1rem;
-  padding: 0.5rem 0.5rem;
+}
 
+.header-fixed-right {
+  position: absolute;
+  right: 1rem;
+}
+
+.header-button {
   display: flex;
   align-items: center;
   justify-content: center;
 
+  padding: 0.5rem 0.5rem;
   width: 2rem;
   height: 2rem;
   border: none;
@@ -72,10 +79,7 @@ footer p {
   color: #e7e7e7;
 }
 
-.header-player-count {
-  position: absolute;
-  right: 1rem;
-
+.player-count {
   display: flex;
   align-items: center;
   justify-content: center;

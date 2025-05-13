@@ -13,7 +13,7 @@ function GamesPage() {
     <div className="page games-page">
       <header>
         <button 
-          className="header-button"
+          className="header-fixed-left header-button"
           onClick={() => navigate('/')}
         >
           <FaArrowLeft />

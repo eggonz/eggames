@@ -2,7 +2,8 @@ import React from 'react';
 import './common.css';
 import './HomePage.css';
 import { useNavigate } from 'react-router-dom';
-import {FaShareAlt} from "react-icons/fa";
+import {FaDice, FaShareAlt, FaUserEdit, FaUsers} from "react-icons/fa";
+import {getStoredPlayersCount} from "../utils/playersStorage";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ function HomePage() {
   return (
     <div className="page home-page">
       <header>
-        <button className="header-button"
+        <button className="header-fixed-left header-button"
                 onClick={() => navigate('/share')}
         >
           <FaShareAlt />
@@ -18,19 +19,20 @@ function HomePage() {
         <h1 className="header-title">eggames</h1>
       </header>
       <main>
-        <div className="button-container">
+        <div className="home-menu-container">
           <button
             onClick={() => navigate('/games')}
-            className="navigate-button"
+            className="home-menu-button"
           >
-            Play Games
+            <FaDice /> <span>Play Games</span>
           </button>
           <button
             onClick={() => navigate('/players')}
-            className="navigate-button"
+            className="home-menu-button"
           >
-            Manage Players
+            <FaUserEdit /> <span>Manage Players</span>
           </button>
+          <div className="player-count"><FaUsers /><span>{getStoredPlayersCount()}</span></div>
         </div>
       </main>
       <footer>

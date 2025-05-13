@@ -16,7 +16,7 @@ function SharePage() {
     <div className="page share-page">
       <header>
         <button 
-          className="header-button"
+          className="header-fixed-left header-button"
           onClick={() => navigate(-1)}
         >
           <FaArrowLeft />
