@@ -24,13 +24,13 @@ function HomePage() {
         <div className="home-menu-container">
           <button
             onClick={() => navigate('/games')}
-            className="home-menu-button"
+            className="primary-button"
           >
             <FaDice /> <span>Play Games</span>
           </button>
           <button
             onClick={() => navigate('/players')}
-            className="home-menu-button"
+            className="primary-button"
           >
             <FaUserEdit /> <span>Manage Players</span>
           </button>
