@@ -68,17 +68,29 @@ function TruthOrDareSettings() {
 
         <div className="config-item">
           <label htmlFor="spicyLevel">Spicy Level</label>
-          <select
-            id="spicyLevel"
-            name="spicyLevel"
-            value={config.spicyLevel}
-            onChange={handleInputChange}
-            className="select-input"
-          >
-            <option value="0">Mild</option>
-            <option value="1">Medium</option>
-            <option value="2">Hot</option>
-          </select>
+          <div className="spicy-blocks">
+            <button
+              type="button"
+              className={`spicy-block ${config.spicyLevel === SpicyLevel.MILD ? 'selected' : ''}`}
+              onClick={() => setConfig(prev => ({ ...prev, spicyLevel: SpicyLevel.MILD }))}
+            >
+              Mild
+            </button>
+            <button
+              type="button"
+              className={`spicy-block ${config.spicyLevel === SpicyLevel.MEDIUM ? 'selected' : ''}`}
+              onClick={() => setConfig(prev => ({ ...prev, spicyLevel: SpicyLevel.MEDIUM }))}
+            >
+              Medium
+            </button>
+            <button
+              type="button"
+              className={`spicy-block ${config.spicyLevel === SpicyLevel.HOT ? 'selected' : ''}`}
+              onClick={() => setConfig(prev => ({ ...prev, spicyLevel: SpicyLevel.HOT }))}
+            >
+              Hot
+            </button>
+          </div>
         </div>
 
         <div className="config-item">
@@ -105,16 +117,21 @@ function TruthOrDareSettings() {
 
         </div>
 
-        <div className="config-item">
-          <label htmlFor="useGenAi">Use AI Generation</label>
-          <input
-            type="checkbox"
-            id="useGenAi"
-            name="useGenAi"
-            checked={config.useGenAi}
-            onChange={handleInputChange}
-            className="checkbox-input"
-          />
+        <div className="config-item config-item-gen-ai">
+          <label>Use AI Generation</label>
+          <div className="toggle-switch">
+            <input
+              type="checkbox"
+              id="useGenAi"
+              name="useGenAi"
+              checked={config.useGenAi}
+              onChange={handleInputChange}
+              className="toggle-input"
+            />
+            <label className="toggle-label" htmlFor="useGenAi">
+              <span className="toggle-button"></span>
+            </label>
+          </div>
         </div>
 
         <button
