@@ -3,6 +3,7 @@ import './common.css';
 import './GamesPage.css';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
+import GameCard from './GameCard';
 
 function GamesPage() {
   const navigate = useNavigate();
@@ -29,11 +30,8 @@ function GamesPage() {
       </header>
       <main>
         <div className="games-grid">
-          { games.map(game => (
-            <div key={game.id} className="game-card" onClick={() => console.log(`Selected ${game.name}`)}>
-              <h3>{game.name}</h3>
-              <p>{game.description}</p>
-            </div>
+          {games.map((game) => (
+            <GameCard key={game.id} game={game} />
           ))}
         </div>
       </main>
