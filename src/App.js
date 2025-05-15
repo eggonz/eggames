@@ -1,11 +1,11 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';  // BrowserRouter not working for GH-Pages hosting
-import HomePage from './components/HomePage';
-import InstallPage from './components/InstallPage';
-import PlayersPage from './components/PlayersPage';
-import GamesPage from './components/GamesPage';
-import SharePage from './components/SharePage';
-import TruthOrDarePage from './components/games/TruthOrDarePage';
+import HomePage from './pages/HomePage';
+import InstallPage from './pages/InstallPage';
+import PlayersPage from './pages/PlayersPage';
+import GamesPage from './pages/GamesPage';
+import SharePage from './pages/SharePage';
+import TruthOrDarePage from './pages/games/TruthOrDarePage';
 
 function App() {
   return (
