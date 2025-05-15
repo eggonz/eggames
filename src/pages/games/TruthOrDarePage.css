@@ -1,0 +1,178 @@
+.config-container,
+.play-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Settings */
+
+.config-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.config-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.config-item label {
+  font-weight: bold;
+}
+
+/*.config-item input {*/
+/*  padding: 8px;*/
+/*  border: 1px solid #ccc;*/
+/*  border-radius: 4px;*/
+/*}*/
+
+/* Settings Spicy */
+
+.spicy-blocks {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.spicy-block {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.spicy-block:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.spicy-block.selected {
+  background-color: var(--primary-button-color);
+  color: white;
+  border-color: var(--primary-button-color);
+}
+
+/* Settings Time Limit */
+
+.time-limit-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.time-button {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background: none;
+  cursor: pointer;
+}
+
+.time-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.time-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.time-display {
+  min-width: 5rem;
+  text-align: center;
+}
+
+/* Settings Toggle Switch */
+
+.config-item-gen-ai {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 3rem;
+  height: 1.5rem;
+}
+
+.toggle-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-label {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 1.5rem;
+}
+
+.toggle-label .toggle-button {
+  position: absolute;
+  content: "";
+  height: 1rem;
+  width: 1rem;
+  left: 0.25rem;
+  bottom: 0.25rem;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+.toggle-input:checked + .toggle-label {
+  background-color: var(--primary-button-color);
+}
+
+.toggle-input:checked + .toggle-label .toggle-button {
+  transform: translateX(1.5rem);
+}
+
+.toggle-input:focus + .toggle-label {
+  box-shadow: 0 0 1px var(--primary-button-color);
+}
+
+/* Play */
+
+.challenge-container {
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.challenge-container.truth {
+  background-color: #e3f2fd;
+}
+
+.challenge-container.dare {
+  background-color: #fbe9e7;
+}
+
+.game-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.player-turn {
+  text-align: center;
+  margin-bottom: 20px;
+}

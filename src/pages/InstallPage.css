@@ -1,0 +1,51 @@
+.install-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.install-logo {
+  height: 10rem;
+  margin-bottom: 2rem;
+}
+
+.install-button {
+  background-color: var(--download-button-color);
+  border: none;
+  color: var(--on-download-button-color);
+  padding: 1rem 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.install-button:hover {
+  background-color: var(--download-button-color-hover)
+}
+
+.install-button p {
+  margin: 0;
+}
+
+.install-version {
+  font-size: 0.8rem;
+  color: var(--on-background-color-2);
+  margin: 0;
+  text-align: center;
+}
+
+.install-message {
+  font-size: 1rem;
+  text-align: center;
+  align-items: center;
+}
+
+.install-message p {
+  margin: 0;
+}
