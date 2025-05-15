@@ -52,3 +52,63 @@ export default tseslint.config({
   },
 })
 ```
+
+## Deploy site to gh-pages
+
+1. install gh-pages package
+
+```bash
+npm install gh-pages --save-dev
+```
+
+2. create empty public repository on github
+
+<https://github.com/GITNAME/REPONAME.git>
+
+3. add remote to your local repository
+
+```bash
+git remote add origin https://github.com/GITNAME/REPONAME.git
+```
+
+4. add deploy script to package.json
+
+```json
+{
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    ...
+  },
+}
+```
+
+5. add homepage to package.json
+
+```json
+{
+  ...
+  "version": "0.0.0",
+  "homepage": "https://GITNAME.github.io/REPONAME/",
+  ...
+}
+```
+
+6. add base to vite.config.ts
+
+```ts
+export default defineConfig({
+  plugins: [react()],
+  base: "/REPONAME/"  // your repository base name
+})
+```
+
+7. build and deploy
+
+```bash
+npm run deploy
+```
+
+8. on github, go to settings -> pages and select gh-pages branch as source. Save.
+9. wait a few minutes for github to deploy your site.
+10. open your site at <https://GITNAME.github.io/REPONAME/>
