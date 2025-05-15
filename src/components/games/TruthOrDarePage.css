@@ -27,11 +27,11 @@
   font-weight: bold;
 }
 
-.config-item input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
+/*.config-item input {*/
+/*  padding: 8px;*/
+/*  border: 1px solid #ccc;*/
+/*  border-radius: 4px;*/
+/*}*/
 
 /* Settings Spicy */
 
@@ -56,9 +56,9 @@
 }
 
 .spicy-block.selected {
-  background-color: #007bff;
+  background-color: var(--primary-button-color);
   color: white;
-  border-color: #007bff;
+  border-color: var(--primary-button-color);
 }
 
 /* Settings Time Limit */
@@ -67,22 +67,18 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  border: 1px solid #ccc;
-  padding: 8px;
-  border-radius:24px;
 }
 
 .time-button {
-  padding: 0.25rem 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 16px;
-  background-color: #f0f0f0;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background: none;
   cursor: pointer;
 }
 
 .time-button:hover {
-  background-color: #e0e0e0;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .time-button:disabled {
@@ -141,7 +137,7 @@
 }
 
 .toggle-input:checked + .toggle-label {
-  background-color: #007bff;
+  background-color: var(--primary-button-color);
 }
 
 .toggle-input:checked + .toggle-label .toggle-button {
@@ -149,7 +145,7 @@
 }
 
 .toggle-input:focus + .toggle-label {
-  box-shadow: 0 0 1px #007bff;
+  box-shadow: 0 0 1px var(--primary-button-color);
 }
 
 /* Play */

@@ -14,11 +14,11 @@
 
 .game-card h3 {
   margin: 0 0 0.5rem 0;
-  color: #333;
+  color: var(--on-surface-color-1);
 }
 
 .game-card p {
-  color: #666;
+  color: var(--on-surface-color-2);
   font-size: 0.9rem;
   margin: 0 0 1rem 0;
   text-wrap: nowrap;

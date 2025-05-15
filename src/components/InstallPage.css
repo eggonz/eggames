@@ -11,9 +11,9 @@
 }
 
 .install-button {
-  background-color: #4CAF50;
+  background-color: var(--download-button-color);
   border: none;
-  color: white;
+  color: var(--on-download-button-color);
   padding: 1rem 1.5rem;
   text-align: center;
   text-decoration: none;
@@ -26,7 +26,7 @@
 }
 
 .install-button:hover {
-  background-color: #45a049;
+  background-color: var(--download-button-color-hover)
 }
 
 .install-button p {
@@ -35,7 +35,7 @@
 
 .install-version {
   font-size: 0.8rem;
-  color: #555;
+  color: var(--on-background-color-2);
   margin: 0;
   text-align: center;
 }

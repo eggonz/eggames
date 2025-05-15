@@ -8,6 +8,7 @@
 .players-page input {
   margin-right: 0.5rem;
   padding: 0.4rem;
+  height: calc(2rem - 2 * 2px - 2 * 0.4rem);
 }
 
 .players-list {
@@ -24,9 +25,11 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid var(--surface-color-border);
   border-radius: 8px;
   padding: 4px;
+  background-color: var(--surface-color);
+  color: var(--on-surface-color);
 }
 
 .player-item span {
@@ -50,14 +53,13 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  background-color: #eeeeee;
-  color: #666;
+  background-color: var(--secondary-button-color);
+  color: var(--on-secondary-button-color);
   transition: color 0.2s;
 }
 
 .icon-button:hover {
-  color: #333;
-  background-color: #dddddd;
+  background-color:  var(--secondary-button-color-hover);
 }
 
 .icon-button svg {
@@ -65,21 +67,25 @@
   height: 16px;
 }
 
+.players-page form .icon-button {
+  border: 1px solid var(--secondary-button-color-border);
+}
+
 /* Styling for the delete/trash icon */
 .icon-button .fa-trash {
-  color: #ff3b30;
+  color: var(--error-color);
 }
 
 .icon-button:hover .fa-trash {
-  color: #dc3545;
+  color: var(--error-color-hover);
 }
 
 .clear-players-button {
   margin-top: 1rem;
   padding: 0.5rem 0.75rem;
   font-size: 0.9rem;
-  background-color: #ff3b30;
-  color: white;
+  background-color: var(--error-color);
+  color: var(--on-error-color);
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -91,5 +97,5 @@
 }
 
 .clear-players-button:hover {
-  background-color: #dc3545;
+  background-color: var(--error-color-hover);
 }
