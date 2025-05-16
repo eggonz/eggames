@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../common.css';
 import './TruthOrDarePage.css';
 
+// Types
+type Direction = -1 | 1;
+
+// Constants
 const TRUTH_PROB_DEFAULT = 50;
 const TRUTH_PROB_MIN = 0;
 const TRUTH_PROB_MAX = 100;
@@ -17,6 +21,7 @@ const SpicyLevel = {
 }
 const USE_GEN_AI_DEFAULT = false;
 
+// Component
 function TruthOrDareSettings() {
   const navigate = useNavigate();
   const [config, setConfig] = useState({
@@ -26,7 +31,7 @@ function TruthOrDareSettings() {
     useGenAi: USE_GEN_AI_DEFAULT
   });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setConfig(prev => ({
       ...prev,
@@ -34,7 +39,7 @@ function TruthOrDareSettings() {
     }));
   };
 
-  const handleTimeLimitChange = (direction) => {
+  const handleTimeLimitChange = (direction: Direction) => {
     setConfig(prev => ({
       ...prev,
       timeLimit: Math.max(TIME_LIMIT_MIN, Math.min(TIME_LIMIT_MAX,
