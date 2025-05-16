@@ -81,7 +81,7 @@
 }
 
 .clear-players-button {
-  margin-top: 1rem;
+  margin-top: 2rem;
   padding: 0.5rem 0.75rem;
   font-size: 0.9rem;
   background-color: var(--error-color);

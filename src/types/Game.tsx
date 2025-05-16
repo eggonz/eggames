@@ -1,7 +1,5 @@
-export type GameIdType = string;
-
 export interface Game {
-  id: GameIdType;     // Unique URL-friendly identifier for the game
+  id: string;     // Unique URL-friendly identifier for the game
   name: string;       // Name of the game
   description: string;// Short description of the game
   people: string;     // Recommended number of players

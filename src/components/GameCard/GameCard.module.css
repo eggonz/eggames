@@ -14,24 +14,23 @@
 
 .game-card h3 {
   margin: 0 0 0.5rem 0;
-  color: var(--on-surface-color-1);
+  color: var(--on-surface-color);
 }
 
-.game-card p {
+.game-card-details, .game-card-desc {
   color: var(--on-surface-color-2);
   font-size: 0.9rem;
-  margin: 0 0 1rem 0;
-  text-wrap: nowrap;
-}
-
-.game-card p:last-child {
-  margin-bottom: 0;
 }
 
 .game-card-details {
+  margin: 0 0 1rem 0;
   display: flex;
   flex-direction: row;
   justify-content: start;
   gap: 1rem;
   align-items: center;
+}
+
+.game-card-desc p {
+  margin: 0;
 }

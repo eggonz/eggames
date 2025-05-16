@@ -1,0 +1,15 @@
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--footer-color);
+  color: var(--on-footer-color);
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* subtle shadow */
+  font-size: 0.8rem;
+  gap: 1rem;
+}
+
+footer p {
+  margin: 0;
+}

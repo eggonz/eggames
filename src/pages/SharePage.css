@@ -12,3 +12,8 @@
   text-align: center;
   margin-top: 1rem;
 }
+
+.qr-code {
+  width: 250px;
+  height: 250px;
+}

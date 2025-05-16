@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import './common.css';
 import './InstallPage.css';
 import { FaDownload } from "react-icons/fa";
 import logo from '/logo.svg'
+import Header from "../components/Header";
 
 declare global {
   interface WindowEventMap {
@@ -52,11 +52,7 @@ function InstallPage() {
 
   return (
     <div className="page install-page">
-      <header>
-        <div className="header-title">
-          <h1>Install</h1>
-        </div>
-      </header>
+      <Header title="Install" />
       <main>
         <div className="install-content">
           <img className="install-logo" src={logo} alt="App Logo" />

@@ -8,7 +8,6 @@
  * Functions:
  * - `getStoredPlayers`: Retrieves the list of stored players from localStorage.
  * - `storePlayers`: Stores a list of players in localStorage.
- * - `getStoredPlayersCount`: Returns the count of stored players.
  * - `clearPlayers`: Clears all stored player data from localStorage.
  */
 
@@ -27,13 +26,8 @@ const storePlayers = (players: Player[]) => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(players));
 };
 
-const getStoredPlayersCount = () => {
-  const storedPlayers = getStoredPlayers();
-  return storedPlayers.length;
-};
-
 const clearPlayers = () => {
   localStorage.removeItem(STORAGE_KEY);
 }
 
-export { getStoredPlayers, storePlayers, getStoredPlayersCount, clearPlayers };
+export { getStoredPlayers, storePlayers, clearPlayers };

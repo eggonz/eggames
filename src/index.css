@@ -1,5 +1,32 @@
 :root {
+  /* surface colors */
+  --primary-button-color: #007bff;
+  --primary-button-color-hover: #0056b3;
+  --secondary-button-color: transparent;
+  --secondary-button-color-hover: rgba(0,0,0,0.05);
+  --secondary-button-color-border: #ccc;
+  --background-color: #f0f0f0;
+  --surface-color: white;
+  --surface-color-border: #ccc;  /* for surfaces without shadow */
+  --error-color: #f44336;
+  --error-color-hover: #d32f2f;
+  --header-color: white;
+  --footer-color: #f7f7f7;
+  --download-button-color: #4caf50;
+  --download-button-color-hover: #34933a;
 
+  /* text colors */
+  --on-primary-button-color: white;
+  --on-secondary-button-color: black;
+  --on-background-color: black;
+  --on-background-color-2: #555;
+  --on-surface-color: black;
+  --on-surface-color-2: #666;
+  --on-error-color: white;
+  --on-header-color: black;
+  --on-header-color-2: #333;
+  --on-footer-color: #555;
+  --on-download-button-color: white;
 }
 
 body {

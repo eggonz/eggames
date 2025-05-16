@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import '../common.css';
 import './TruthOrDarePage.css';
 import { useLocation } from 'react-router-dom';
 

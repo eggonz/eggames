@@ -1,35 +1,29 @@
 import { QRCodeSVG } from 'qrcode.react';
-import './common.css';
 import './SharePage.css';
-import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
+import Header from "../components/Header";
 
 function SharePage() {
-  const navigate = useNavigate();
   const qrUrl = `${window.location.origin}${window.location.pathname}#/install`;  // "#/" for HashRouter
-  console.log("origin:", window.location.origin);
-  console.log("pathname:", window.location.pathname);
-  console.log("qrUrl:", qrUrl);
 
   return (
     <div className="page share-page">
-      <header>
-        <button 
-          className="header-fixed-left header-button"
-          onClick={() => navigate(-1)}
-        >
-          <FaArrowLeft />
-        </button>
-        <div className="header-title">
-          <h1>Share</h1>
-        </div>
-      </header>
+      <Header
+        leftBtn={{
+          icons: [FaArrowLeft],
+          navDst: '/',
+        }}
+        title="Share"
+      />
       <main>
         <div className="qr-container">
           <QRCodeSVG 
             value={qrUrl}
             size={256}
             level="H"
+            fgColor={"#000000"}
+            bgColor={"#ffffff00"}  // Transparent background
+            className="qr-code"
           />
           <p className="share-text">Scan to play eggames!</p>
         </div>

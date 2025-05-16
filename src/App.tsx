@@ -5,6 +5,7 @@ import PlayersPage from './pages/PlayersPage'
 import GamesPage from './pages/GamesPage'
 import SharePage from './pages/SharePage'
 import TruthOrDarePage from './pages/games/TruthOrDarePage'
+import './App.css'
 
 function App() {
   return (

@@ -1,24 +1,26 @@
-import './common.css';
 import './HomePage.css';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaDice, FaShareAlt, FaUserEdit, FaUsers } from "react-icons/fa";
-import { getStoredPlayersCount } from "../utils/playersStorage";
+import type { Player } from "../types/Player";
+import { getStoredPlayers } from "../utils/playersStorage";
+import Header from "../components/Header"
+import Footer from "../components/Footer";
+import IconDetail from "../components/IconDetail";
 
 function HomePage() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const [players] = useState<Player[]>(getStoredPlayers())
 
   return (
     <div className="page home-page">
-      <header>
-        <button className="header-fixed-left header-button"
-                onClick={() => navigate('/share')}
-        >
-          <FaShareAlt />
-        </button>
-        <div className="header-title">
-          <h1>eggames</h1>
-        </div>
-      </header>
+      <Header
+        leftBtn={{
+          icons: [FaShareAlt],
+          navDst: '/share',
+        }}
+        title="eggames"
+      />
       <main>
         <div className="home-menu-container">
           <button
@@ -33,13 +35,10 @@ function HomePage() {
           >
             <FaUserEdit /> <span>Manage Players</span>
           </button>
-          <div className="icon-detail"><FaUsers /><span>{getStoredPlayersCount()}</span></div>
+          <IconDetail Icon={FaUsers} text={players.length} />
         </div>
       </main>
-      <footer>
-        <p>2025 eggames</p>
-        <p>v1.0.0</p>
-      </footer>
+      <Footer leftText={"2025 eggames"} rightText={"v1.0.0"} />
     </div>
   );
 }

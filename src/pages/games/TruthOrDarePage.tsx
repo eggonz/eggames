@@ -1,12 +1,11 @@
-import '../common.css';
 import './TruthOrDarePage.css';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { FaArrowLeft, FaCog, FaDice } from 'react-icons/fa';
 import TruthOrDareSettings from './TruthOrDareSettings';
 import TruthOrDarePlay from './TruthOrDarePlay';
+import Header from "../../components/Header";
 
 function TruthOrDarePage() {
-  const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const view = searchParams.get('view') || 'config';  // default to 'config'
@@ -23,36 +22,28 @@ function TruthOrDarePage() {
 
   return (
     <div className="page truth-or-dare-page">
-      <header>
-        <div className="header-title">
-          <h1>Truth or Dare</h1>
-        </div>
-        {view === 'play' && (
-          <button
-            className="header-fixed-left header-button"
-            onClick={() => navigate('/games')}
-          >
-            <FaArrowLeft />
-            <FaDice />
-          </button>
-        )}
-        {view === 'config' && (
-          <button
-            className="header-fixed-left header-button"
-            onClick={() => navigate(-1)}
-          >
-            <FaArrowLeft />
-          </button>
-        )}
-        {view === 'play' && (
-          <button
-            className="header-fixed-right header-button"
-            onClick={() => navigate('?view=config')}
-          >
-            <FaCog />
-          </button>
-        )}
-      </header>
+      {view === 'play' && (
+        <Header
+          leftBtn={{
+            icons: [FaArrowLeft, FaDice],
+            navDst: '/games',
+          }}
+          title="Truth or Dare"
+          rightBtn={{
+            icons: [FaCog],
+            navDst: '?view=config',
+          }}
+        />
+      )}
+      {view === 'config' && (
+        <Header
+          leftBtn={{
+            icons: [FaArrowLeft],
+            navDst: -1,
+          }}
+          title="Truth or Dare Settings"
+        />
+      )}
       <main>
         {renderContent()}
       </main>
