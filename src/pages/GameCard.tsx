@@ -2,8 +2,14 @@ import './common.css';
 import './GameCard.css';
 import { useNavigate } from 'react-router-dom';
 import { FaStopwatch, FaUsers, FaExclamationCircle } from "react-icons/fa";
+import type {GameIdType, Game} from '../data/gameData';
 
-function GameCard({ key, game }) {
+interface GameCardProps {
+  key: GameIdType;
+  game: Game;
+}
+
+function GameCard({ key, game }: GameCardProps) {
   const navigate = useNavigate();
 
   const handleClick = () => {
