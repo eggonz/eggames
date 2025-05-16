@@ -1,18 +1,10 @@
 import './common.css';
 import './PlayersPage.css';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {FaCheck, FaTrash, FaPencilAlt, FaPlus, FaUsers} from 'react-icons/fa';
-import {storePlayers, getStoredPlayers, getStoredPlayersCount, clearPlayers} from '../utils/playersStorage';
-
-interface Player {
-  id: number;
-  name: string;
-}
-
-interface NewPlayer {
-  name: string;
-}
+import { FaCheck, FaPencilAlt, FaPlus, FaTrash, FaUsers } from 'react-icons/fa';
+import { clearPlayers, getStoredPlayers, getStoredPlayersCount, storePlayers } from '../utils/playersStorage';
+import type { NewPlayer, Player } from "../types/Player.tsx";
 
 function PlayersPage() {
   const navigate = useNavigate();

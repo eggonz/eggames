@@ -2,7 +2,8 @@ import './common.css';
 import './GameCard.css';
 import { useNavigate } from 'react-router-dom';
 import { FaStopwatch, FaUsers, FaExclamationCircle } from "react-icons/fa";
-import type {GameIdType, Game} from '../data/gameData';
+
+import type {Game, GameIdType} from "../types/Game.tsx";
 
 interface GameCardProps {
   key: GameIdType;
