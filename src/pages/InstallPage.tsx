@@ -2,12 +2,28 @@ import { useState, useEffect } from 'react';
 import './common.css';
 import './InstallPage.css';
 import { FaDownload } from "react-icons/fa";
+import logo from '/logo.svg'
+
+declare global {
+  interface WindowEventMap {
+    beforeinstallprompt: BeforeInstallPromptEvent;
+  }
+
+  interface BeforeInstallPromptEvent extends Event {
+    readonly platforms: string[];
+    readonly userChoice: Promise<{
+      outcome: 'accepted' | 'dismissed';
+      platform: string;
+    }>;
+    prompt(): Promise<void>;
+  }
+}
 
 function InstallPage() {
-  const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
 
   useEffect(() => {
-    window.addEventListener('beforeinstallprompt', (e) => {
+    window.addEventListener('beforeinstallprompt', (e: BeforeInstallPromptEvent) => {
       // Prevent Chrome 76+ from automatically showing the prompt
       e.preventDefault();
       // Stash the event so it can be triggered later
@@ -19,7 +35,7 @@ function InstallPage() {
     if (!deferredPrompt) return;
 
     // Show the install prompt
-    deferredPrompt.prompt();
+    await deferredPrompt.prompt();
 
     // Wait for the user to respond to the prompt
     const { outcome } = await deferredPrompt.userChoice;
@@ -43,7 +59,7 @@ function InstallPage() {
       </header>
       <main>
         <div className="install-content">
-          <img className="install-logo" src={`${process.env.PUBLIC_URL}/logo512.png`} alt="App Logo" />
+          <img className="install-logo" src={logo} alt="App Logo" />
           {deferredPrompt && (
             <div>
               <button
