@@ -1,22 +1,31 @@
 import './common.css';
 import './PlayersPage.css';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {FaCheck, FaTrash, FaPencilAlt, FaPlus, FaUsers} from 'react-icons/fa';
 import {storePlayers, getStoredPlayers, getStoredPlayersCount, clearPlayers} from '../utils/playersStorage';
 
+interface Player {
+  id: number;
+  name: string;
+}
+
+interface NewPlayer {
+  name: string;
+}
+
 function PlayersPage() {
   const navigate = useNavigate();
-  const [players, setPlayers] = useState(getStoredPlayers());
-  const [playerCount, setPlayersCount] = useState(getStoredPlayersCount());
-  const [newPlayer, setNewPlayer] = useState({ name: '' });
+  const [players, setPlayers] = useState<Player[]>(getStoredPlayers());
+  const [playerCount, setPlayersCount] = useState<number>(getStoredPlayersCount());
+  const [newPlayer, setNewPlayer] = useState<NewPlayer>({ name: '' });
 
   // Update localStorage whenever players change
   useEffect(() => {
     storePlayers(players);
   }, [players]);
 
-  const handleAddPlayer = (e) => {
+  const handleAddPlayer = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (newPlayer.name) {
       setPlayers([...players, { ...newPlayer, id: Date.now() }]);
@@ -25,13 +34,13 @@ function PlayersPage() {
     }
   };
 
-  const handleDeletePlayer = (id) => {
-    setPlayers(players.filter(player => player.id !== id));
+  const handleDeletePlayer = (id: number) => {
+    setPlayers(players.filter((player: Player) => player.id !== id));
     setPlayersCount(players.length - 1);
   };
 
-  const handleEditPlayer = (id, updatedPlayer) => {
-    setPlayers(players.map(player =>
+  const handleEditPlayer = (id: number, updatedPlayer: NewPlayer) => {
+    setPlayers(players.map((player: Player) =>
       player.id === id ? { ...player, ...updatedPlayer } : player
     ));
   };
