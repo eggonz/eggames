@@ -1,0 +1,24 @@
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.settings-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.settings-item label {
+  font-weight: bold;
+}
+
+.settings-item input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

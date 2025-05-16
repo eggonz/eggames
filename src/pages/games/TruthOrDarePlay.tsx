@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './TruthOrDarePage.css';
 import { useLocation } from 'react-router-dom';
+import PrimaryButton from '../../components/PrimaryButton';
 
 // Types
 interface GameConfig {
@@ -58,12 +59,7 @@ function TruthOrDarePlay() {
           <p>{gameState.question}</p>
         </div>
       ) : (
-        <button
-          className="primary-button"
-          onClick={generateChallenge}
-        >
-          Generate Challenge
-        </button>
+        <PrimaryButton text={"Generate Challenge"} onClick={generateChallenge} />
       )}
 
       <div className="game-controls">

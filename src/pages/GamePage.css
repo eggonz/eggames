@@ -1,0 +1,18 @@
+.game-page.settings {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.game-page.settings h2:first-child {
+  margin-top: 0;
+}
+
+.game-page.settings > div:not(:first-child) {
+  margin-top: 2rem;
+}
+
+.game-page.settings .start-button-container {
+  display: flex;
+  justify-content: center;
+}

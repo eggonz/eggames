@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TruthOrDarePage.css';
+import PrimaryButton from "../../components/PrimaryButton"
 
 // Types
 type Direction = -1 | 1;
@@ -138,12 +139,7 @@ function TruthOrDareSettings() {
           </div>
         </div>
 
-        <button
-          className="primary-button"
-          onClick={handleStartGame}
-        >
-          Start Game
-        </button>
+        <PrimaryButton text={"Start Game"} onClick={handleStartGame} />
       </div>
     </div>
   );

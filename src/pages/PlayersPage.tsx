@@ -86,7 +86,7 @@ function PlayersPage() {
   }, [players]);
 
   return (
-    <div className="page players-page">
+    <div className="page">
       <Header
         leftBtn={{
           icons: [FaCheck],
@@ -96,37 +96,39 @@ function PlayersPage() {
         rightDiv={<IconDetail Icon={FaUsers} text={players.length} />}
       />
       <main>
-        <PlayerForm
-          onSubmit={(name) => {
-            setPlayers([...players, { id: Date.now(), name }])
-          }}
-        />
+        <div className="players-page">
+          <PlayerForm
+            onSubmit={(name) => {
+              setPlayers([...players, {id: Date.now(), name}])
+            }}
+          />
 
-        <div className="players-list">
-          {players.map(player => (
-            <PlayerItem
-              key={player.id}
-              player={player}
-              editFn={(id, updatedPlayer) => {
-                setPlayers(players.map((p: Player) =>
-                  p.id === id ? { ...p, ...updatedPlayer } : p
-                ))
-              }}
-              deleteFn={(id) => {
-                setPlayers(players.filter((p: Player) => p.id !== id))
-              }}
-            />
-          ))}
+          <div className="players-list">
+            {players.map(player => (
+              <PlayerItem
+                key={player.id}
+                player={player}
+                editFn={(id, updatedPlayer) => {
+                  setPlayers(players.map((p: Player) =>
+                    p.id === id ? {...p, ...updatedPlayer} : p
+                  ))
+                }}
+                deleteFn={(id) => {
+                  setPlayers(players.filter((p: Player) => p.id !== id))
+                }}
+              />
+            ))}
+          </div>
+
+          <ClearButton
+            onClick={() => {
+              if (window.confirm('Are you sure you want to clear all players?')) {
+                setPlayers([]);
+                clearPlayers();
+              }
+            }}
+          />
         </div>
-
-        <ClearButton
-          onClick={() => {
-            if (window.confirm('Are you sure you want to clear all players?')) {
-              setPlayers([]);
-              clearPlayers();
-            }
-          }}
-        />
       </main>
     </div>
   );
