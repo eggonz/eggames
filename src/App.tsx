@@ -1,34 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'  // BrowserRouter not working for GH-Pages hosting
+import HomePage from './pages/HomePage'
+import InstallPage from './pages/InstallPage'
+import PlayersPage from './pages/PlayersPage'
+import GamesPage from './pages/GamesPage'
+import SharePage from './pages/SharePage'
+import TruthOrDarePage from './pages/games/TruthOrDarePage'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/share" element={<SharePage />} />
+          <Route path="/install" element={<InstallPage />} />
+          <Route path="/players" element={<PlayersPage />} />
+          <Route path="/games" element={<GamesPage />} />
+          <Route path="/games/truth-or-dare" element={<TruthOrDarePage />} />
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </Router>
   )
 }
 
