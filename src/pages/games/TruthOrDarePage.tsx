@@ -1,7 +1,7 @@
 import '../common.css';
 import './TruthOrDarePage.css';
-import { useNavigate, useLocation } from 'react-router-dom';
-import {FaArrowLeft, FaCog, FaDice} from 'react-icons/fa';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { FaArrowLeft, FaCog, FaDice } from 'react-icons/fa';
 import TruthOrDareSettings from './TruthOrDareSettings';
 import TruthOrDarePlay from './TruthOrDarePlay';
 

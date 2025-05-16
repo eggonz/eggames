@@ -1,10 +1,10 @@
 import './common.css';
 import './GamesPage.css';
 import { useNavigate } from 'react-router-dom';
-import {FaArrowLeft, FaUsers} from 'react-icons/fa';
+import { FaArrowLeft, FaUsers } from 'react-icons/fa';
 import GameCard from './GameCard';
 import { AVAILABLE_GAMES } from '../data/gameData';
-import {getStoredPlayersCount} from "../utils/playersStorage";
+import { getStoredPlayersCount } from "../utils/playersStorage";
 
 function GamesPage() {
   const navigate = useNavigate();

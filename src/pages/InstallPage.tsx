@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './common.css';
 import './InstallPage.css';
 import { FaDownload } from "react-icons/fa";

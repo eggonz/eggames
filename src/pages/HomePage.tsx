@@ -1,8 +1,8 @@
 import './common.css';
 import './HomePage.css';
 import { useNavigate } from 'react-router-dom';
-import {FaDice, FaShareAlt, FaUserEdit, FaUsers} from "react-icons/fa";
-import {getStoredPlayersCount} from "../utils/playersStorage";
+import { FaDice, FaShareAlt, FaUserEdit, FaUsers } from "react-icons/fa";
+import { getStoredPlayersCount } from "../utils/playersStorage";
 
 function HomePage() {
   const navigate = useNavigate();
