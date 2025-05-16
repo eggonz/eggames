@@ -1,23 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import '../common.css';
 import './TruthOrDarePage.css';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
+// Types
+interface GameConfig {
+  truthProbability: number; // 0-100
+  spicyLevel: number; // 0-2
+  timeLimit: number; // seconds
+  useGenAi: boolean; // toggle
+}
+
+interface GameState {
+  type: 'truth' | 'dare' | null;
+  question: string | null;
+}
+
+// Constants
+const DEFAULT_CONFIG: GameConfig = {
+  truthProbability: 50,  // slider 0-100
+  spicyLevel: 0,  // select 0-2
+  timeLimit: 30,  // seconds (+-15)
+  useGenAi: false,  // toggle
+}
+
+// Main Component
 function TruthOrDarePlay() {
-  const navigate = useNavigate();
   const location = useLocation();
-  const [currentPlayer, setCurrentPlayer] = useState(null);
-  const [gameState, setGameState] = useState({
+  const [currentPlayer] = useState<string | null>(null);
+  const [gameState, setGameState] = useState<GameState>({
     type: null, // 'truth' or 'dare'
     question: null,
   });
 
-  const config = location.state?.config || {
-    truthProbability: 50,  // slider 0-100
-    spicyLevel: 0,  // select 0-2
-    timeLimit: 30,  // seconds (+-15)
-    useGenAi: false,  // toggle
-  };
+  const config = location.state?.config || DEFAULT_CONFIG;
 
   const generateChallenge = () => {
     const isTruth = Math.random() * 100 < config.truthProbability;
