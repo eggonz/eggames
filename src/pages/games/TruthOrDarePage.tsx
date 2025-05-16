@@ -1,4 +1,3 @@
-import React from 'react';
 import '../common.css';
 import './TruthOrDarePage.css';
 import { useNavigate, useLocation } from 'react-router-dom';

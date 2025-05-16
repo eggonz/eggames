@@ -1,6 +1,6 @@
 import './common.css';
 import './PlayersPage.css';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {FaCheck, FaTrash, FaPencilAlt, FaPlus, FaUsers} from 'react-icons/fa';
 import {storePlayers, getStoredPlayers, getStoredPlayersCount, clearPlayers} from '../utils/playersStorage';

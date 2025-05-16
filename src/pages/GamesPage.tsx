@@ -1,4 +1,3 @@
-import React from 'react';
 import './common.css';
 import './GamesPage.css';
 import { useNavigate } from 'react-router-dom';

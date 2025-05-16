@@ -1,4 +1,3 @@
-import React from 'react';
 import './common.css';
 import './GameCard.css';
 import { useNavigate } from 'react-router-dom';
