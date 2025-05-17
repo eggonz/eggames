@@ -15,7 +15,7 @@ function HomePage() {
 
   return (
     <div className="page">
-      <Header leftBtn={{ icons: [FaShareAlt], navDst: '/share' }}
+      <Header leftBtn={{ icons: [FaShareAlt], onClick: () => navigate('/share') }}
               title="eggames" />
       <main>
         <div className="home-menu-container">

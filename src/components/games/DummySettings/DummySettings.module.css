@@ -4,6 +4,8 @@
   align-items: start;
   gap: 20px;
   width: 100%;
+  max-width: 250px;
+  margin: 0 auto;
 }
 
 .settings-item {
@@ -31,6 +33,9 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  width: 100%;
+  max-width: 300px;
+  margin: 8px auto 0;
 }
 
 .slider-container input {
@@ -75,8 +80,12 @@
 
 .time-limit-container {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  max-width: 200px;
+  margin: 8px auto 0;
 }
 
 .time-button {

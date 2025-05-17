@@ -1,10 +1,11 @@
 import './PlayersPage.css';
 import React, { useEffect, useState } from 'react';
 import { FaCheck, FaPencilAlt, FaPlus, FaTrash, FaUsers } from 'react-icons/fa';
+import { useNavigate } from "react-router-dom"
 import Header from "../components/Header";
 import IconDetail from "../components/IconDetail";
 import type { NewPlayer, Player } from "../types/Player";
-import { clearPlayers, getStoredPlayers, storePlayers } from '../utils/playersStorage';
+import { clearStoredPlayers, getStoredPlayers, storePlayers } from '../utils/playersStorage';
 
 // Components
 
@@ -78,6 +79,7 @@ function ClearButton({ onClick }: { onClick: () => void }) {
 
 // Main Component
 function PlayersPage() {
+  const navigate = useNavigate();
   const [players, setPlayers] = useState<Player[]>(getStoredPlayers())
 
   // Update localStorage whenever players change
@@ -90,7 +92,7 @@ function PlayersPage() {
       <Header
         leftBtn={{
           icons: [FaCheck],
-          navDst: '/',
+          onClick: () => navigate('/'),
         }}
         title="Players"
         rightDiv={<IconDetail Icon={FaUsers} text={players.length} />}
@@ -124,7 +126,7 @@ function PlayersPage() {
             onClick={() => {
               if (window.confirm('Are you sure you want to clear all players?')) {
                 setPlayers([]);
-                clearPlayers();
+                clearStoredPlayers();
               }
             }}
           />

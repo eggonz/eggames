@@ -4,3 +4,9 @@
   justify-content: center;
   gap: 0.4rem;
 }
+
+.icon-detail {
+  height: auto;
+  margin: auto 0;
+  line-height: 1rem;
+}

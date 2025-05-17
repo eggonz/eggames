@@ -1,20 +1,20 @@
 import type { IconType } from 'react-icons';
-import { type To, useNavigate } from 'react-router-dom';
 import styles from './HeaderNavBtn.module.css';
 
 interface HeaderNavBtnProps {
     icons: IconType[];  // List of Fa* icons
-    navDst: To | number;  // string or -1
+    onCLick: () => void;
     position: "left" | "right"; // Position of the button
 }
 
-export default function HeaderNavBtn({ icons, navDst, position }: HeaderNavBtnProps) {
-    const navigate = useNavigate();
+export default function HeaderNavBtn({ icons, onCLick, position }: HeaderNavBtnProps) {
     return (
         <button className={styles.headerNavBtn + ' ' + styles[position]}
-                onClick={() => {
-                    if (typeof navDst === "number") { navigate(navDst) } else { navigate(navDst) }
-                }}
+            onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onCLick();
+            }}
         >
             {icons.map((Icon: IconType, index: number) => (
                 <Icon key={index}/>

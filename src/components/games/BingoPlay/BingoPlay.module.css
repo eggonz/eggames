@@ -1,0 +1,54 @@
+.bingo-play {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.bingo-board {
+  display: grid;
+  gap: 8px;
+  max-width: 700px;
+  margin: 0 auto;
+  aspect-ratio: 1;
+}
+
+.bingo-cell {
+  background: #ffffff;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  min-width: 50px;
+  min-height: 50px;
+}
+
+.bingo-cell:hover {
+  background: #f5f5f5;
+  transform: scale(1.02);
+}
+
+.bingo-cell.checked {
+  background: #e6f4ea;
+  border-color: #34a853;
+  color: #1e8e3e;
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .bingo-board {
+    gap: 5px;
+  }
+  .bingo-cell {
+    font-size: 10px;
+    padding: 8px;
+  }
+}

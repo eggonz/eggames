@@ -26,8 +26,8 @@ const storePlayers = (players: Player[]) => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(players));
 };
 
-const clearPlayers = () => {
+const clearStoredPlayers = () => {
   localStorage.removeItem(STORAGE_KEY);
 }
 
-export { getStoredPlayers, storePlayers, clearPlayers };
+export { getStoredPlayers, storePlayers, clearStoredPlayers };

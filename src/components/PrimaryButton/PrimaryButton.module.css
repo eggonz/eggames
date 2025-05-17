@@ -17,3 +17,9 @@
 .primary-button:hover {
   background-color: var(--primary-button-color-hover);
 }
+
+.primary-button span {
+  height: auto;
+  margin: auto;
+  line-height: 1.1rem;
+}

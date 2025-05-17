@@ -1,12 +1,11 @@
 import type { JSX } from "react";
 import type { IconType } from 'react-icons';
-import type { To } from 'react-router-dom';
 import styles from './Header.module.css';
 import HeaderNavBtn from "./HeaderNavBtn";
 
 interface BtnProps {
   icons: IconType[];
-  navDst: To | number;
+  onClick: () => void;
 }
 
 interface HeaderProps {
@@ -22,7 +21,7 @@ export default function Header({ title, leftBtn, rightBtn, rightDiv }: HeaderPro
       {leftBtn && (
         <HeaderNavBtn
           icons={leftBtn.icons}
-          navDst={leftBtn.navDst}
+          onCLick={leftBtn.onClick}
           position={'left'}
         />
       )}
@@ -34,7 +33,7 @@ export default function Header({ title, leftBtn, rightBtn, rightDiv }: HeaderPro
       {rightBtn && (
         <HeaderNavBtn
           icons={rightBtn.icons}
-          navDst={rightBtn.navDst}
+          onCLick={rightBtn.onClick}
           position={'right'}
         />
       )}

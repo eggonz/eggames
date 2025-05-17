@@ -10,6 +10,7 @@ interface MainButtonProps {
 export default function PrimaryButton({ Icon, text, onClick }: MainButtonProps) {
   return (
     <button
+      type="button"
       className={styles.primaryButton}
       onClick={onClick}
     >

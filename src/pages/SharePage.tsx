@@ -1,9 +1,11 @@
 import { QRCodeSVG } from 'qrcode.react';
 import './SharePage.css';
 import { FaArrowLeft } from 'react-icons/fa';
+import { useNavigate } from "react-router-dom"
 import Header from "../components/Header";
 
 function SharePage() {
+  const navigate = useNavigate();
   const qrUrl = `${window.location.origin}${window.location.pathname}#/install`;  // "#/" for HashRouter
 
   return (
@@ -11,7 +13,7 @@ function SharePage() {
       <Header
         leftBtn={{
           icons: [FaArrowLeft],
-          navDst: '/',
+          onClick: () => navigate('/'),
         }}
         title="Share"
       />
