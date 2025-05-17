@@ -23,3 +23,9 @@
   margin: auto;
   line-height: 1.1rem;
 }
+
+.primary-button:disabled {
+  background-color: rgba(0,0,0 , 0.1);
+  color: white;
+  cursor: not-allowed;
+}

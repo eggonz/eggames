@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { FaShuffle } from "react-icons/fa6"
 import { type BingoConfig } from "../../../types/BingoConfig"
 import PrimaryButton from "../../PrimaryButton"
@@ -38,9 +38,18 @@ export default function BingoSettings({ config, setConfig }: SettingsProps) {
     setConfig(prev => ({
       ...prev,
       selectedPrompts: selectedPrompts,
-      checkedPrompts: []
+      checkedPrompts: new Array(config.cols * config.rows).fill(false),
+      configured: true,
     }))
   }
+
+  useEffect(() => {
+    const isConfiguredOk: boolean = config.selectedPrompts.length === config.cols * config.rows
+    setConfig(prev => ({
+      ...prev,
+      configured: isConfiguredOk,
+    }))
+  }, [config.rows, config.cols, config.selectedPrompts.length, setConfig])
 
   return (
     <form className={styles.settingsForm}>
@@ -83,7 +92,7 @@ export default function BingoSettings({ config, setConfig }: SettingsProps) {
         />
       </div>
 
-      <div className={styles.btnContainer}>
+      <div className={styles.generateBtnContainer}>
         <PrimaryButton
           Icon={FaShuffle}
           text={"Generate"}

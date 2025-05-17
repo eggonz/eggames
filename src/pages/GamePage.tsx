@@ -66,11 +66,12 @@ function SettingsMain({ gameId, config, setConfig }: SettingsProps) {
       <div className="settings-content">
         {renderContent()}
       </div>
-      <div className="start-button-container">  {/* TODO disable if not configured */}
+      <div className="start-button-container">
         <PrimaryButton
           Icon={FaPlay}
           text={"Start Game"}
           onClick={handleStartGame}
+          disabled={!config.configured}
         />
       </div>
     </div>
