@@ -1,7 +1,7 @@
+import logo from '/logo.svg'
 import { useEffect, useState } from 'react';
 import './InstallPage.css';
 import { FaDownload } from "react-icons/fa";
-import logo from '/logo.svg'
 import Header from "../components/Header";
 
 declare global {

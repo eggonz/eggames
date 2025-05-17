@@ -1,10 +1,10 @@
 import './PlayersPage.css';
 import React, { useEffect, useState } from 'react';
 import { FaCheck, FaPencilAlt, FaPlus, FaTrash, FaUsers } from 'react-icons/fa';
-import { clearPlayers, getStoredPlayers, storePlayers } from '../utils/playersStorage';
-import type { NewPlayer, Player } from "../types/Player";
 import Header from "../components/Header";
 import IconDetail from "../components/IconDetail";
+import type { NewPlayer, Player } from "../types/Player";
+import { clearPlayers, getStoredPlayers, storePlayers } from '../utils/playersStorage';
 
 // Components
 

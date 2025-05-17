@@ -1,5 +1,5 @@
 import type { IconType } from 'react-icons';
-import { useNavigate, type To } from 'react-router-dom';
+import { type To, useNavigate } from 'react-router-dom';
 import styles from './HeaderNavBtn.module.css';
 
 interface HeaderNavBtnProps {

@@ -1,8 +1,8 @@
+import type { JSX } from "react";
 import type { IconType } from 'react-icons';
 import type { To } from 'react-router-dom';
 import styles from './Header.module.css';
 import HeaderNavBtn from "./HeaderNavBtn";
-import type { JSX } from "react";
 
 interface BtnProps {
   icons: IconType[];
