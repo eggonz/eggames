@@ -1,18 +1,23 @@
 .game-page.settings {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  align-items: start;
+  gap: 2rem;
 }
 
-.game-page.settings h2:first-child {
-  margin-top: 0;
+.game-page.settings > h2 {
+  margin: 0 auto;
 }
 
-.game-page.settings > div:not(:first-child) {
-  margin-top: 2rem;
+.game-page.settings > .settings-content {
+  margin: 0 auto;
 }
 
-.game-page.settings .start-button-container {
-  display: flex;
-  justify-content: center;
+.start-button-container {
+  margin: 1rem auto 0;
+}
+
+.settings-content {
+  width: 100%;
+  max-width: 250px;
 }

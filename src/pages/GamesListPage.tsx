@@ -1,4 +1,4 @@
-import './GamesPage.css';
+import './GamesListPage.css';
 import { useState } from 'react';
 import { FaArrowLeft, FaUsers } from 'react-icons/fa';
 import GameCard from "../components/GameCard"
@@ -8,7 +8,7 @@ import { getStoredPlayers } from "../utils/playersStorage";
 import Header from "../components/Header";
 import IconDetail from "../components/IconDetail";
 
-function GamesPage() {
+function GamesListPage() {
   const [players] = useState<Player[]>(getStoredPlayers());
 
   return (
@@ -32,4 +32,4 @@ function GamesPage() {
   );
 }
 
-export default GamesPage;
+export default GamesListPage;

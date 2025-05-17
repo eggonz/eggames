@@ -1,47 +1,57 @@
-.config-container,
-.play-container {
-  flex-grow: 1;
+.settings-form {
   display: flex;
   flex-direction: column;
+  align-items: start;
   gap: 20px;
-}
-
-/* Settings */
-
-.config-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 400px;
-  margin: 0 auto;
   width: 100%;
 }
 
-.config-item {
+.settings-item {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
 }
 
-.config-item label {
+.settings-item label {
   font-weight: bold;
 }
 
-/*.config-item input {*/
-/*  padding: 8px;*/
-/*  border: 1px solid #ccc;*/
-/*  border-radius: 4px;*/
-/*}*/
+.settings-item input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
-/* Settings Spicy */
+/* Slider */
 
-.spicy-blocks {
+.slider-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.slider-container input {
+  width: 90%;
+}
+
+.slider-container span {
+  width: 10%;
+  height: 1rem;
+  line-height: 1.1rem;
+}
+
+/* Select blocks */
+
+.select-blocks {
   display: flex;
   gap: 10px;
   margin-top: 8px;
 }
 
-.spicy-block {
+.select-block {
   flex: 1;
   padding: 10px;
   border: 2px solid #ccc;
@@ -51,17 +61,17 @@
   transition: all 0.3s ease;
 }
 
-.spicy-block:hover {
+.select-block:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-.spicy-block.selected {
+.select-block.selected {
   background-color: var(--primary-button-color);
   color: white;
   border-color: var(--primary-button-color);
 }
 
-/* Settings Time Limit */
+/* Time Limit */
 
 .time-limit-container {
   display: flex;
@@ -91,9 +101,9 @@
   text-align: center;
 }
 
-/* Settings Toggle Switch */
+/* Toggle */
 
-.config-item-gen-ai {
+.side-toggle-item {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -146,33 +156,4 @@
 
 .toggle-input:focus + .toggle-label {
   box-shadow: 0 0 1px var(--primary-button-color);
-}
-
-/* Play */
-
-.challenge-container {
-  text-align: center;
-  padding: 20px;
-  border-radius: 8px;
-  margin: 20px 0;
-}
-
-.challenge-container.truth {
-  background-color: #e3f2fd;
-}
-
-.challenge-container.dare {
-  background-color: #fbe9e7;
-}
-
-.game-controls {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-top: auto;
-}
-
-.player-turn {
-  text-align: center;
-  margin-bottom: 20px;
 }

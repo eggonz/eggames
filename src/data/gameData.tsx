@@ -15,6 +15,14 @@ export const AVAILABLE_GAMES: Game[] = [
     people: "4+",
     time: "30 min",
     age: "5+"
+  },
+  {
+    id: "dummy",
+    name: "Dummy Game",
+    description: "Dummy description",
+    people: "2+",
+    time: "30 min",
+    age: "5+"
   }
 ]
 
