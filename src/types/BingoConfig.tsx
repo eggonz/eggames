@@ -10,8 +10,8 @@ export interface BingoConfig extends GameConfig {
 
 export const DEFAULT_BINGO_CONFIG: BingoConfig = {
   configured: false,
-  cols: 5,
-  rows: 5,
+  cols: 4,
+  rows: 6,
   selectedPrompts: [],
   checkedPrompts: [],
   promptPool: [ // Example for Eurovision Bingo

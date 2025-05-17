@@ -4,6 +4,12 @@ import { type BingoConfig } from "../../../types/BingoConfig"
 import PrimaryButton from "../../PrimaryButton"
 import styles from './BingoSettings.module.css'
 
+// Constants
+const MIN_COLS = 1
+const MAX_COLS = 6
+const MIN_ROWS = 1
+const MAX_ROWS = 20
+
 // Interfaces
 interface SettingsProps {
   config: BingoConfig
@@ -45,8 +51,8 @@ export default function BingoSettings({ config, setConfig }: SettingsProps) {
             type="number"
             id="cols"
             name="cols"
-            min={1}
-            max={10}
+            min={MIN_COLS}
+            max={MAX_COLS}
             value={config.cols}
             onChange={(e) => setConfig(prev => ({...prev, cols: parseInt(e.target.value)}))}
           />
@@ -58,8 +64,8 @@ export default function BingoSettings({ config, setConfig }: SettingsProps) {
             type="number"
             id="rows"
             name="rows"
-            min={1}
-            max={10}
+            min={MIN_ROWS}
+            max={MAX_ROWS}
             value={config.rows}
             onChange={(e) => setConfig(prev => ({...prev, rows: parseInt(e.target.value)}))}
           />
