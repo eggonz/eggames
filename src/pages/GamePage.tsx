@@ -122,7 +122,6 @@ function PlayMain({ game, config, setConfig }: PlayProps) {
   const navigate = useNavigate()
 
   useEffect(() => {
-    console.log('playConfig changed', config)
     storeConfig(game.id, config)
   }, [game.id, config])
 

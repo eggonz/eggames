@@ -11,7 +11,6 @@ interface BingoPlayProps {
 export default function BingoPlay({ config, setConfig }: BingoPlayProps) {
 
   const handleCellClick = (index: number) => {
-    console.log('handleCellClick', index)
     const newCheckedCells = [...config.checkedPrompts]
     newCheckedCells[index] = !newCheckedCells[index]
     setConfig(prev => ({
