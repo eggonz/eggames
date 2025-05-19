@@ -1,8 +1,10 @@
 import logo from '/logo.svg'
 import { useEffect, useState } from 'react';
 import './InstallPage.css';
-import { FaDownload } from "react-icons/fa";
+import { FaDownload, FaHome } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"
 import Header from "../components/Header";
+import PrimaryButton from "../components/PrimaryButton"
 
 declare global {
   interface WindowEventMap {
@@ -20,7 +22,8 @@ declare global {
 }
 
 function InstallPage() {
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const navigate = useNavigate()
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null)
 
   useEffect(() => {
     window.addEventListener('beforeinstallprompt', (e: BeforeInstallPromptEvent) => {
@@ -70,7 +73,17 @@ function InstallPage() {
           )}
           {!deferredPrompt && (
             <div className="install-message">
-              <p>Either the app is already installed or your browser doesn't support PWA installation.</p>
+              <p>Either the app is already installed or <br/> your browser doesn't support PWA installation.</p>
+              <div className="install-suggestions">
+                <h2>Suggestions</h2>
+                <h3>Home screen shortcut (iOS/Firefox/other):</h3>
+                <ol>
+                  <li>Open browser's options menu</li>
+                  <li><i>Add app to Home screen</i></li>
+                </ol>
+                <h3>Play directly from browser:</h3>
+              </div>
+              <PrimaryButton Icon={FaHome} text={"Go to Home screen"} onClick={() => navigate('/')} />
             </div>
           )}
         </div>

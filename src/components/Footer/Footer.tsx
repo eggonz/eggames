@@ -1,4 +1,4 @@
-import './Footer.module.css';
+import styles from './Footer.module.css'
 
 interface FooterProps {
   leftText: string
@@ -7,7 +7,7 @@ interface FooterProps {
 
 export default function Footer({ leftText, rightText }: FooterProps) {
   return (
-    <footer>
+    <footer className={styles.footer}>
       <p>{leftText}</p>
       <p>{rightText}</p>
     </footer>

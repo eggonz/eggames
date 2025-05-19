@@ -1,4 +1,4 @@
-footer {
+.footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,6 +8,9 @@ footer {
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* subtle shadow */
   font-size: 0.8rem;
   gap: 1rem;
+
+  position: sticky;
+  bottom: 0;
 }
 
 footer p {
