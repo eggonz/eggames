@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist -o origin-deploy -b gh-pages-dev",
+    "deploy": "rm -rf node_modules/.cache && gh-pages -d dist -o origin-deploy -b gh-pages-dev -f",
+    "predeploy:prod": "npm run build",
+    "deploy:prod": "rm -rf node_modules/.cache && gh-pages -d dist -o origin-deploy -b gh-pages",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
