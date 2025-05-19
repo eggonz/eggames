@@ -22,11 +22,13 @@ function HomePage() {
           <PrimaryButton Icon={FaDice}
                          text={"Play Games"}
                          onClick={() => navigate('/games')} />
-          <PrimaryButton Icon={FaUserEdit}
-                         text={"Manage Players"}
-                         onClick={() => navigate('/players')} />
-          <IconDetail Icon={FaUsers}
-                      text={players.length} />
+          <div className="home-menu-players-group">
+            <PrimaryButton Icon={FaUserEdit}
+                           text={"Manage Players"}
+                           onClick={() => navigate('/players')} />
+            <IconDetail Icon={FaUsers}
+                        text={players.length} />
+          </div>
         </div>
       </main>
       <Footer leftText={"2025 eggames"}

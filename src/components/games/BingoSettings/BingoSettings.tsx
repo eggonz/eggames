@@ -83,7 +83,7 @@ export default function BingoSettings({ config, setConfig }: SettingsProps) {
 
       {/* TODO list of prompts similar to players list */}
       <div className={styles.promptPoolContainer}>
-        <label htmlFor="prompts">Prompts</label>
+        <label htmlFor="prompts">Prompt pool</label>
         <textarea
           id="prompts"
           name="prompts"
@@ -95,14 +95,14 @@ export default function BingoSettings({ config, setConfig }: SettingsProps) {
       <div className={styles.generateBtnContainer}>
         <PrimaryButton
           Icon={FaShuffle}
-          text={"Generate"}
+          text={"Select random prompts"}
           onClick={handleButtonClick}
         />
       </div>
 
       {config.selectedPrompts.length > 0 && (
         <div className={styles.selectedPromptsContainer}>
-          <label htmlFor="selectedPrompts">Selected Prompts</label>
+          <label htmlFor="selectedPrompts">Selected prompts</label>
           <ol className={styles.selectedPromptsList}>
             {config.selectedPrompts.map((prompt, index) => (
               <li key={index} className={styles.selectedPromptItem}>

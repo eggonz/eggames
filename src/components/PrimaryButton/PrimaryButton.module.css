@@ -2,10 +2,12 @@
   background-color: var(--primary-button-color);
   color: var(--on-primary-button-color);
   border: none;
-  padding: 0.8rem 1.6rem;
-  border-radius: 4px;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
+  line-height: 1rem;
+  font-weight: 500;
   transition: background-color 0.2s;
 
   display: flex;
