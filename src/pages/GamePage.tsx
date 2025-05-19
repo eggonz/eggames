@@ -31,7 +31,7 @@ interface SettingsProps {
   isNewGame: boolean
 }
 
-function SettingsMain({ game, config, setConfig, isNewGame }: SettingsProps) {
+function SettingsView({ game, config, setConfig, isNewGame }: SettingsProps) {
   const navigate = useNavigate()
 
   const [currentConfig, setCurrentConfig] = useState<GameConfig>(config) // change tmp config
@@ -114,7 +114,7 @@ interface PlayProps {
   setConfig: React.Dispatch<React.SetStateAction<GameConfig>>
 }
 
-function PlayMain({ game, config, setConfig }: PlayProps) {
+function PlayView({ game, config, setConfig }: PlayProps) {
   const navigate = useNavigate()
 
   // Whenever config changes during the game, update stored config to save progress
@@ -183,14 +183,14 @@ function GamePage({ game, view }: GamePageProps) {
   }, [game.id, view, navigate])
 
   if (view == 'play') {
-    return <PlayMain game={game} config={config} setConfig={setConfig} />
+    return <PlayView game={game} config={config} setConfig={setConfig} />
   } else if (view == 'settings') {
-    return <SettingsMain game={game}
+    return <SettingsView game={game}
                          config={config}
                          setConfig={setConfig}
                          isNewGame={false} />
   } else if (view == 'new') {
-    return <SettingsMain game={game}
+    return <SettingsView game={game}
                          config={config}
                          setConfig={setConfig}
                          isNewGame={true} />
