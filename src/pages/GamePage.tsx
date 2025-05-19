@@ -36,13 +36,9 @@ function SettingsMain({ game, config, setConfig, isNewGame }: SettingsProps) {
 
   const [currentConfig, setCurrentConfig] = useState<GameConfig>(config) // change tmp config
 
+  // Whenever main config changes, update tmp config
   useEffect(() => {
-    const storedConfig = getStoredConfig(game.id)
-    if (storedConfig) {
-      setCurrentConfig(storedConfig)
-    } else {
-      setCurrentConfig(config)
-    }
+    setCurrentConfig(config)
   }, [game.id, config])
 
   const renderContent = () => {
@@ -121,6 +117,7 @@ interface PlayProps {
 function PlayMain({ game, config, setConfig }: PlayProps) {
   const navigate = useNavigate()
 
+  // Whenever config changes during the game, update stored config to save progress
   useEffect(() => {
     storeConfig(game.id, config)
   }, [game.id, config])
