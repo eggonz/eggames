@@ -4,15 +4,17 @@ import styles from './Header.module.css';
 import HeaderNavBtn from "./HeaderNavBtn";
 
 interface BtnProps {
-  icons: IconType[];
-  onClick: () => void;
+  icons: IconType[]
+  onClick: () => void
+  color?: "red" | "green" | "blue"
+  disabled?: boolean
 }
 
 interface HeaderProps {
-  title?: string;
-  leftBtn?: BtnProps;
-  rightBtn?: BtnProps;
-  rightDiv?: JSX.Element;
+  title?: string
+  leftBtn?: BtnProps
+  rightBtn?: BtnProps
+  rightDiv?: JSX.Element
 }
 
 export default function Header({ title, leftBtn, rightBtn, rightDiv }: HeaderProps) {
@@ -23,6 +25,8 @@ export default function Header({ title, leftBtn, rightBtn, rightDiv }: HeaderPro
           icons={leftBtn.icons}
           onCLick={leftBtn.onClick}
           position={'left'}
+          color={leftBtn.color}
+          disabled={leftBtn.disabled}
         />
       )}
       {title && (
@@ -35,6 +39,8 @@ export default function Header({ title, leftBtn, rightBtn, rightDiv }: HeaderPro
           icons={rightBtn.icons}
           onCLick={rightBtn.onClick}
           position={'right'}
+          color={rightBtn.color}
+          disabled={rightBtn.disabled}
         />
       )}
       {rightDiv && (

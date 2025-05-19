@@ -8,7 +8,7 @@ export default function GameCard({ game }: { game: Game }) {
   const navigate = useNavigate();
 
   return (
-    <div className={styles.gameCard} onClick={() => navigate(`/game/${game.id}/settings`)}>
+    <div className={styles.gameCard} onClick={() => navigate(`/game/${game.id}/new`)}>
       <h3>{game.name}</h3>
       <div className={styles.gameCardDetails}>
         <IconDetail Icon={FaUsers} text={game.people} />

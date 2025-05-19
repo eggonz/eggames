@@ -4,9 +4,9 @@ import type { GameConfig } from "../types/GameConfig";
 const STORAGE_KEY_PREFIX = 'gameConfig_'
 
 // Functions
-const getStoredConfig = (gameId: string, defaultValue: GameConfig): GameConfig => {
+const getStoredConfig = (gameId: string): GameConfig | null => {
   const storedConfig = localStorage.getItem(STORAGE_KEY_PREFIX + gameId)
-  return storedConfig ? JSON.parse(storedConfig) : defaultValue
+  return storedConfig ? JSON.parse(storedConfig) : null
 };
 
 const storeConfig = (gameId: string, config: GameConfig) => {

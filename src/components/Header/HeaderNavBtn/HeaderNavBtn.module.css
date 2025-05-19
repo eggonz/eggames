@@ -14,12 +14,39 @@
   border-radius: 4px;
   cursor: pointer;
 
-  background-color: var(--primary-button-color);
-  color: var(--on-primary-button-color);
-  transition: color 0.2s;
+  transition: color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
 }
 
-.header-nav-btn:hover {
-  background-color: var(--primary-button-color-hover);
+.blue {
+  background-color: var(--primary-button-color);
   color: var(--on-primary-button-color);
+}
+
+.blue:hover {
+  background-color: var(--primary-button-color-hover);
+}
+
+.blue:disabled {
+  background-color: #b0bec5;
+  color: white;
+  cursor: not-allowed;
+}
+
+.red {
+  background-color: #f44336;
+  color: white;
+}
+
+.red:hover {
+  background-color: #d32f2f;
+}
+
+.green {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.green:hover {
+  background-color: #388E3C;
 }

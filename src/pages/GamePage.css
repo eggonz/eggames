@@ -13,10 +13,6 @@
   margin: 0 auto;
 }
 
-.start-button-container {
-  margin: 1rem auto;
-}
-
 .settings-content {
   width: 100%;
   /*max-width: 250px;*/  /* size limit is managed by children */

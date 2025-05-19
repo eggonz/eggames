@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState } from "react"
-import { FaArrowLeft, FaCog, FaDice, FaPlay } from "react-icons/fa"
+import React, { useEffect, useState } from "react"
+import { FaArrowLeft, FaCheck, FaCog, FaDice, FaPlay, FaTimes } from "react-icons/fa"
 import { useNavigate, useParams } from "react-router-dom"
 import BingoPlay from "../components/games/BingoPlay"
 import BingoSettings from "../components/games/BingoSettings"
@@ -8,86 +8,126 @@ import DummySettings from "../components/games/DummySettings"
 import WordGuessPlay from "../components/games/WordGuessPlay"
 import WordGuessSettings from "../components/games/WordGuessSettings"
 import Header from "../components/Header"
-import PrimaryButton from "../components/PrimaryButton"
+import { getDefaultConfig } from "../data/defaultConfigs"
 import { getGameById } from "../data/gameData"
-import { type BingoConfig, DEFAULT_BINGO_CONFIG } from "../types/BingoConfig"
-import { DEFAULT_DUMMY_CONFIG, type DummyConfig } from "../types/DummyConfig"
+import { type BingoConfig } from "../types/BingoConfig"
+import { type DummyConfig } from "../types/DummyConfig"
 import type { Game } from "../types/Game"
-import type { GameConfig } from "../types/GameConfig"
-import { DEFAULT_WORD_GUESS_CONFIG, type WordGuessConfig } from "../types/WordGuessConfig"
+import { type GameConfig } from "../types/GameConfig"
+import { type WordGuessConfig } from "../types/WordGuessConfig"
 import './GamePage.css'
 import { clearStoredConfig, getStoredConfig, storeConfig } from "../utils/configStorage"
 
 // Constants
 const NOT_IMPLEMENTED = <div>Game not implemented</div>
-const VALID_VIEWS = ['play', 'settings'] as const
+const VALID_VIEWS = ['new', 'play', 'settings'] as const
 const VALID_GAME_IDS = ['bingo', 'dummy', 'word-guess'] as const // implemented games
 
 // Components
 interface SettingsProps {
-  gameId: string
+  game: Game
   config: GameConfig
   setConfig: React.Dispatch<React.SetStateAction<GameConfig>>
+  isNewGame: boolean
 }
 
-function SettingsMain({ gameId, config, setConfig }: SettingsProps) {
+function SettingsMain({ game, config, setConfig, isNewGame }: SettingsProps) {
   const navigate = useNavigate()
 
+  const [currentConfig, setCurrentConfig] = useState<GameConfig>(config) // change tmp config
+
+  useEffect(() => {
+    const storedConfig = getStoredConfig(game.id)
+    if (storedConfig) {
+      setCurrentConfig(storedConfig)
+    } else {
+      setCurrentConfig(config)
+    }
+  }, [game.id, config])
+
   const renderContent = () => {
-    switch (gameId) {
+    switch (game.id) {
       case 'bingo':
-        return <BingoSettings config={config as BingoConfig}
-                              setConfig={setConfig as React.Dispatch<React.SetStateAction<BingoConfig>>} />
+        return <BingoSettings config={currentConfig as BingoConfig}
+                              setConfig={setCurrentConfig as React.Dispatch<React.SetStateAction<BingoConfig>>} />
       case 'dummy':
-        return <DummySettings config={config as DummyConfig}
-                              setConfig={setConfig as React.Dispatch<React.SetStateAction<DummyConfig>>} />
+        return <DummySettings config={currentConfig as DummyConfig}
+                              setConfig={setCurrentConfig as React.Dispatch<React.SetStateAction<DummyConfig>>} />
       case 'word-guess':
-        return <WordGuessSettings config={config as WordGuessConfig}
-                                  setConfig={setConfig as React.Dispatch<React.SetStateAction<WordGuessConfig>>} />
+        return <WordGuessSettings config={currentConfig as WordGuessConfig}
+                                  setConfig={setCurrentConfig as React.Dispatch<React.SetStateAction<WordGuessConfig>>} />
       default:
         return NOT_IMPLEMENTED
     }
   }
 
   const handleStartGame = () => {
-    navigate(`/game/${gameId}/play`, {
-      state: {
-        config: {
-          ...config,
-          // Add any other game-specific config here
-        }
-      }
-    })
+    storeConfig(game.id, currentConfig)
+    setConfig(currentConfig) // update main config
+    navigate(`/game/${game.id}/play`)
+  }
+
+  const renderHeader = () => {
+    if (isNewGame) {
+      return <Header
+        leftBtn={{
+          icons: [FaArrowLeft],
+          onClick: () => navigate(-1),
+        }}
+        title={game.name}
+        rightBtn={{
+          icons: [FaPlay],
+          onClick: () => handleStartGame(),
+          disabled: !currentConfig.configured,
+        }}
+      />
+    }
+    return <Header
+      leftBtn={{
+        icons: [FaTimes],
+        onClick: () => navigate(-1),
+        color: 'red',
+      }}
+      title={game.name}
+      rightBtn={{
+        icons: [FaCheck],
+        onClick: () => handleStartGame(),
+        color: 'green',
+      }}
+    />
   }
 
   return (
-    <div className="game-page settings">
-      <h2>Settings</h2>
-      <div className="settings-content">
-        {renderContent()}
-      </div>
-      <div className="start-button-container">
-        <PrimaryButton
-          Icon={FaPlay}
-          text={"Start Game"}
-          onClick={handleStartGame}
-          disabled={!config.configured}
-        />
-      </div>
+    <div className="page">
+      {renderHeader()}
+      <main>
+        <div className="game-page settings">
+          <h2>Settings</h2>
+          <div className="settings-content">
+            {renderContent()}
+          </div>
+        </div>
+      </main>
     </div>
   )
 }
 
 interface PlayProps {
-  gameId: string
+  game: Game
   config: GameConfig,
   setConfig: React.Dispatch<React.SetStateAction<GameConfig>>
 }
 
-function PlayMain({ gameId, config, setConfig }: PlayProps) {
+function PlayMain({ game, config, setConfig }: PlayProps) {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    console.log('playConfig changed', config)
+    storeConfig(game.id, config)
+  }, [game.id, config])
 
   const renderContent = () => {
-    switch (gameId) {
+    switch (game.id) {
       case 'bingo':
         return <BingoPlay config={config as BingoConfig}
                           setConfig={setConfig as React.Dispatch<React.SetStateAction<BingoConfig>>} />
@@ -101,8 +141,23 @@ function PlayMain({ gameId, config, setConfig }: PlayProps) {
   }
 
   return (
-    <div className="game-page play">
-      {renderContent()}
+    <div className="page">
+      <Header
+        leftBtn={{
+          icons: [FaArrowLeft, FaDice],
+          onClick: () => navigate('/games')
+        }}
+        title={game.name}
+        rightBtn={{
+          icons: [FaCog],
+          onClick: () => navigate(`/game/${game.id}/settings`),
+        }}
+      />
+      <main>
+        <div className="game-page play">
+          {renderContent()}
+        </div>
+      </main>
     </div>
   )
 }
@@ -112,79 +167,40 @@ interface GamePageProps {
   game: Game
   view: string
 }
+
 function GamePage({ game, view }: GamePageProps) {
   const navigate = useNavigate()
-
-  const initConfig = useCallback((id: string): GameConfig => {
-    switch (id) {
-      case 'bingo':
-        return DEFAULT_BINGO_CONFIG
-      case 'dummy':
-        return DEFAULT_DUMMY_CONFIG
-      case 'word-guess':
-        return DEFAULT_WORD_GUESS_CONFIG
-      default:
-        return DEFAULT_DUMMY_CONFIG // ignored later
-    }
-  }, [])
-
-  const [config, setConfig] = useState<GameConfig>(
-    () => getStoredConfig(game.id, initConfig(game.id as string))
-  )
+  const [config, setConfig] = useState<GameConfig>(getDefaultConfig(game.id))
 
   useEffect(() => {
-    storeConfig(game.id, config as GameConfig)
-  }, [game.id, config]);
-
-  const handleOpenSettings = () => {
-    navigate(`/game/${game.id}/settings`, {
-      state: {
-        config: {
-          ...config,
-          // Add any other game-specific config here
-        }
+    const storedConfig = getStoredConfig(game.id)
+    if (view === 'new' && storedConfig) {
+      const confirmResume = window.confirm('Saved game data found. Do you want to resume?')
+      if (confirmResume) {
+        setConfig(storedConfig)
+        navigate(`/game/${game.id}/play`)
+      } else {
+        clearStoredConfig(game.id)
+        setConfig(getDefaultConfig(game.id))
       }
-    })
-  }
+    }
+  }, [game.id, view, navigate])
 
-  return (
-    <div className="page">
-      {view === 'play' && (
-        <Header
-          leftBtn={{
-            icons: [FaArrowLeft, FaDice],
-            onClick: () => {
-              const confirmLeave = window.confirm('Are you sure you want to leave the game?')
-              if (confirmLeave) {
-                clearStoredConfig(game.id)
-                navigate('/games')
-              }
-            }
-          }}
-          title={game.name}
-          rightBtn={{
-            icons: [FaCog],
-            onClick: handleOpenSettings,
-          }}
-        />
-      )}
-      {view === 'settings' && (
-        <Header
-          leftBtn={{
-            icons: [FaArrowLeft],
-            onClick: () => navigate(-1),
-          }}
-          title={game.name}
-        />
-      )}
-      <main>
-        {view === 'play' ?
-          <PlayMain gameId={game.id} config={config} setConfig={setConfig} /> :
-          <SettingsMain gameId={game.id} config={config} setConfig={setConfig} />
-        }
-      </main>
-    </div>
-  )
+  if (view == 'play') {
+    return <PlayMain game={game} config={config} setConfig={setConfig} />
+  } else if (view == 'settings') {
+    return <SettingsMain game={game}
+                         config={config}
+                         setConfig={setConfig}
+                         isNewGame={false} />
+  } else if (view == 'new') {
+    return <SettingsMain game={game}
+                         config={config}
+                         setConfig={setConfig}
+                         isNewGame={true} />
+  } else {
+    return <div>Invalid view</div>
+  }
 }
 
 // wrap GamePage with fallback for invalid gameId or view
