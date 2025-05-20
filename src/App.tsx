@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage'
 import InstallPage from './pages/InstallPage'
 import PlayersPage from './pages/PlayersPage'
 import SharePage from './pages/SharePage'
+import componentTestingSheet from './componentTestingSheet'
 import './App.css'
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/players" element={<PlayersPage />} />
           <Route path="/games" element={<GamesListPage />} />
           <Route path='/game/:gameId/:view' element={<GamePage />} />
+          <Route path='/debug/components' element={componentTestingSheet()} />
         </Routes>
       </div>
     </Router>
