@@ -141,7 +141,13 @@ function PlayView({ game, config, setConfig }: PlayProps) {
       <Header
         leftBtn={{
           icons: [FaArrowLeft, FaDice],
-          onClick: () => navigate('/games')
+          onClick: () => {
+            const confirmLeave = window.confirm('Are you sure you want to leave the game? Your progress will be saved.')
+            if (confirmLeave) {
+              // clearStoredConfig(game.id)
+              navigate('/games')
+            }
+          }
         }}
         title={game.name}
         rightBtn={{

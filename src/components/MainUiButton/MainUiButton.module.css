@@ -1,7 +1,6 @@
-.primary-button {
-  background-color: var(--primary-button-color);
-  color: var(--on-primary-button-color);
+.primary-button, .secondary-button {
   border: none;
+  box-shadow: 0 2px 4px var(--secondary-button-color-border);
   padding: 1rem 1.5rem;
   border-radius: 8px;
   cursor: pointer;
@@ -14,6 +13,11 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+}
+
+.primary-button {
+  background-color: var(--primary-button-color);
+  color: var(--on-primary-button-color);
 }
 
 .primary-button:hover {
@@ -30,4 +34,13 @@
   background-color: rgba(0,0,0 , 0.1);
   color: white;
   cursor: not-allowed;
+}
+
+.secondary-button {
+  background: var(--secondary-button-color);
+  color: var(--on-secondary-button-color);
+}
+
+.secondary-button:hover {
+  background: var(--secondary-button-color-hover);
 }

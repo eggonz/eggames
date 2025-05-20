@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Footer from "../components/Footer";
 import Header from "../components/Header"
 import IconDetail from "../components/IconDetail";
-import PrimaryButton from "../components/PrimaryButton"
+import MainUiButton from "../components/MainUiButton"
 import type { Player } from "../types/Player";
 import { getStoredPlayers } from "../utils/playersStorage";
 
@@ -19,13 +19,13 @@ function HomePage() {
               title="eggames" />
       <main>
         <div className="home-menu-container">
-          <PrimaryButton Icon={FaDice}
-                         text={"Play Games"}
-                         onClick={() => navigate('/games')} />
+          <MainUiButton Icon={FaDice}
+                        text={"Play Games"}
+                        onClick={() => navigate('/games')} />
           <div className="home-menu-players-group">
-            <PrimaryButton Icon={FaUserEdit}
-                           text={"Manage Players"}
-                           onClick={() => navigate('/players')} />
+            <MainUiButton Icon={FaUserEdit}
+                          text={"Manage Players"}
+                          onClick={() => navigate('/players')} />
             <IconDetail Icon={FaUsers}
                         text={players.length} />
           </div>

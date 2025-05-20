@@ -1,8 +1,13 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { FaShuffle } from "react-icons/fa6"
+import Select, { type SingleValue } from "react-select"
+import { BINGO_PACKAGES } from "../../../data/bingoPackages"
 import { type BingoConfig } from "../../../types/BingoConfig"
-import PrimaryButton from "../../PrimaryButton"
+import MainUiButton from "../../MainUiButton"
 import styles from './BingoSettings.module.css'
+
+// Types
+type Option = { value: string; label: string; prompts: string[] }
 
 // Constants
 const MIN_COLS = 1
@@ -32,7 +37,7 @@ export default function BingoSettings({ config, setConfig }: SettingsProps) {
       const confirmOverwrite = window.confirm("Are you sure you want to lose your progress and start again?")
       if (!confirmOverwrite) return
     }
-    const selectedPrompts = [...config.promptPool] /* TODO if cols/rows change, it is not configured anymore */
+    const selectedPrompts = [...config.promptPool]
       .sort(() => Math.random() - 0.5)
       .slice(0, config.cols * config.rows);
     setConfig(prev => ({
@@ -44,12 +49,67 @@ export default function BingoSettings({ config, setConfig }: SettingsProps) {
   }
 
   useEffect(() => {
-    const isConfiguredOk: boolean = config.selectedPrompts.length === config.cols * config.rows
+    const isConfiguredOk: boolean = config.selectedPrompts.length === config.cols * config.rows // TODO improve "configured" checks
     setConfig(prev => ({
       ...prev,
       configured: isConfiguredOk,
     }))
   }, [config.rows, config.cols, config.selectedPrompts.length, setConfig])
+
+  const [textareaValue, setTextareaValue] = useState<string>(config.promptPool.join('\n'))
+  useEffect(() => {
+    setConfig(prev => ({
+      ...prev,
+      promptPool: textareaValue.split('\n').filter(prompt => prompt.trim() !== ''),
+    }))
+  }, [textareaValue, setConfig])
+
+  const [savedUserPrompts, setSavedUserPrompts] = useState<string[]>([])
+  const [selectedOption, setSelectedOption] = useState<SingleValue<Option>>(null)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleSelectChange = (
+    newValue: SingleValue<Option>
+  ) => {
+    console.log('Triggered handleSelectChange')
+    console.log('prevValue', selectedOption)
+    console.log('newValue', newValue)
+    if (!selectedOption && !newValue) {
+      throw new Error('selectedOption and newValue are both null')
+    } else if (!selectedOption) {
+      newValue = newValue as Option
+      // no package -> select package
+      setIsLoading(true)
+      setSavedUserPrompts(textareaValue.split('\n').filter(prompt => prompt.trim() !== ''))
+      setSelectedOption(newValue)
+      setTextareaValue(newValue.prompts.join('\n'))
+      setConfig(prev => ({
+        ...prev,
+        promptPool: newValue?.prompts || [],
+        selectedPrompts: [],
+        checkedPrompts: [],
+      }))
+      setIsLoading(false)
+    } else if (!newValue) {
+      // selected package -> no package
+      setIsLoading(true)
+      setSelectedOption(newValue)
+      setTextareaValue(savedUserPrompts.join('\n'))
+      setConfig(prev => ({
+        ...prev,
+        promptPool: savedUserPrompts,
+        selectedPrompts: [],
+        checkedPrompts: [],
+      }))
+      setIsLoading(false)
+    } else {
+      // selected package -> select another package
+      setIsLoading(true)
+      setSelectedOption(newValue)
+      setTextareaValue(newValue.prompts.join('\n'))
+      setIsLoading(false)
+    }
+  }
 
   return (
     <form className={styles.settingsForm}>
@@ -81,19 +141,31 @@ export default function BingoSettings({ config, setConfig }: SettingsProps) {
         </div>
       </div>
 
-      {/* TODO list of prompts similar to players list */}
       <div className={styles.promptPoolContainer}>
-        <label htmlFor="prompts">Prompt pool</label>
+        <div className={styles.promptPoolHeader}>
+          <label htmlFor="prompts">Prompt pool</label>
+          <Select
+            className={styles.select}
+            // classNamePrefix="select"
+            defaultValue={selectedOption}
+            isLoading={isLoading}
+            isClearable={true}
+            name="color"
+            options={BINGO_PACKAGES}
+            onChange={handleSelectChange}
+            placeholder={"Load package..."}
+          />
+        </div>
         <textarea
           id="prompts"
           name="prompts"
-          value={config.promptPool.join('\n')}
-          onChange={(e) => setConfig(prev => ({ ...prev, promptPool: e.target.value.split('\n') }))}
+          value={textareaValue}
+          onChange={(e) => setTextareaValue(e.target.value)}
         />
       </div>
 
       <div className={styles.generateBtnContainer}>
-        <PrimaryButton
+        <MainUiButton
           Icon={FaShuffle}
           text={"Select random prompts"}
           onClick={handleButtonClick}

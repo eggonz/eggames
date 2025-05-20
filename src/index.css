@@ -2,8 +2,8 @@
   /* surface colors */
   --primary-button-color: #007bff;
   --primary-button-color-hover: #0056b3;
-  --secondary-button-color: transparent;
-  --secondary-button-color-hover: rgba(0,0,0,0.05);
+  --secondary-button-color: rgba(0, 0, 0, 0.1);
+  --secondary-button-color-hover: rgba(0,0,0,0.2);
   --secondary-button-color-border: #ccc;
   --background-color: #f0f0f0;
   --surface-color: white;

@@ -78,6 +78,20 @@
   box-sizing: border-box;
 }
 
+.prompt-pool-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.prompt-pool-header .select {
+  max-width: 100%;
+}
+
 /* Selected prompts */
 
 .generate-btn-container {

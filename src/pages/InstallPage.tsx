@@ -4,7 +4,7 @@ import './InstallPage.css';
 import { FaDownload, FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom"
 import Header from "../components/Header";
-import PrimaryButton from "../components/PrimaryButton"
+import MainUiButton from "../components/MainUiButton"
 
 declare global {
   interface WindowEventMap {
@@ -83,7 +83,7 @@ function InstallPage() {
                 </ol>
                 <h3>Play directly from browser:</h3>
               </div>
-              <PrimaryButton Icon={FaHome} text={"Go to Home screen"} onClick={() => navigate('/')} />
+              <MainUiButton Icon={FaHome} text={"Go to Home screen"} onClick={() => navigate('/')} />
             </div>
           )}
         </div>
