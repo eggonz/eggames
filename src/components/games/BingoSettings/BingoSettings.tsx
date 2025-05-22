@@ -41,8 +41,7 @@ export default function BingoSettings({ config, setConfig, setConfigured }: Sett
   ) => {
     if (!selectedOption && !newValue) {
       throw new Error('selectedOption and newValue are both null')
-    } else if (!selectedOption) {
-      newValue = newValue as Option
+    } else if (!selectedOption && !!newValue) {
       // no package -> select package
       setIsLoading(true)
       setSavedUserPrompts(textareaValue.split('\n').filter(prompt => prompt.trim() !== ''))
@@ -50,7 +49,7 @@ export default function BingoSettings({ config, setConfig, setConfigured }: Sett
       setTextareaValue(newValue.prompts.join('\n'))
       setConfig((prev: BingoConfig) => ({
         ...prev,
-        promptPool: newValue?.prompts || [],
+        promptPool: newValue.prompts || [],
         selectedPrompts: [],
       }))
       setIsLoading(false)
@@ -70,6 +69,11 @@ export default function BingoSettings({ config, setConfig, setConfigured }: Sett
       setIsLoading(true)
       setSelectedOption(newValue)
       setTextareaValue(newValue.prompts.join('\n'))
+      setConfig((prev: BingoConfig) => ({
+        ...prev,
+        promptPool: newValue.prompts || [],
+        selectedPrompts: [],
+      }))
       setIsLoading(false)
     }
   }
