@@ -32,31 +32,31 @@ const DEFAULT_WORD_GUESS_PROGRESS: WordGuessProgress = {
 
 // Getters
 
-function getDefaultConfig<T = GameConfig>(gameId: string): T {
+function getDefaultConfig(gameId: string): GameConfig {
   switch (gameId) {
     case 'bingo':
-      return DEFAULT_BINGO_CONFIG as T
+      return DEFAULT_BINGO_CONFIG
     case 'dummy':
-      return DEFAULT_DUMMY_CONFIG as T
+      return DEFAULT_DUMMY_CONFIG
     case 'word-guess':
-      return DEFAULT_WORD_GUESS_CONFIG as T
+      return DEFAULT_WORD_GUESS_CONFIG
     default:
-      // throw new Error(`Unknown game type: ${gameType}`)
-      return {} as T
+      console.log("Unknown game type at getDefaultConfig: " + gameId)
+      return {}
   }
 }
 
-function getDefaultProgress<T = GameProgress>(gameId: string): T {
+function getDefaultProgress(gameId: string): GameProgress {
   switch (gameId) {
     case 'bingo':
-      return DEFAULT_BINGO_PROGRESS as T
+      return DEFAULT_BINGO_PROGRESS
     case 'dummy':
-      return DEFAULT_DUMMY_PROGRESS as T
+      return DEFAULT_DUMMY_PROGRESS
     case 'word-guess':
-      return DEFAULT_WORD_GUESS_PROGRESS as T
+      return DEFAULT_WORD_GUESS_PROGRESS
     default:
-      // throw new Error(`Unknown game type: ${gameType}`)
-      return {} as T
+      console.log("Unknown game type at getDefaultProgress: " + gameId)
+      return {}
   }
 }
 
