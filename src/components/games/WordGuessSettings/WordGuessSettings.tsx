@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import type { WordGuessConfig } from "../../../types/WordGuessConfig"
+import type { WordGuessConfig } from "../../../types/GameConfig"
 import styles from './WordGuessSettings.module.css'
 
 // Interfaces
@@ -14,7 +14,7 @@ export default function WordGuessSettings({ config, setConfig }: SettingsProps) 
 
   const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSliderValue(parseInt(event.target.value))
-    setConfig((prevConfig) => ({
+    setConfig((prevConfig: WordGuessConfig) => ({
       ...prevConfig,
       difficulty: parseInt(event.target.value)
     }))

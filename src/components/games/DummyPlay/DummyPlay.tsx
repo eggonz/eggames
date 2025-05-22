@@ -1,4 +1,4 @@
-import type { DummyConfig } from "../../../types/DummyConfig"
+import type { DummyConfig } from "../../../types/GameConfig"
 
 // Main Component
 export default function DummyPlay({ config }: { config: DummyConfig }) {

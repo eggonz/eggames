@@ -1,4 +1,4 @@
-import type { WordGuessConfig } from "../../../types/WordGuessConfig"
+import type { WordGuessConfig } from "../../../types/GameConfig"
 
 // Main Component
 export default function WordGuessPlay({ config }: { config: WordGuessConfig }) {

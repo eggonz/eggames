@@ -27,12 +27,6 @@
   background-color: var(--primary-button-color-hover);
 }
 
-.blue:disabled {
-  background-color: #b0bec5;
-  color: white;
-  cursor: not-allowed;
-}
-
 .red {
   background-color: #f44336;
   color: white;
@@ -49,4 +43,10 @@
 
 .green:hover {
   background-color: #388E3C;
+}
+
+.header-nav-btn:disabled {
+  background-color: #b0bec5;
+  color: white;
+  cursor: not-allowed;
 }

@@ -1,19 +1,20 @@
 import React from "react"
-import type { BingoConfig } from "../../../types/BingoConfig"
+import type { BingoConfig, BingoProgress } from "../../../types/GameConfig"
 import styles from './BingoPlay.module.css'
 
 // Main Component
 interface BingoPlayProps {
   config: BingoConfig
-  setConfig: React.Dispatch<React.SetStateAction<BingoConfig>>
+  progress: BingoProgress
+  setProgress: React.Dispatch<React.SetStateAction<BingoProgress>>
 }
 
-export default function BingoPlay({ config, setConfig }: BingoPlayProps) {
+export default function BingoPlay({ config, progress, setProgress }: BingoPlayProps) {
 
   const handleCellClick = (index: number) => {
-    const newCheckedCells = [...config.checkedPrompts]
+    const newCheckedCells = [...progress.checkedPrompts]
     newCheckedCells[index] = !newCheckedCells[index]
-    setConfig(prev => ({
+    setProgress((prev: BingoProgress) => ({
       ...prev,
       checkedPrompts: newCheckedCells
     }))
@@ -32,7 +33,7 @@ export default function BingoPlay({ config, setConfig }: BingoPlayProps) {
         {config.selectedPrompts.map((prompt, index) => (
           <div
             key={index}
-            className={`${styles.bingoCell} ${config.checkedPrompts[index] ? styles.checked : ''}`}
+            className={`${styles.bingoCell} ${progress.checkedPrompts[index] ? styles.checked : ''}`}
             onClick={() => handleCellClick(index)}
           >
             {prompt}

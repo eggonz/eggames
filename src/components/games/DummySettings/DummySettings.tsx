@@ -1,5 +1,5 @@
 import React from "react"
-import { type DummyConfig } from "../../../types/DummyConfig"
+import type { DummyConfig } from "../../../types/GameConfig"
 import styles from './DummySettings.module.css'
 
 // Types
