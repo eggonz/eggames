@@ -1,20 +1,21 @@
-import { QRCodeSVG } from 'qrcode.react';
-import './SharePage.css';
-import { FaArrowLeft } from 'react-icons/fa';
+import { QRCodeSVG } from 'qrcode.react'
+import './SharePage.css'
+import { FaArrowLeft, FaHome } from 'react-icons/fa'
 import { useNavigate } from "react-router-dom"
-import Header from "../components/Header";
+import Header from "../components/Header"
+import IconsButton from "../components/IconsButton"
 
-function SharePage() {
-  const navigate = useNavigate();
-  const qrUrl = `${window.location.origin}${window.location.pathname}#/install`;  // "#/" for HashRouter
+export default function SharePage() {
+  const navigate = useNavigate()
+  const qrUrl = `${window.location.origin}${window.location.pathname}#/install`  // "#/" for HashRouter
 
   return (
     <div className="page share-page">
       <Header
-        leftBtn={{
-          icons: [FaArrowLeft],
-          onClick: () => navigate('/'),
-        }}
+        left={[
+          <IconsButton icons={[FaArrowLeft, FaHome]}
+                       onClick={() => navigate('/')} />
+        ]}
         title="Share"
       />
       <main>
@@ -31,7 +32,5 @@ function SharePage() {
         </div>
       </main>
     </div>
-  );
+  )
 }
-
-export default SharePage;

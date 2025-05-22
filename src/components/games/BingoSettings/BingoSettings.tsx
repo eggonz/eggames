@@ -15,14 +15,13 @@ const MAX_COLS = 6
 const MIN_ROWS = 1
 const MAX_ROWS = 20
 
-// Interfaces
+// Main Component
 interface SettingsProps {
   config: BingoConfig
   setConfig: React.Dispatch<React.SetStateAction<BingoConfig>>
   setConfigured: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-// Main Component
 export default function BingoSettings({ config, setConfig, setConfigured }: SettingsProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [savedUserPrompts, setSavedUserPrompts] = useState<string[]>([])

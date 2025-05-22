@@ -3,12 +3,12 @@ import { FaArrowLeft, FaCheck, FaPlay, FaTimes } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
 import BingoSettings from "../components/games/BingoSettings"
 import DummySettings from "../components/games/DummySettings"
-import WordGuessSettings from "../components/games/WordGuessSettings"
 import Header from "../components/Header"
+import IconsButton from "../components/IconsButton"
 import { getDefaultConfig } from "../data/defaultConfigs"
 import './GameSettingsPage.css'
 import useValidatedGame from "../hooks/useValidatedGame"
-import type { BingoConfig, DummyConfig, GameConfig, WordGuessConfig } from "../types/GameConfig"
+import type { BingoConfig, DummyConfig, GameConfig } from "../types/GameConfig"
 import { clearStoredProgress, getStoredConfig, storeConfig } from "../utils/gameStorage"
 import ErrorPage from "./ErrorPage"
 
@@ -26,10 +26,11 @@ function renderForm(gameId: string,
                             setConfigured={setConfigured} />
     case 'dummy':
       return <DummySettings config={config as DummyConfig}
-                            setConfig={setConfig as React.Dispatch<React.SetStateAction<DummyConfig>>} />
-    case 'word-guess':
-      return <WordGuessSettings config={config as WordGuessConfig}
-                                setConfig={setConfig as React.Dispatch<React.SetStateAction<WordGuessConfig>>} />
+                            setConfig={setConfig as React.Dispatch<React.SetStateAction<DummyConfig>>}
+                            setConfigured={setConfigured} />
+    // case 'word-guess':
+    //   return <WordGuessSettings config={config as WordGuessConfig}
+    //                             setConfig={setConfig as React.Dispatch<React.SetStateAction<WordGuessConfig>>} />
     default:
       return NOT_IMPLEMENTED
   }
@@ -93,31 +94,31 @@ export default function GameSettingsPage({ isNew = false }: { isNew?: boolean })
   const renderHeader = () => {
     if (isNew) {
       return <Header
-        leftBtn={{
-          icons: [FaArrowLeft],
-          onClick: handleReturn,
-        }}
+        left={[
+          <IconsButton icons={[FaArrowLeft]}
+                       onClick={handleReturn} />
+        ]}
         title={game.name}
-        rightBtn={{
-          icons: [FaPlay],
-          onClick: handleStart,
-          disabled: !configured,
-        }}
+        right={[
+          <IconsButton icons={[FaPlay]}
+                       onClick={handleStart}
+                       disabled={!configured}/>
+        ]}
       />
     }
     return <Header
-      leftBtn={{
-        icons: [FaTimes],
-        onClick: handleReturn,
-        color: 'red',
-      }}
+      left={[
+        <IconsButton icons={[FaTimes]}
+                     onClick={handleReturn}
+                     color={"red"} />
+      ]}
       title={game.name}
-      rightBtn={{
-        icons: [FaCheck],
-        onClick: handleSave,
-        color: 'green',
-        disabled: !configured,
-      }}
+      right={[
+        <IconsButton icons={[FaCheck]}
+                     onClick={handleSave}
+                     color={"green"}
+                     disabled={!configured} />
+      ]}
     />
   }
 

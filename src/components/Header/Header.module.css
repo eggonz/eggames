@@ -18,12 +18,22 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 2rem;
+  min-height: 2rem;
 }
 
 .header-title h1 {
+  text-align: center;
   margin: 0;
   line-height: 2rem;
+  max-width: calc(100vw - 14rem);  /* adjust for left/right buttons */
+}
+
+.button-pool {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .left {

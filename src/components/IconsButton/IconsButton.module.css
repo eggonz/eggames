@@ -1,6 +1,6 @@
-@import '../Header.module.css';
+@import '../Header/Header.module.css';
 
-.header-nav-btn {
+.icons-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,8 +45,12 @@
   background-color: #388E3C;
 }
 
-.header-nav-btn:disabled {
+.icons-button:disabled {
   background-color: #b0bec5;
   color: white;
   cursor: not-allowed;
+}
+
+.circle {
+  border-radius: 50%;
 }

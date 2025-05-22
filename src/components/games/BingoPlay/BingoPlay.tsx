@@ -3,13 +3,13 @@ import type { BingoConfig, BingoProgress } from "../../../types/GameConfig"
 import styles from './BingoPlay.module.css'
 
 // Main Component
-interface BingoPlayProps {
+interface PlayProps {
   config: BingoConfig
   progress: BingoProgress
   setProgress: React.Dispatch<React.SetStateAction<BingoProgress>>
 }
 
-export default function BingoPlay({ config, progress, setProgress }: BingoPlayProps) {
+export default function BingoPlay({ config, progress, setProgress }: PlayProps) {
 
   const handleCellClick = (index: number) => {
     const newCheckedCells = [...progress.checkedPrompts]

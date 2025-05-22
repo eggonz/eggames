@@ -1,53 +1,34 @@
-import type { JSX } from "react";
-import type { IconType } from 'react-icons';
-import styles from './Header.module.css';
-import HeaderNavBtn from "./HeaderNavBtn";
-
-interface BtnProps {
-  icons: IconType[]
-  onClick: () => void
-  color?: "red" | "green" | "blue"
-  disabled?: boolean
-}
+import type { JSX } from "react"
+import styles from './Header.module.css'
 
 interface HeaderProps {
   title?: string
-  leftBtn?: BtnProps
-  rightBtn?: BtnProps
-  rightDiv?: JSX.Element
+  left?: JSX.Element[]
+  right?: JSX.Element[]
 }
 
-export default function Header({ title, leftBtn, rightBtn, rightDiv }: HeaderProps) {
+export default function Header({ title, left, right}: HeaderProps) {
   return (
     <header>
-      {leftBtn && (
-        <HeaderNavBtn
-          icons={leftBtn.icons}
-          onCLick={leftBtn.onClick}
-          position={'left'}
-          color={leftBtn.color}
-          disabled={leftBtn.disabled}
-        />
-      )}
       {title && (
         <div className={styles.headerTitle}>
           <h1>{title}</h1>
         </div>
       )}
-      {rightBtn && (
-        <HeaderNavBtn
-          icons={rightBtn.icons}
-          onCLick={rightBtn.onClick}
-          position={'right'}
-          color={rightBtn.color}
-          disabled={rightBtn.disabled}
-        />
-      )}
-      {rightDiv && (
-        <div className={styles.right}>
-          {rightDiv}
-        </div>
-      )}
+      <div className={styles.buttonPool + ' ' + styles.left}>
+        {left && left.map((btn, index) => (
+          <div key={index}>
+            {btn}
+          </div>
+        ))}
+      </div>
+      <div className={styles.buttonPool + ' ' + styles.right}>
+        {right && right.map((btn, index) => (
+          <div key={index}>
+            {btn}
+          </div>
+        ))}
+      </div>
     </header>
   );
 }

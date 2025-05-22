@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import type { DummyConfig } from "../../../types/GameConfig"
 import styles from './DummySettings.module.css'
 
@@ -17,14 +17,25 @@ const SpicyLevel = {
   HOT: 2
 }
 
-// Interfaces
+// Main Component
 interface SettingsProps {
   config: DummyConfig
   setConfig: React.Dispatch<React.SetStateAction<DummyConfig>>
+  setConfigured: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-// Main Component
-export default function DummySettings({ config, setConfig }: SettingsProps) {
+export default function DummySettings({ config, setConfig, setConfigured }: SettingsProps) {
+
+  useEffect(() => {
+    // On config change, check if criteria are met
+    const isConfiguredOk: boolean = (
+      config.difficulty >= 50 &&
+      config.spicyLevel == SpicyLevel.HOT
+    )
+    setConfigured(isConfiguredOk)
+  }, [config.difficulty, config.spicyLevel, setConfigured])
+
+  // Render
 
   const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setConfig((prevConfig) => ({

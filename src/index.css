@@ -29,6 +29,10 @@
   --on-download-button-color: white;
 }
 
+html {
+  font-size: 18px;  /* reference of REM unit. defaults to 16px */
+}
+
 body {
   margin: 0;
   font-family: 'Ubuntu', 'Segoe UI', 'Roboto', 'Oxygen', system-ui,

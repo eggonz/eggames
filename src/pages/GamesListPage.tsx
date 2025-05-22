@@ -1,10 +1,11 @@
 import './GamesListPage.css';
 import { useState } from 'react';
-import { FaArrowLeft, FaUsers } from 'react-icons/fa';
+import { FaArrowLeft, FaHome, FaUsers } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom"
 import GameCard from "../components/GameCard"
 import Header from "../components/Header";
 import IconDetail from "../components/IconDetail";
+import IconsButton from "../components/IconsButton"
 import { AVAILABLE_GAMES } from '../data/gameData';
 import type { Player } from "../types/Player";
 import { getStoredPlayers } from "../utils/playersStorage";
@@ -16,12 +17,14 @@ function GamesListPage() {
   return (
     <div className="page games-page">
       <Header
-        leftBtn={{
-          icons: [FaArrowLeft],
-          onClick: () => navigate('/'),
-        }}
+        left={[
+          <IconsButton icons={[FaArrowLeft, FaHome]}
+                       onClick={() => navigate('/')} />
+        ]}
         title="Games"
-        rightDiv={<IconDetail Icon={FaUsers} text={players.length} />}
+        right={[
+          <IconDetail Icon={FaUsers} text={players.length} />
+        ]}
       />
       <main>
         <div className="games-grid">

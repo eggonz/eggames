@@ -56,6 +56,7 @@ export const DEFAULT_DUMMY_CONFIG: DummyConfig = {
 }
 
 export const DEFAULT_DUMMY_PROGRESS: DummyProgress = {
+  counter: 0,
 }
 
 export const DEFAULT_WORD_GUESS_CONFIG: WordGuessConfig = {

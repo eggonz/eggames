@@ -29,7 +29,7 @@ export interface BingoProgress extends GameProgress {
 }
 
 export interface DummyProgress extends GameProgress {
-  // Add any specific progress properties for the Dummy game here
+  counter: number
 }
 
 export interface WordGuessProgress extends GameProgress {

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Footer from "../components/Footer";
 import Header from "../components/Header"
 import IconDetail from "../components/IconDetail";
+import IconsButton from "../components/IconsButton"
 import MainUiButton from "../components/MainUiButton"
 import type { Player } from "../types/Player";
 import { getStoredPlayers } from "../utils/playersStorage";
@@ -15,8 +16,13 @@ function HomePage() {
 
   return (
     <div className="page">
-      <Header leftBtn={{ icons: [FaShareAlt], onClick: () => navigate('/share') }}
-              title="eggames" />
+      <Header
+        left={[
+          <IconsButton icons={[FaShareAlt]}
+                       onClick={() => navigate('/share')} />
+        ]}
+        title="eggames"
+      />
       <main>
         <div className="home-menu-container">
           <MainUiButton Icon={FaDice}

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import BingoInfo from "../components/games/BingoInfo"
 import DummyInfo from "../components/games/DummyInfo"
 import Header from "../components/Header"
+import IconsButton from "../components/IconsButton"
 import useValidatedGame from "../hooks/useValidatedGame"
 import ErrorPage from "./ErrorPage"
 
@@ -32,16 +33,15 @@ export default function GameInfoPage({ isNew = false }: { isNew?: boolean }) {
   return (
     <div className="page">
       <Header
-        leftBtn={{
-          icons: [FaArrowLeft],
-          onClick: () => isNew? navigate('/games') : navigate(-1),
-        }}
+        left={[
+          <IconsButton icons={[FaArrowLeft]}
+                       onClick={() => isNew? navigate('/games') : navigate(-1)} />
+        ]}
         title={game.name}
-        rightBtn={
-        isNew? {
-          icons: [FaPlay],
-          onClick: () => navigate(`/game/${game.id}/new/settings`),
-        } : undefined }
+        right={isNew? [
+          <IconsButton icons={[FaPlay]}
+                       onClick={() => navigate(`/game/${game.id}/new/settings`)} />
+        ] : undefined }
       />
       <main>
         <div className="game-page info">

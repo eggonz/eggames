@@ -1,9 +1,10 @@
 import './PlayersPage.css';
 import React, { useEffect, useState } from 'react';
-import { FaCheck, FaPencilAlt, FaPlus, FaTrash, FaUsers } from 'react-icons/fa';
+import { FaArrowLeft, FaHome, FaPencilAlt, FaPlus, FaTrash, FaUsers } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom"
 import Header from "../components/Header";
 import IconDetail from "../components/IconDetail";
+import IconsButton from "../components/IconsButton"
 import type { NewPlayer, Player } from "../types/Player";
 import { clearStoredPlayers, getStoredPlayers, storePlayers } from '../utils/playersStorage';
 
@@ -90,12 +91,14 @@ function PlayersPage() {
   return (
     <div className="page">
       <Header
-        leftBtn={{
-          icons: [FaCheck],
-          onClick: () => navigate('/'),
-        }}
+        left={[
+          <IconsButton icons={[FaArrowLeft, FaHome]}
+                       onClick={() => navigate('/')} />
+        ]}
         title="Players"
-        rightDiv={<IconDetail Icon={FaUsers} text={players.length} />}
+        right={[
+          <IconDetail Icon={FaUsers} text={players.length} />
+        ]}
       />
       <main>
         <div className="players-page">

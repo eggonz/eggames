@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react"
-import { FaArrowLeft, FaCog, FaDice } from "react-icons/fa"
+import { FaArrowLeft, FaCog, FaDice, FaInfo } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
 import BingoPlay from "../components/games/BingoPlay"
 import DummyPlay from "../components/games/DummyPlay"
-import WordGuessPlay from "../components/games/WordGuessPlay"
 import Header from "../components/Header"
+import IconsButton from "../components/IconsButton"
 import { getDefaultProgress } from "../data/defaultConfigs"
 import useValidatedGame from "../hooks/useValidatedGame"
 import {
   type BingoConfig,
   type BingoProgress,
   type DummyConfig,
+  type DummyProgress,
   type GameConfig,
-  GameProgress,
-  type WordGuessConfig
+  GameProgress
 } from "../types/GameConfig"
 import { getStoredConfig, getStoredProgress, storeProgress } from "../utils/gameStorage"
 import ErrorPage from "./ErrorPage"
@@ -33,9 +33,11 @@ function renderView(
                         progress={progress as BingoProgress}
                         setProgress={setProgress as React.Dispatch<React.SetStateAction<BingoProgress>>} />
     case 'dummy':
-      return <DummyPlay config={config as DummyConfig} />
-    case 'word-guess':
-      return <WordGuessPlay config={config as WordGuessConfig} />
+      return <DummyPlay config={config as DummyConfig}
+                        progress={progress as DummyProgress}
+                        setProgress={setProgress as React.Dispatch<React.SetStateAction<DummyProgress>>} />
+    // case 'word-guess':
+    //   return <WordGuessPlay config={config as WordGuessConfig} />
     default:
       return NOT_IMPLEMENTED
   }
@@ -86,19 +88,21 @@ export default function GamePlayPage() {
   return (
     <div className="page">
       <Header
-        leftBtn={{
-          icons: [FaArrowLeft, FaDice],
-          onClick: handleExit,
-        }}
+        left={[
+          <IconsButton icons={[FaArrowLeft, FaDice]}
+                       onClick={handleExit} />
+        ]}
         title={game.name}
-        rightBtn={{
-          icons: [FaCog],
-          onClick: handleSettings,
-        }}
+        right={[
+          <IconsButton icons={[FaInfo]}
+                       onClick={handleInfo}
+                       circle={true}/>,
+          <IconsButton icons={[FaCog]}
+                       onClick={handleSettings} />
+        ]}
       />
       <main>
         <div className="game-page play">
-          <button onClick={handleInfo}>Info</button> {/* TODO add to header */}
           {renderView(
             game.id,
             config,
