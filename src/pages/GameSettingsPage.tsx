@@ -1,40 +1,16 @@
 import React, { useEffect, useState } from "react"
 import { FaArrowLeft, FaCheck, FaPlay, FaTimes } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
-import BingoSettings from "../components/games/BingoSettings"
-import DummySettings from "../components/games/DummySettings"
 import Header from "../components/Header"
 import IconsButton from "../components/IconsButton"
-import { getDefaultConfig } from "../data/defaultConfigs"
 import './GameSettingsPage.css'
+import { getDefaultConfig } from "../data/defaultConfigProgress"
+import { LOADING } from "../utils/constantElements"
 import useValidatedGame from "../hooks/useValidatedGame"
-import type { BingoConfig, DummyConfig, GameConfig } from "../types/GameConfig"
+import type { GameConfig } from "../types/GameConfig"
 import { clearStoredProgress, getStoredConfig, storeConfig } from "../utils/gameStorage"
+import { getSettingsForm } from "../utils/gameViewSelector"
 import ErrorPage from "./ErrorPage"
-
-const NOT_IMPLEMENTED = <div>Game not implemented</div>
-const LOADING = <div>Loading...</div>
-
-function renderForm(gameId: string,
-                    config: GameConfig,
-                    setConfig: React.Dispatch<React.SetStateAction<GameConfig>>,
-                    setConfigured: React.Dispatch<React.SetStateAction<boolean>>) {
-  switch (gameId) {
-    case 'bingo':
-      return <BingoSettings config={config as BingoConfig}
-                            setConfig={setConfig as React.Dispatch<React.SetStateAction<BingoConfig>>}
-                            setConfigured={setConfigured} />
-    case 'dummy':
-      return <DummySettings config={config as DummyConfig}
-                            setConfig={setConfig as React.Dispatch<React.SetStateAction<DummyConfig>>}
-                            setConfigured={setConfigured} />
-    // case 'word-guess':
-    //   return <WordGuessSettings config={config as WordGuessConfig}
-    //                             setConfig={setConfig as React.Dispatch<React.SetStateAction<WordGuessConfig>>} />
-    default:
-      return NOT_IMPLEMENTED
-  }
-}
 
 // Main Component
 export default function GameSettingsPage({ isNew = false }: { isNew?: boolean }) {
@@ -130,7 +106,7 @@ export default function GameSettingsPage({ isNew = false }: { isNew?: boolean })
         <div className="game-page settings">
           <h2>Settings</h2>
           <div className="settings-content">
-            {renderForm(
+            {getSettingsForm(
               game.id,
               tmpConfig,
               setTmpConfig as React.Dispatch<React.SetStateAction<GameConfig>>,

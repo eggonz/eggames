@@ -1,5 +1,6 @@
 import React from "react"
-import type { BingoConfig, BingoProgress } from "../../../types/GameConfig"
+import type { BingoConfig } from "../../../types/GameConfig"
+import type { BingoProgress } from "../../../types/GameProgress"
 import styles from './BingoPlay.module.css'
 
 // Main Component

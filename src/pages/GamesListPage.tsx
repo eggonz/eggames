@@ -6,7 +6,7 @@ import GameCard from "../components/GameCard"
 import Header from "../components/Header";
 import IconDetail from "../components/IconDetail";
 import IconsButton from "../components/IconsButton"
-import { AVAILABLE_GAMES } from '../data/gameData';
+import { GAME_DATA } from '../data/gameData';
 import type { Player } from "../types/Player";
 import { getStoredPlayers } from "../utils/playersStorage";
 
@@ -28,7 +28,7 @@ function GamesListPage() {
       />
       <main>
         <div className="games-grid">
-          {AVAILABLE_GAMES.map((game) => (
+          {GAME_DATA.map((game) => (
             <GameCard key={game.id} game={game} />
           ))}
         </div>

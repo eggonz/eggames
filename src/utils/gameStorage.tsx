@@ -1,4 +1,5 @@
-import type { GameConfig, GameProgress } from "../types/GameConfig";
+import type { GameConfig } from "../types/GameConfig";
+import type { GameProgress } from "../types/GameProgress"
 
 // Constants
 const CONFIG_STORAGE_KEY_PREFIX = 'gameConfig_'

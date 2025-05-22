@@ -1,6 +1,6 @@
 import type { Game } from "../types/Game";
 
-export const AVAILABLE_GAMES: Game[] = [
+export const GAME_DATA: Game[] = [
   {
     id: "bingo",
     name: "Bingo",
@@ -33,5 +33,5 @@ export const AVAILABLE_GAMES: Game[] = [
 ]
 
 export function getGameById(id: string): Game | undefined {
-  return AVAILABLE_GAMES.find(game => game.id === id)
+  return GAME_DATA.find(game => game.id === id)
 }

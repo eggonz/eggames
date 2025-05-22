@@ -1,26 +1,10 @@
 import { FaArrowLeft, FaPlay } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
-import BingoInfo from "../components/games/BingoInfo"
-import DummyInfo from "../components/games/DummyInfo"
 import Header from "../components/Header"
 import IconsButton from "../components/IconsButton"
 import useValidatedGame from "../hooks/useValidatedGame"
+import { getInfoView } from "../utils/gameViewSelector"
 import ErrorPage from "./ErrorPage"
-
-const NOT_IMPLEMENTED = <div>Game not implemented</div>
-
-function renderView(gameId: string) {
-  switch (gameId) {
-    case 'bingo':
-      return <BingoInfo />
-    case 'dummy':
-      return <DummyInfo />
-    // case 'word-guess':
-    //   return <WordGuessInfo />
-    default:
-      return NOT_IMPLEMENTED
-  }
-}
 
 // Main Component
 export default function GameInfoPage({ isNew = false }: { isNew?: boolean }) {
@@ -45,7 +29,7 @@ export default function GameInfoPage({ isNew = false }: { isNew?: boolean }) {
       />
       <main>
         <div className="game-page info">
-          {renderView(game.id)}
+          {getInfoView(game.id)}
         </div>
       </main>
     </div>

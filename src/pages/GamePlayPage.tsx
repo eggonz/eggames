@@ -1,47 +1,15 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { FaArrowLeft, FaCog, FaDice, FaInfo } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
-import BingoPlay from "../components/games/BingoPlay"
-import DummyPlay from "../components/games/DummyPlay"
 import Header from "../components/Header"
 import IconsButton from "../components/IconsButton"
-import { getDefaultProgress } from "../data/defaultConfigs"
+import { getDefaultProgress } from "../data/defaultConfigProgress"
+import { LOADING } from "../utils/constantElements"
 import useValidatedGame from "../hooks/useValidatedGame"
-import {
-  type BingoConfig,
-  type BingoProgress,
-  type DummyConfig,
-  type DummyProgress,
-  type GameConfig,
-  GameProgress
-} from "../types/GameConfig"
+import type { GameProgress } from "../types/GameProgress"
 import { getStoredConfig, getStoredProgress, storeProgress } from "../utils/gameStorage"
+import { getPlayView } from "../utils/gameViewSelector"
 import ErrorPage from "./ErrorPage"
-
-const NOT_IMPLEMENTED = <div>Game not implemented</div>
-const LOADING = <div>Loading...</div>
-
-function renderView(
-  gameId: string,
-  config: GameConfig,
-  progress: GameProgress,
-  setProgress: React.Dispatch<React.SetStateAction<GameProgress>>
-) {
-  switch (gameId) {
-    case 'bingo':
-      return <BingoPlay config={config as BingoConfig}
-                        progress={progress as BingoProgress}
-                        setProgress={setProgress as React.Dispatch<React.SetStateAction<BingoProgress>>} />
-    case 'dummy':
-      return <DummyPlay config={config as DummyConfig}
-                        progress={progress as DummyProgress}
-                        setProgress={setProgress as React.Dispatch<React.SetStateAction<DummyProgress>>} />
-    // case 'word-guess':
-    //   return <WordGuessPlay config={config as WordGuessConfig} />
-    default:
-      return NOT_IMPLEMENTED
-  }
-}
 
 // Main Component
 export default function GamePlayPage() {
@@ -103,7 +71,7 @@ export default function GamePlayPage() {
       />
       <main>
         <div className="game-page play">
-          {renderView(
+          {getPlayView(
             game.id,
             config,
             progress,

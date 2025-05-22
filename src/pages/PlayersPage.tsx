@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import Header from "../components/Header";
 import IconDetail from "../components/IconDetail";
 import IconsButton from "../components/IconsButton"
-import type { NewPlayer, Player } from "../types/Player";
+import type { Player } from "../types/Player";
 import { clearStoredPlayers, getStoredPlayers, storePlayers } from '../utils/playersStorage';
 
 // Components
@@ -38,7 +38,7 @@ function PlayerForm({ onSubmit }: { onSubmit: (name: string) => void }) {
 
 interface PlayerItemProps {
   player: Player;
-  editFn: (id: number, updatedPlayer: NewPlayer) => void;
+  editFn: (id: number, updatedPlayer: { name: string }) => void;
   deleteFn: (id: number) => void;
 }
 

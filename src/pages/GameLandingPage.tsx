@@ -1,10 +1,9 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { EMPTY } from "../utils/constantElements"
 import useValidatedGame from "../hooks/useValidatedGame"
 import { clearStoredConfig, clearStoredProgress, getStoredConfig } from "../utils/gameStorage"
 import ErrorPage from "./ErrorPage"
-
-const EMPTY = <div></div>
 
 // Main Component
 export default function GameLandingPage() {
