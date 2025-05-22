@@ -170,14 +170,6 @@ export default function BingoSettings({ config, setConfig, setConfigured }: Sett
         />
       </div>
 
-      <div className={styles.generateBtnContainer}>
-        <MainUiButton
-          Icon={FaShuffle}
-          text={"Select random prompts"}
-          onClick={handleRandomizeButtonClick}
-        />
-      </div>
-
       {config.selectedPrompts.length > 0 && (
         <div className={styles.selectedPromptsContainer}>
           <label htmlFor="selectedPrompts">Selected prompts</label>
@@ -190,6 +182,14 @@ export default function BingoSettings({ config, setConfig, setConfigured }: Sett
           </ol>
         </div>
       )}
+
+      <div className={styles.generateBtnContainer}>
+        <MainUiButton
+          Icon={FaShuffle}
+          text={"Select random prompts"}
+          onClick={handleRandomizeButtonClick}
+        />
+      </div>
     </form>
   )
 }
