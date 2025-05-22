@@ -1,7 +1,11 @@
-.dummy-info {
+.info {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   flex: 1;
+}
+
+.info h2 {
+  margin-top: 0;
 }

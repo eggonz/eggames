@@ -6,3 +6,7 @@
   gap: 0.5rem;
   margin-top: 20px;
 }
+
+.play h2 {
+  margin-top: 0;
+}

@@ -27,7 +27,7 @@ export default function DummyPlay({ config, progress, setProgress }: PlayProps) 
   }
 
   return (
-    <div>
+    <div className={styles.play}>
       <h2>Dummy Game</h2>
       <p>Guess the word based on the clues provided!</p>
       <h3>Current config</h3>

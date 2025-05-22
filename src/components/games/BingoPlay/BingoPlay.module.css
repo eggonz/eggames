@@ -6,6 +6,10 @@
   flex: 1;
 }
 
+.bingo-play h2 {
+  margin-top: 0;
+}
+
 .bingo-board {
   display: grid;
   gap: 8px;
