@@ -1,4 +1,4 @@
-import { FaArrowLeft, FaPlay } from "react-icons/fa"
+import { FaArrowLeft, FaDice, FaPlay } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
 import Header from "../components/Header"
 import IconsButton from "../components/IconsButton"
@@ -18,7 +18,7 @@ export default function GameInfoPage({ isNew = false }: { isNew?: boolean }) {
     <div className="page">
       <Header
         left={[
-          <IconsButton icons={[FaArrowLeft]}
+          <IconsButton icons={isNew? [FaArrowLeft, FaDice] : [FaArrowLeft]}
                        onClick={() => isNew? navigate('/games') : navigate(-1)} />
         ]}
         title={game.name}
