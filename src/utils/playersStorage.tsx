@@ -11,23 +11,23 @@
  * - `clearPlayers`: Clears all stored player data from localStorage.
  */
 
-import type { Player } from "../types/Player.tsx";
+import type { Player } from "../types/Player.tsx"
 
 // Constants
-const STORAGE_KEY = 'gamePlayersList';
+const STORAGE_KEY = 'gamePlayersList'
 
 // Functions
-const getStoredPlayers = () => {
-  const storedPlayers = localStorage.getItem(STORAGE_KEY);
-  return storedPlayers ? JSON.parse(storedPlayers) : [];
-};
-
-const storePlayers = (players: Player[]) => {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(players));
-};
-
-const clearStoredPlayers = () => {
-  localStorage.removeItem(STORAGE_KEY);
+function getStoredPlayers(): Player[] {
+  const storedPlayers = localStorage.getItem(STORAGE_KEY)
+  return storedPlayers ? JSON.parse(storedPlayers) : []
 }
 
-export { getStoredPlayers, storePlayers, clearStoredPlayers };
+function storePlayers(players: Player[]): void {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(players))
+}
+
+function clearStoredPlayers(): void {
+  localStorage.removeItem(STORAGE_KEY)
+}
+
+export { getStoredPlayers, storePlayers, clearStoredPlayers }

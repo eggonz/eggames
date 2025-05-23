@@ -1,20 +1,21 @@
 import React, { useEffect } from "react"
 import type { DummyConfig } from "../../../types/GameConfig"
+import CounterInput from "../../CounterInput"
+import SelectBlocksInput from "../../SelectBlocksInput"
+import SliderInput from "../../SliderInput"
+import ToggleInput from "../../ToogleInput"
 import styles from './DummySettings.module.css'
 
-// Types
-type Direction = -1 | 1;
-
 // Constants
-const DIFFICULTY_MIN = 0;
-const DIFFICULTY_MAX = 100;
-const TIME_LIMIT_MIN = 15;
-const TIME_LIMIT_MAX = 120;
-const TIME_LIMIT_STEP = 15;
-const SpicyLevel = {
-  MILD: 0,
-  MEDIUM: 1,
-  HOT: 2
+const DIFFICULTY_MIN = 0
+const DIFFICULTY_MAX = 100
+const TIME_LIMIT_MIN = 15
+const TIME_LIMIT_MAX = 120
+const TIME_LIMIT_STEP = 15
+const SPICY_OPTIONS = {
+  MILD: { value: 0, label: 'Mild' },
+  MEDIUM: { value: 1, label: 'Medium' },
+  HOT: { value: 2, label: 'Hot' }
 }
 
 // Main Component
@@ -30,7 +31,7 @@ export default function DummySettings({ config, setConfig, setConfigured }: Sett
     // On config change, check if criteria are met
     const isConfiguredOk: boolean = (
       config.difficulty >= 50 &&
-      config.spicyLevel == SpicyLevel.HOT
+      config.spicyLevel >= SPICY_OPTIONS.MEDIUM.value
     )
     setConfigured(isConfiguredOk)
   }, [config.difficulty, config.spicyLevel, setConfigured])
@@ -44,7 +45,14 @@ export default function DummySettings({ config, setConfig, setConfigured }: Sett
     }))
   }
 
-  const handleTimeLimitChange = (direction: Direction) => {
+  const handleSelectBlockClick = (value: number) => {
+    setConfig(prev => ({
+      ...prev,
+      spicyLevel: value
+    }))
+  }
+
+  const handleTimeLimitChange = (direction: -1 | 1) => {
     setConfig(prev => ({
       ...prev,
       timeLimit: Math.max(TIME_LIMIT_MIN, Math.min(TIME_LIMIT_MAX,
@@ -63,85 +71,35 @@ export default function DummySettings({ config, setConfig, setConfigured }: Sett
     <form className={styles.settingsForm}>
       <div className={styles.settingsItem}>
         <label htmlFor="difficulty">Difficulty Level</label>
-        <div className={styles.sliderContainer}>
-          <input
-            type="range"
-            id="difficulty"
-            name="difficulty"
-            min={DIFFICULTY_MIN}
-            max={DIFFICULTY_MAX}
-            value={config.difficulty}
-            onChange={handleSliderChange}
-          />
-          <span className={styles.sliderValue}>{config.difficulty}</span>
-        </div>
+        <SliderInput value={config.difficulty}
+                     min={DIFFICULTY_MIN}
+                     max={DIFFICULTY_MAX}
+                     step={1}
+                     onChange={handleSliderChange} />
       </div>
 
       <div className={styles.settingsItem}>
         <label htmlFor="spicyLevel">Spicy Level</label>
-        <div className={styles.selectBlocks}>
-          <button
-            type="button"
-            className={styles.selectBlock + ' ' + (config.spicyLevel === SpicyLevel.MILD ? styles.selected : '')}
-            onClick={() => setConfig(prev => ({ ...prev, spicyLevel: SpicyLevel.MILD }))}
-          >
-            Mild
-          </button>
-          <button
-            type="button"
-            className={styles.selectBlock + ' ' + (config.spicyLevel === SpicyLevel.MEDIUM ? styles.selected : '')}
-            onClick={() => setConfig(prev => ({ ...prev, spicyLevel: SpicyLevel.MEDIUM }))}
-          >
-            Medium
-          </button>
-          <button
-            type="button"
-            className={styles.selectBlock + ' ' + (config.spicyLevel === SpicyLevel.HOT ? styles.selected : '')}
-            onClick={() => setConfig(prev => ({ ...prev, spicyLevel: SpicyLevel.HOT }))}
-          >
-            Hot
-          </button>
-        </div>
+        <SelectBlocksInput value={config.spicyLevel}
+                           options={SPICY_OPTIONS}
+                           onClick={handleSelectBlockClick} />
       </div>
 
       <div className={styles.settingsItem}>
         <label htmlFor="timeLimit">Time Limit</label>
-        <div className={styles.timeLimitContainer}>
-          <button
-            type="button"
-            onClick={() => handleTimeLimitChange(-1)}
-            disabled={config.timeLimit <= TIME_LIMIT_MIN}
-            className={styles.timeButton}
-          >
-            -{TIME_LIMIT_STEP}s
-          </button>
-          <span className="time-display">{config.timeLimit}s</span>
-          <button
-            type="button"
-            onClick={() => handleTimeLimitChange(1)}
-            disabled={config.timeLimit >= TIME_LIMIT_MAX}
-            className={styles.timeButton}
-          >
-            +{TIME_LIMIT_STEP}s
-          </button>
-        </div>
+        <CounterInput label={`${config.timeLimit}s`}
+                      labelLeft={`-${TIME_LIMIT_STEP}s`}
+                      labelRight={`+${TIME_LIMIT_STEP}s`}
+                      value={config.timeLimit}
+                      min={TIME_LIMIT_MIN}
+                      max={TIME_LIMIT_MAX}
+                      onClick={handleTimeLimitChange} />
       </div>
 
       <div className={[styles.settingsItem, styles.sideToggleItem].join(' ')}>
         <label>Use AI Generation</label>
-        <div className={styles.toggleSwitch}>
-          <input
-            type="checkbox"
-            id="useGenAi"
-            name="useGenAi"
-            checked={config.useGenAi}
-            onChange={handleToggleChange}
-            className={styles.toggleInput}
-          />
-          <label className={styles.toggleLabel} htmlFor="useGenAi">
-            <span className={styles.toggleButton}></span>
-          </label>
-        </div>
+        <ToggleInput isChecked={config.useGenAi}
+                     onChange={handleToggleChange} />
       </div>
     </form>
   )

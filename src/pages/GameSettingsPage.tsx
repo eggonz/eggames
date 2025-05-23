@@ -3,13 +3,13 @@ import { FaArrowLeft, FaCheck, FaPlay, FaTimes } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
 import Header from "../components/Header"
 import IconsButton from "../components/IconsButton"
-import './GameSettingsPage.css'
+import './GamePage.css'
 import { getDefaultConfig } from "../data/defaultConfigProgress"
 import { LOADING } from "../utils/constantElements"
 import useValidatedGame from "../hooks/useValidatedGame"
 import type { GameConfig } from "../types/GameConfig"
 import { clearStoredProgress, getStoredConfig, storeConfig } from "../utils/gameStorage"
-import { getSettingsForm } from "../utils/gameViewSelector"
+import { getSettingsForm } from "../utils/gameContentSelector"
 import ErrorPage from "./ErrorPage"
 
 // Main Component

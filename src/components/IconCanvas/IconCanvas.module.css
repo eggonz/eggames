@@ -1,0 +1,13 @@
+.canvas {
+  width: 300px;
+  height: 300px;
+  aspect-ratio: 1;
+  position: relative;
+  /*border: 2px dashed #ccc;*/
+  background-color: transparent;
+}
+
+.iconWrapper {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}

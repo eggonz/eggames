@@ -99,12 +99,6 @@
   margin: 0 auto;
 }
 
-.selected-prompts-container {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
 .selected-prompts-container label {
   margin-left: 4px;
 }

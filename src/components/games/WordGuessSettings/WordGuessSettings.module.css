@@ -1,16 +1,25 @@
 .settings-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  max-width: 400px;
-  margin: 0 auto;
+  align-items: start;
+  justify-content: center;
+  gap: 2rem;
   width: 100%;
+  max-width: 20rem;
+  margin: 0 auto;
+}
+
+.settings-form label {
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 .settings-item {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 2.75rem;
 }
 
 .settings-item label {
@@ -21,4 +30,51 @@
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.side-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.centering {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Other */
+
+.estimated-time-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0.5rem auto 0;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  background-color: var(--surface-color);
+  color: var(--on-surface-color);
+  padding: 0.5rem;
+  box-sizing: border-box;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.estimated-time-value {
+  font-weight: bold;
+  color: var(--primary-button-color);
+  text-wrap: nowrap;
+}
+
+/* Generate Teams */
+
+.generate-btn-container {
+  margin: 0 auto;
 }

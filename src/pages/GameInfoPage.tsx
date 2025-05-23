@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import Header from "../components/Header"
 import IconsButton from "../components/IconsButton"
 import useValidatedGame from "../hooks/useValidatedGame"
-import { getInfoView } from "../utils/gameViewSelector"
+import { getInfoContent } from "../utils/gameContentSelector"
 import ErrorPage from "./ErrorPage"
 
 // Main Component
@@ -29,7 +29,7 @@ export default function GameInfoPage({ isNew = false }: { isNew?: boolean }) {
       />
       <main>
         <div className="game-page info">
-          {getInfoView(game.id)}
+          {getInfoContent(game.id)}
         </div>
       </main>
     </div>

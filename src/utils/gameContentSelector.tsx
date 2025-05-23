@@ -5,18 +5,21 @@ import BingoSettings from "../components/games/BingoSettings"
 import DummyInfo from "../components/games/DummyInfo"
 import DummyPlay from "../components/games/DummyPlay"
 import DummySettings from "../components/games/DummySettings"
-import type { BingoConfig, DummyConfig, GameConfig } from "../types/GameConfig"
-import type { BingoProgress, DummyProgress, GameProgress } from "../types/GameProgress"
+import WordGuessInfo from "../components/games/WordGuessInfo"
+import WordGuessPlay from "../components/games/WordGuessPlay"
+import WordGuessSettings from "../components/games/WordGuessSettings"
+import type { BingoConfig, DummyConfig, GameConfig, WordGuessConfig } from "../types/GameConfig"
+import type { BingoProgress, DummyProgress, GameProgress, WordGuessProgress } from "../types/GameProgress"
 import { NOT_IMPLEMENTED } from "./constantElements"
 
-export function getInfoView(gameId: string) {
+export function getInfoContent(gameId: string) {
   switch (gameId) {
     case 'bingo':
       return <BingoInfo/>
     case 'dummy':
       return <DummyInfo/>
-    // case 'word-guess':
-    //   return <WordGuessInfo />
+    case 'word-guess':
+      return <WordGuessInfo />
     default:
       return NOT_IMPLEMENTED
   }
@@ -35,15 +38,16 @@ export function getSettingsForm(gameId: string,
       return <DummySettings config={config as DummyConfig}
                             setConfig={setConfig as React.Dispatch<React.SetStateAction<DummyConfig>>}
                             setConfigured={setConfigured}/>
-    // case 'word-guess':
-    //   return <WordGuessSettings config={config as WordGuessConfig}
-    //                             setConfig={setConfig as React.Dispatch<React.SetStateAction<WordGuessConfig>>} />
+    case 'word-guess':
+      return <WordGuessSettings config={config as WordGuessConfig}
+                                setConfig={setConfig as React.Dispatch<React.SetStateAction<WordGuessConfig>>}
+                                setConfigured={setConfigured}/>
     default:
       return NOT_IMPLEMENTED
   }
 }
 
-export function getPlayView(
+export function getPlayContent(
   gameId: string,
   config: GameConfig,
   progress: GameProgress,
@@ -58,8 +62,10 @@ export function getPlayView(
       return <DummyPlay config={config as DummyConfig}
                         progress={progress as DummyProgress}
                         setProgress={setProgress as React.Dispatch<React.SetStateAction<DummyProgress>>}/>
-    // case 'word-guess':
-    //   return <WordGuessPlay config={config as WordGuessConfig} />
+    case 'word-guess':
+      return <WordGuessPlay config={config as WordGuessConfig}
+                            progress={progress as WordGuessProgress}
+                            setProgress={setProgress as React.Dispatch<React.SetStateAction<WordGuessProgress>>}/>
     default:
       return NOT_IMPLEMENTED
   }

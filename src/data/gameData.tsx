@@ -8,6 +8,13 @@ export const GAME_DATA: Game[] = [
     people: "2+"
   },
   {
+    id: "word-guess",
+    name: "Word Guess",
+    description: "Random word generator for pictionary/charades games",
+    people: "4+",
+    time: "60 min"
+  },
+  {
     id: "dummy",
     name: "Dummy Game",
     description: "Dummy description",
@@ -15,14 +22,6 @@ export const GAME_DATA: Game[] = [
     time: "30 min",
     age: "5+"
   },
-  // {
-  //   id: "word-guess",
-  //   name: "TODO Word Guess",
-  //   description: "Random word generator for pictionary/charades games",
-  //   people: "4+",
-  //   time: "30 min",
-  //   age: "5+"
-  // },
   // {
   //   id: "truth-or-dare",
   //   name: "TODO Truth or Dare",

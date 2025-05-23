@@ -1,0 +1,39 @@
+.counter-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  border-radius: 1.5rem;
+  border: 2px solid #ccc;
+  padding: 0.25rem;
+  width: fit-content;
+  block-size: fit-content;
+}
+
+.counter-display {
+  min-width: 3.5rem;
+  text-align: center;
+}
+
+.counter-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 2px solid #ccc;
+  border-radius: 1rem;
+  background: none;
+  cursor: pointer;
+  height: 2rem;
+  aspect-ratio: 3/2;
+}
+
+.counter-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.counter-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

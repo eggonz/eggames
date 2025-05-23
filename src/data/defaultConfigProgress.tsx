@@ -24,10 +24,17 @@ const DEFAULT_DUMMY_PROGRESS: DummyProgress = {
 }
 
 const DEFAULT_WORD_GUESS_CONFIG: WordGuessConfig = {
-  difficulty: 5,
+  numTeams: 2, // +-1, 2-4
+  turnDuration: 60, // +-15, 15-120
+  pointsToWin: 20, // +-5, 5-50
+  allowInfiniteSkips: false,
+  teams: [], // generate teams on settings page
 }
 
 const DEFAULT_WORD_GUESS_PROGRESS: WordGuessProgress = {
+  scores: {},
+  lastPlayerPerTeam: {},
+  currentTurn: null
 }
 
 // Getters

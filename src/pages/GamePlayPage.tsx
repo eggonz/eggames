@@ -8,8 +8,9 @@ import { LOADING } from "../utils/constantElements"
 import useValidatedGame from "../hooks/useValidatedGame"
 import type { GameProgress } from "../types/GameProgress"
 import { getStoredConfig, getStoredProgress, storeProgress } from "../utils/gameStorage"
-import { getPlayView } from "../utils/gameViewSelector"
+import { getPlayContent } from "../utils/gameContentSelector"
 import ErrorPage from "./ErrorPage"
+import './GamePage.css'
 
 // Main Component
 export default function GamePlayPage() {
@@ -60,7 +61,6 @@ export default function GamePlayPage() {
           <IconsButton icons={[FaArrowLeft, FaDice]}
                        onClick={handleExit} />
         ]}
-        title={game.name}
         right={[
           <IconsButton icons={[FaInfo]}
                        onClick={handleInfo}
@@ -71,7 +71,7 @@ export default function GamePlayPage() {
       />
       <main>
         <div className="game-page play">
-          {getPlayView(
+          {getPlayContent(
             game.id,
             config,
             progress,

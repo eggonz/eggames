@@ -6,28 +6,30 @@ const CONFIG_STORAGE_KEY_PREFIX = 'gameConfig_'
 const PROGRESS_STORAGE_KEY_PREFIX = 'gameProgress_'
 
 // Functions
-export const getStoredConfig = (gameId: string): GameConfig | null => {
+function getStoredConfig(gameId: string): GameConfig | null {
   const storedConfig = localStorage.getItem(CONFIG_STORAGE_KEY_PREFIX + gameId)
   return storedConfig ? JSON.parse(storedConfig) : null
-};
+}
 
-export const storeConfig = (gameId: string, config: GameConfig) => {
+function storeConfig(gameId: string, config: GameConfig) {
   localStorage.setItem(CONFIG_STORAGE_KEY_PREFIX + gameId, JSON.stringify(config))
-};
+}
 
-export const clearStoredConfig = (gameId: string) => {
+function clearStoredConfig(gameId: string) {
   localStorage.removeItem(CONFIG_STORAGE_KEY_PREFIX + gameId)
 }
 
-export const getStoredProgress = (gameId: string): GameProgress | null => {
+function getStoredProgress(gameId: string): GameProgress | null {
   const storedConfig = localStorage.getItem(PROGRESS_STORAGE_KEY_PREFIX + gameId)
   return storedConfig ? JSON.parse(storedConfig) : null
-};
+}
 
-export const storeProgress = (gameId: string, progress: GameProgress) => {
+function storeProgress(gameId: string, progress: GameProgress) {
   localStorage.setItem(PROGRESS_STORAGE_KEY_PREFIX + gameId, JSON.stringify(progress))
-};
+}
 
-export const clearStoredProgress = (gameId: string) => {
+function clearStoredProgress(gameId: string) {
   localStorage.removeItem(PROGRESS_STORAGE_KEY_PREFIX + gameId)
 }
+
+export { getStoredConfig, storeConfig, clearStoredConfig, getStoredProgress, storeProgress, clearStoredProgress }

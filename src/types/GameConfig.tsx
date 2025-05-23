@@ -1,3 +1,5 @@
+import type { Team } from "./Team"
+
 class GameConfig {}
 
 interface BingoConfig extends GameConfig {
@@ -15,7 +17,11 @@ interface DummyConfig extends GameConfig {
 }
 
 interface WordGuessConfig extends GameConfig {
-  difficulty: number // 1-10
+  numTeams: number // number of teams
+  turnDuration: number // in seconds
+  pointsToWin: number // points to win
+  allowInfiniteSkips: boolean // allow infinite skips
+  teams: Team[] // generated teams for the game
 }
 
 export type { GameConfig, BingoConfig, DummyConfig, WordGuessConfig }

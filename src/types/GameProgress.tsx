@@ -1,3 +1,6 @@
+import type { Player } from "./Player"
+import type { Team } from "./Team"
+
 class GameProgress {}
 
 interface BingoProgress extends GameProgress {
@@ -9,7 +12,9 @@ interface DummyProgress extends GameProgress {
 }
 
 interface WordGuessProgress extends GameProgress {
-  // Add any specific progress properties for the Word Guess game here
+  scores: { [teamId: string]: number } // team ID to score mapping
+  lastPlayerPerTeam: { [teamId: string]: number } // mapping to last player index
+  currentTurn: { team: Team, player: Player } | null // current turn player. null if not started
 }
 
 export type { GameProgress, BingoProgress, DummyProgress, WordGuessProgress }
