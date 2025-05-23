@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { FaShuffle } from "react-icons/fa6"
 import Select, { type SingleValue } from "react-select"
-import { BINGO_PACKAGES } from "../../../data/bingoPackages"
-import type { BingoConfig } from "../../../types/GameConfig"
-import MainUiButton from "../../MainUiButton"
+import { BINGO_PACKAGES } from "../../data/bingoPackages"
+import type { BingoConfig } from "../../types/GameConfig"
+import MainUiButton from "../../components/MainUiButton"
 import styles from './BingoSettings.module.css'
 
 // Types

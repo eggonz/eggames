@@ -1,6 +1,6 @@
 import { FaHome } from "react-icons/fa"
-import GameCard from "./components/GameCard"
-import MainUiButton from './components/MainUiButton/MainUiButton'
+import GameCard from "../components/GameCard"
+import MainUiButton from '../components/MainUiButton/MainUiButton'
 
 const ComponentTestingSheet = () => {
   return (

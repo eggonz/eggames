@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react"
 import { FaMagic, FaMinus, FaPlus } from "react-icons/fa"
-import type { WordGuessConfig } from "../../../types/GameConfig"
-import type { Player } from "../../../types/Player"
-import type { Team } from "../../../types/Team"
-import { shuffle } from "../../../utils/arrayOps"
-import { TEAM_COLORS_SOFT } from "../../../utils/constants"
-import { getStoredPlayers } from "../../../utils/playersStorage"
-import CounterInput from "../../CounterInput"
-import MainUiButton from "../../MainUiButton"
-import SliderInput from "../../SliderInput"
-import ToggleInput from "../../ToogleInput"
-import styles2 from '../WordGuess.module.css'
+import CounterInput from "../../components/CounterInput"
+import MainUiButton from "../../components/MainUiButton"
+import SliderInput from "../../components/SliderInput"
+import ToggleInput from "../../components/ToogleInput"
+import type { WordGuessConfig } from "../../types/GameConfig"
+import type { Player } from "../../types/Player"
+import type { Team } from "../../types/Team"
+import { shuffle } from "../../utils/arrayOps"
+import { TEAM_COLORS_SOFT } from "../../utils/constants"
+import { getStoredPlayers } from "../../utils/playersStorage"
 import styles from './WordGuessSettings.module.css'
 
 // Constants
@@ -169,10 +168,10 @@ export default function WordGuessSettings({ config, setConfig, setConfigured }: 
       </div>
 
       {config.teams && config.teams.length > 0 && (
-        <div className={styles2.teamsContainer}>
+        <div className={styles.teamsContainer}>
           <label>Teams</label>
             {config.teams.map((team, index) => (
-              <ul key={index} className={styles2.teamList}>
+              <ul key={index} className={styles.teamList}>
                 {team.players.map((player, index2) => (
                   <li key={index2}
                       style={{backgroundColor: team.color}}>

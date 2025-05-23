@@ -1,0 +1,43 @@
+@import "../WordGuess.module.css";
+
+.play {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  width: 100%;
+}
+
+.play h2 {
+  margin-top: 0;
+  font-size: 2rem;
+}
+
+.main-game-button {
+  --height: 4rem;
+  width: 12rem;
+  height: var(--height);
+  border-radius: calc(var(--height) / 2);
+  font-size: calc(var(--height) / 2);
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-image: radial-gradient(circle, #ffd800, #fda400);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.pie-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+}

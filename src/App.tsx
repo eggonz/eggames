@@ -1,5 +1,5 @@
 import { HashRouter as Router, Route, Routes } from 'react-router-dom' // BrowserRouter not working for GH-Pages hosting
-import componentTestingSheet from './componentTestingSheet'
+import componentTestingSheet from './utils/componentTestingSheet'
 import ErrorPage from "./pages/ErrorPage"
 import GameInfoPage from "./pages/GameInfoPage"
 import GameLandingPage from "./pages/GameLandingPage"

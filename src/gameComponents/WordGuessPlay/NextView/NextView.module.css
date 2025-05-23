@@ -1,0 +1,5 @@
+@import "../WordGuessPlay.module.css";
+
+.circle-container {
+  width: 70%;
+}

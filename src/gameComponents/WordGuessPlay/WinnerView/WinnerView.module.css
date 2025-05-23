@@ -1,0 +1,25 @@
+@import "../WordGuessPlay.module.css";
+
+.winner-circle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  aspect-ratio: 1;
+  position: relative;
+}
+
+.winner-circle-container img {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  object-fit: cover;
+}
+
+.main-game-button.text {
+  font-size: 1.5rem;
+}
+
+.narrow-players-container {
+  width: 70%;
+}

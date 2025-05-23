@@ -1,9 +1,9 @@
 import React, { useEffect } from "react"
-import type { DummyConfig } from "../../../types/GameConfig"
-import CounterInput from "../../CounterInput"
-import SelectBlocksInput from "../../SelectBlocksInput"
-import SliderInput from "../../SliderInput"
-import ToggleInput from "../../ToogleInput"
+import type { DummyConfig } from "../../types/GameConfig"
+import CounterInput from "../../components/CounterInput"
+import SelectBlocksInput from "../../components/SelectBlocksInput"
+import SliderInput from "../../components/SliderInput"
+import ToggleInput from "../../components/ToogleInput"
 import styles from './DummySettings.module.css'
 
 // Constants

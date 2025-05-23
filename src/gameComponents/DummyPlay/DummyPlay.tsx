@@ -1,6 +1,6 @@
 import React from "react"
-import type { DummyConfig } from "../../../types/GameConfig"
-import type { DummyProgress } from "../../../types/GameProgress"
+import type { DummyConfig } from "../../types/GameConfig"
+import type { DummyProgress } from "../../types/GameProgress"
 import styles from './DummyPlay.module.css'
 
 // Main Component
