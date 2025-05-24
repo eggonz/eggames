@@ -1,37 +1,43 @@
+import React from "react"
 import winnerImage from "../../../assets/winner.png"
 import MainUiButton from "../../../components/MainUiButton"
 import type { WordGuessConfig } from "../../../types/GameConfig"
 import type { WordGuessProgress } from "../../../types/GameProgress"
+import { getCurrent } from "../../../utils/teamGetters"
 import { getWinnerTeam } from "../../../utils/teamOps"
 import styles from "./WinnerView.module.css"
 
 interface WinnerProps {
   config: WordGuessConfig
   progress: WordGuessProgress
-  onClickReset: () => void
+  setProgress: React.Dispatch<React.SetStateAction<WordGuessProgress>>
+  onClickRestart: () => void
 }
 
-export default function WinnerView({config, progress, onClickReset}: WinnerProps) {
+export default function WinnerView({ config, progress, setProgress, onClickRestart }: WinnerProps) {
+
   const winningTeam = getWinnerTeam(config, progress)
-  const winner = config.teams[0] // TODO tmp: delete this
-  if (!winner) {
+
+  if (!winningTeam) {
     console.error("No winning team") // This should not happen
     return <div className={styles.play}>It's a tie!</div>
   }
+
+  const gradient = `radial-gradient(circle at center, ${winningTeam.color.primary}, ${winningTeam.color.secondary})`
 
   return (
     <div className={styles.play}>
       <h2>WINNER!</h2>
       <div className={styles.winnerCircleContainer}>
-        <div className={styles.circle}>
+        <div className={styles.circle} style={{ backgroundImage: gradient }}>
         </div>
         <img src={winnerImage} alt="Winner Image"/>
       </div>
-      <div className={styles.teamsContainer + ' ' + styles.narrowPlayersContainer}>
+      <div className={[styles.teamsContainer, styles.winnerPlayersContainer].join(' ')}>
         <ul className={styles.teamList}>
-          {winner.players.map((player, index) => (
+          {winningTeam.players.map((player, index) => (
             <li key={index}
-                style={{backgroundColor: winner.color}}>
+                style={{backgroundColor: winningTeam.color.soft}}>
               {player.name}
             </li>
           ))}
@@ -39,7 +45,7 @@ export default function WinnerView({config, progress, onClickReset}: WinnerProps
       </div>
       <MainUiButton
         text={"Start Over"}
-        onClick={onClickReset}
+        onClick={onClickRestart}
         className={styles.mainGameButton + ' ' + styles.text}
       />
     </div>

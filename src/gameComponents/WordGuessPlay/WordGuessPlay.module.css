@@ -10,7 +10,7 @@
 }
 
 .play h2 {
-  margin-top: 0;
+  margin: 0;
   font-size: 2rem;
 }
 
@@ -29,7 +29,7 @@
   width: 100%;
   aspect-ratio: 1;
   border-radius: 50%;
-  background-image: radial-gradient(circle, #ffd800, #fda400);
+  background-image: radial-gradient(circle, #ffd800, #fda400);  /* color by script */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   font-size: 1.5rem;
   font-weight: bold;
@@ -40,4 +40,5 @@
   justify-content: center;
   align-items: center;
   width: 70%;
+  max-width: 18rem;
 }

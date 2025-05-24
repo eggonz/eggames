@@ -3,8 +3,8 @@ import { FaArrowLeft, FaCog, FaDice, FaInfo } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
 import Header from "../components/Header"
 import IconsButton from "../components/IconsButton"
-import { getDefaultProgress } from "../data/defaultConfigProgress"
-import { LOADING } from "../utils/constantElements"
+import { getDefaultProgress } from "../constants/defaultConfigProgress"
+import { LOADING } from "../constants/elements"
 import useValidatedGame from "../hooks/useValidatedGame"
 import type { GameProgress } from "../types/GameProgress"
 import { getStoredConfig, getStoredProgress, storeProgress } from "../utils/gameStorage"
@@ -20,7 +20,12 @@ export default function GamePlayPage() {
 
   useEffect(() => {
     if (!isValid) return
-    setProgress(getStoredProgress(game.id) || getDefaultProgress(game.id))
+    const storedConfig = getStoredConfig(game.id)
+    if (!storedConfig) {
+      console.error(`Game ${game.id} has no config`)
+      return
+    }
+    setProgress(getStoredProgress(game.id) || getDefaultProgress(game.id, storedConfig))
   }, [game, isValid])
 
   useEffect(() => {

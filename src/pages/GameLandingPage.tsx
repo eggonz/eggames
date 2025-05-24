@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { EMPTY } from "../utils/constantElements"
+import { EMPTY } from "../constants/elements"
 import useValidatedGame from "../hooks/useValidatedGame"
 import { clearStoredConfig, clearStoredProgress, getStoredConfig } from "../utils/gameStorage"
 import ErrorPage from "./ErrorPage"

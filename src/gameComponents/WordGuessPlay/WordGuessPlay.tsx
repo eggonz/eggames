@@ -1,62 +1,109 @@
 import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { WordGuessView } from "../../constants/WordGuessView"
+import WordLoader, { type WordEntry } from "../../data/WordLoader"
 import type { WordGuessConfig } from "../../types/GameConfig"
 import type { WordGuessProgress } from "../../types/GameProgress"
-import { Views } from "../../utils/constants"
-import CardView, { CardViewButtonVariant } from "./CardView/CardView"
+import { clearStoredConfig, clearStoredProgress } from "../../utils/gameStorage"
+import CardView from "./CardView/CardView"
 import GuessedView from "./GuessedView/GuessedView"
 import NextView from "./NextView/NextView"
-import PointsView, { PointsViewButtonVariant } from "./PointsView/PointsView"
+import PointsView from "./PointsView/PointsView"
 import TimeupView from "./TimeupView/TimeupView"
 import WinnerView from "./WinnerView/WinnerView"
 
 
 // Interfaces
 interface PlayProps {
+  gameId: string
   config: WordGuessConfig
   progress: WordGuessProgress
   setProgress: React.Dispatch<React.SetStateAction<WordGuessProgress>>
 }
 
 // Main Component
-export default function WordGuessPlay({ config, progress, setProgress }: PlayProps) {
-  const [view, setView] = useState(Views.WINNER)
+export default function WordGuessPlay({ gameId, config, progress, setProgress }: PlayProps) {
+  const navigate = useNavigate()
+  const [view, setView] = useState<WordGuessView>(progress.view)
 
-  // TODO view is restarted (not saved) when we navigate back from info/settings
+  const loader = new WordLoader<WordEntry>()
+
+  const handleRestart = () => {
+    clearStoredProgress(gameId)
+    clearStoredConfig(gameId)
+    navigate(`/game/${gameId}/new/settings`)
+  }
 
   switch (view) {
-    case Views.NEXT:
+    case WordGuessView.NEXT:
       return <NextView
-        onClickNext={() => setView(Views.CARD)}
+        config={config}
+        progress={progress}
+        setProgress={setProgress}
+        onClickNext={() => {
+          setProgress(prev => ({ ...prev, view: WordGuessView.CARD }))
+          setView(WordGuessView.CARD)
+        }}
       />
-    case Views.CARD:
+    case WordGuessView.CARD:
       return <CardView
-        variant={CardViewButtonVariant.GUESS}
-        onClickCard={() => {}} // TODO
-        onClickSkip={() => {}} // TODO
-        onTimeUp={() => {}} // TODO
-        onClickGuessed={() => setView(Views.GUESSED)}
-        onClickNext={() => setView(Views.TIMEUP)}
+        loader={loader}
+        config={config}
+        progress={progress}
+        setProgress={setProgress}
+        onTimeUp={() => {
+          setProgress(prev => ({ ...prev, view: WordGuessView.TIMEUP }))
+          setView(WordGuessView.TIMEUP)
+        }}
+        onClickGuessed={() => {
+          setProgress(prev => ({ ...prev, view: WordGuessView.GUESSED }))
+          setView(WordGuessView.GUESSED)
+        }}
       />
-    case Views.TIMEUP:
+    case WordGuessView.TIMEUP:
       return <TimeupView
-        onClickGuessed={() => setView(Views.GUESSED)}
-        onClickNext={() => setView(Views.POINTS)}
+        config={config}
+        progress={progress}
+        setProgress={setProgress}
+        onClickGuessed={() => {
+          setProgress(prev => ({ ...prev, view: WordGuessView.GUESSED }))
+          setView(WordGuessView.GUESSED)
+        }}
+        onClickNext={() => {
+          setProgress(prev => ({ ...prev, view: WordGuessView.POINTS }))
+          setView(WordGuessView.POINTS)
+        }}
       />
-    case Views.GUESSED:
+    case WordGuessView.GUESSED:
       return <GuessedView
-        onClickNext={() => setView(Views.POINTS)}
+        config={config}
+        progress={progress}
+        setProgress={setProgress}
+        onClick={() => {
+          setProgress(prev => ({ ...prev, view: WordGuessView.POINTS }))
+          setView(WordGuessView.POINTS)
+        }}
       />
-    case Views.POINTS:
+    case WordGuessView.POINTS:
       return <PointsView
-        variant={PointsViewButtonVariant.WINNER} // TODO
-        onClickNext={() => setView(Views.NEXT)}
-        onClickWinner={() => setView(Views.WINNER)}
+        config={config}
+        progress={progress}
+        setProgress={setProgress}
+        onClickNext={() => {
+          setProgress(prev => ({ ...prev, view: WordGuessView.NEXT }))
+          setView(WordGuessView.NEXT)
+        }}
+        onClickWinner={() => {
+          setProgress(prev => ({ ...prev, view: WordGuessView.WINNER }))
+          setView(WordGuessView.WINNER)
+        }}
       />
-    case Views.WINNER:
+    case WordGuessView.WINNER:
       return <WinnerView
         config={config}
         progress={progress}
-        onClickReset={() => setView(Views.NEXT)} // TODO back to /new/info
+        setProgress={setProgress}
+        onClickRestart={handleRestart}
       />
     default:
       return null

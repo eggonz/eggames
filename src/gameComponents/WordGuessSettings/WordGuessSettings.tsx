@@ -4,12 +4,13 @@ import CounterInput from "../../components/CounterInput"
 import MainUiButton from "../../components/MainUiButton"
 import SliderInput from "../../components/SliderInput"
 import ToggleInput from "../../components/ToogleInput"
+import { TEAM_COLORS } from "../../constants/colors"
 import type { WordGuessConfig } from "../../types/GameConfig"
 import type { Player } from "../../types/Player"
 import type { Team } from "../../types/Team"
 import { shuffle } from "../../utils/arrayOps"
-import { TEAM_COLORS_SOFT } from "../../utils/constants"
 import { getStoredPlayers } from "../../utils/playersStorage"
+import { minutesToString } from "../../utils/timeFunctions"
 import styles from './WordGuessSettings.module.css'
 
 // Constants
@@ -23,22 +24,13 @@ const W_POINTS_MAX = 50
 const W_POINTS_STEP = 5
 
 // Functions
-function minutes2string(minutes: number): string {
-  const h = Math.floor(minutes / 60)
-  const m = minutes % 60
-  if (h === 0) return `${m}m`
-  if (m === 0) return `${h}h`
-  return `${h}h ${m}m`
-}
-
 function estimateTime(config: WordGuessConfig): string {
   const time = Math.ceil(config.numTeams *
-    (config.turnDuration / 60 + (config.allowInfiniteSkips? 0.6 : 0.5)) *
+    // (config.turnDuration / 60 + (config.allowInfiniteSkips? 0.6 : 0.5)) *
+    (config.turnDuration / 60 + 0.5) * // skips don't take time because timer is not reset
     config.pointsToWin) // min
-  return minutes2string(time)
+  return minutesToString(time)
 }
-
-// Components
 
 // Main Component
 interface SettingsProps {
@@ -49,8 +41,8 @@ interface SettingsProps {
 
 export default function WordGuessSettings({ config, setConfig, setConfigured }: SettingsProps) {
 
-  const [savedTeams, setSavedTeams] = useState<Team[]>([])
-  const [savedN, setSavedN] = useState<number>()
+  const [savedTeams, setSavedTeams] = useState<Team[]>(config?.teams)
+  const [savedN, setSavedN] = useState<number>(config?.numTeams)
 
   useEffect(() => {
     // On config change, check if criteria are met
@@ -61,13 +53,14 @@ export default function WordGuessSettings({ config, setConfig, setConfigured }: 
   // Render
 
   const handleNumTeamsChange = (direction: -1 | 1) => {
-    setConfig(prev => ({
-      ...prev,
-      numTeams: Math.max(N_TEAMS_MIN, Math.min(N_TEAMS_MAX,
-        prev.numTeams + direction)),
-      teams: (Math.max(N_TEAMS_MIN, Math.min(N_TEAMS_MAX,
-        prev.numTeams + direction)) === savedN)? savedTeams : [],
-    }))
+    setConfig(prev => {
+      const n = Math.max(N_TEAMS_MIN, Math.min(N_TEAMS_MAX, prev.numTeams + direction))
+      return ({
+        ...prev,
+        numTeams: n,
+        teams: n === savedN ? savedTeams : []
+      })
+    })
   }
 
   const handleTurnDurationChange = (direction: -1 | 1) => {
@@ -97,7 +90,7 @@ export default function WordGuessSettings({ config, setConfig, setConfigured }: 
     const numTeams: number = config.numTeams
     const shuffledPlayers: Player[] = shuffle(players)
     // subset of TEAM_COLORS
-    const colors: string[] = shuffle(TEAM_COLORS_SOFT).slice(0, numTeams)
+    const colors = shuffle(TEAM_COLORS).slice(0, numTeams)
 
     const teams: Team[] = Array.from({ length: numTeams }, (_, index) => ({
       id: index + 1,
@@ -174,7 +167,7 @@ export default function WordGuessSettings({ config, setConfig, setConfigured }: 
               <ul key={index} className={styles.teamList}>
                 {team.players.map((player, index2) => (
                   <li key={index2}
-                      style={{backgroundColor: team.color}}>
+                      style={{backgroundColor: team.color.soft}}>
                     {player.name}
                   </li>
                 ))}

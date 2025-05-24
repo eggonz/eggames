@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom"
 import Header from "../components/Header"
 import IconsButton from "../components/IconsButton"
 import './GamePage.css'
-import { getDefaultConfig } from "../data/defaultConfigProgress"
-import { LOADING } from "../utils/constantElements"
+import { getDefaultConfig } from "../constants/defaultConfigProgress"
+import { LOADING } from "../constants/elements"
 import useValidatedGame from "../hooks/useValidatedGame"
 import type { GameConfig } from "../types/GameConfig"
 import { clearStoredProgress, getStoredConfig, storeConfig } from "../utils/gameStorage"
-import { getSettingsForm } from "../utils/gameContentSelector"
+import { getSettingsContent } from "../utils/gameContentSelector"
 import ErrorPage from "./ErrorPage"
 
 // Main Component
@@ -34,7 +34,7 @@ export default function GameSettingsPage({ isNew = false }: { isNew?: boolean })
 
   if (!isValid) return <ErrorPage code={404} />
 
-  const handleReturn = () => navigate(-1)
+  const handleReturn = () => isNew? navigate(`/game/${game.id}/new/info`) : navigate(-1)
 
   const handleStart = () => {
     if (!configured || !tmpConfig) return
@@ -106,7 +106,7 @@ export default function GameSettingsPage({ isNew = false }: { isNew?: boolean })
         <div className="game-page settings">
           <h2>Settings</h2>
           <div className="settings-content">
-            {getSettingsForm(
+            {getSettingsContent(
               game.id,
               tmpConfig,
               setTmpConfig as React.Dispatch<React.SetStateAction<GameConfig>>,

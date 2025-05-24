@@ -1,5 +1,23 @@
 @import "../WordGuessPlay.module.css";
 
+.play h2 {
+  display: flex;
+  gap: 1rem;
+  /*flex-direction: row;*/
+  /*align-items: center;*/
+  /*justify-content: space-between;*/
+  /*width: 100%;*/
+  /*max-width: min(95%, 20rem);*/
+}
+
+/*.player-name {*/
+/*  display: flex;*/
+/*  flex-direction: row;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  width: 100%;*/
+/*}*/
+
 /* CARD view: card */
 
 .card-container {
@@ -7,14 +25,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 80%;
+  width: 85%;
   perspective: 1000px;
 }
 
 .card {
   position: relative;
   width: 100%;
-  aspect-ratio: 1.5;
+  max-width: 20rem;
+  aspect-ratio: 4 / 3;
   cursor: pointer;
   transform-style: preserve-3d;
   transition: transform 0.6s;
@@ -38,13 +57,37 @@
 }
 
 .card-front {
-  background-color: #f0f0f0;
+  background-color: #f0f0f0; /* color by script */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  font-size: 5rem;
 }
 
 .card-back {
-  background-color: #e0e0e0;
+  background-color: #e0e0e0; /* color by script */
   transform: rotateY(180deg);
+  font-size: 2rem;
+}
+
+/* animation */
+
+@keyframes urgentPulse {
+  0% {
+    transform: scale(1);
+    color: #ff3434;
+  }
+  50% {
+    transform: scale(1.5);
+    color: #ff0000;
+  }
+  100% {
+    transform: scale(1);
+    color: #ff3434;
+  }
+}
+
+.urgent {
+  animation: urgentPulse 1s infinite;
+  transform-origin: center;
 }
 
 /* CARD view: others */
@@ -52,9 +95,11 @@
 .timer-container {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
   max-width: 10rem;
+  line-height: 1.1rem;
 }
 
 .skip-button {
