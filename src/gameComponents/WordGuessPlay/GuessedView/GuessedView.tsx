@@ -8,12 +8,11 @@ import styles from "./GuessedView.module.css"
 
 interface GuessedViewProps {
   config: WordGuessConfig
-  progress: WordGuessProgress
   setProgress: React.Dispatch<React.SetStateAction<WordGuessProgress>>
   onClick: () => void // Clicking either the pie chart or the 'none' button, move to next view
 }
 
-export default function GuessedView({ config, progress, setProgress, onClick }: GuessedViewProps) {
+export default function GuessedView({ config, setProgress, onClick }: GuessedViewProps) {
   const [selectedIdx, setSelectedIdx] = useState<number>() // selected section in pie chart, 0-indexed
 
   const handleClickPie = (idx: number) => {

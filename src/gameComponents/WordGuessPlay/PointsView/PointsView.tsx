@@ -1,4 +1,3 @@
-import React from "react"
 import { FaCrown, FaForward } from "react-icons/fa"
 import MainUiButton from "../../../components/MainUiButton"
 import PieChart from "../../../components/PieChart"
@@ -10,12 +9,11 @@ import styles from "./PointsView.module.css"
 interface PointsViewProps {
   config: WordGuessConfig
   progress: WordGuessProgress
-  setProgress: React.Dispatch<React.SetStateAction<WordGuessProgress>>
   onClickNext: () => void
   onClickWinner: () => void
 }
 
-export default function PointsView({ config, progress, setProgress, onClickNext, onClickWinner }: PointsViewProps) {
+export default function PointsView({ config, progress, onClickNext, onClickWinner }: PointsViewProps) {
 
   const winningTeamIdx = getWinnerTeamIdx(config, progress)
 

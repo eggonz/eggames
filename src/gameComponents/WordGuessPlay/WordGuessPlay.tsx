@@ -62,9 +62,7 @@ export default function WordGuessPlay({ gameId, config, progress, setProgress }:
       />
     case WordGuessView.TIMEUP:
       return <TimeupView
-        config={config}
         progress={progress}
-        setProgress={setProgress}
         onClickGuessed={() => {
           setProgress(prev => ({ ...prev, view: WordGuessView.GUESSED }))
           setView(WordGuessView.GUESSED)
@@ -77,7 +75,6 @@ export default function WordGuessPlay({ gameId, config, progress, setProgress }:
     case WordGuessView.GUESSED:
       return <GuessedView
         config={config}
-        progress={progress}
         setProgress={setProgress}
         onClick={() => {
           setProgress(prev => ({ ...prev, view: WordGuessView.POINTS }))
@@ -88,7 +85,6 @@ export default function WordGuessPlay({ gameId, config, progress, setProgress }:
       return <PointsView
         config={config}
         progress={progress}
-        setProgress={setProgress}
         onClickNext={() => {
           setProgress(prev => ({ ...prev, view: WordGuessView.NEXT }))
           setView(WordGuessView.NEXT)
@@ -102,7 +98,6 @@ export default function WordGuessPlay({ gameId, config, progress, setProgress }:
       return <WinnerView
         config={config}
         progress={progress}
-        setProgress={setProgress}
         onClickRestart={handleRestart}
       />
     default:
