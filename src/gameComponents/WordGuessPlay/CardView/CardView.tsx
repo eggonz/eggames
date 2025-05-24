@@ -21,9 +21,7 @@ interface PreInitProps {
 
 function preInit({ loader, config, setProgress }: PreInitProps): void {
   const { word, tag } = loader.getRandom()
-  console.log("Random word:", word, tag)
   const newSecret = tag? `${word}\n[${tag}]` : word
-  console.log("New secret:", newSecret)
   setProgress(prev => ({
     ...prev,
     secret: newSecret,
@@ -119,10 +117,10 @@ export default function CardView({ loader, config, progress, setProgress, onTime
           onClick={handleCardClick}
         >
           <div className={`${styles.cardFace} ${styles.cardFront}`} style={{backgroundColor: team.color.soft}}>
-            ?
+            <span>?</span>
           </div>
           <div className={`${styles.cardFace} ${styles.cardBack}`} style={{backgroundColor: team.color.soft}}>
-            {progress.secret || "SECRET"}
+            <span>{progress.secret || "SECRET"}</span>
           </div>
         </div>
       </div>

@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react"
-import { FaForward } from "react-icons/fa"
-import MainUiButton from "../../../components/MainUiButton"
+import React, { useEffect } from "react"
 import { LOADING } from "../../../constants/elements"
 import type { WordGuessConfig } from "../../../types/GameConfig"
 import type { WordGuessProgress } from "../../../types/GameProgress"
@@ -47,21 +45,21 @@ export default function NextView({ config, progress, setProgress, onClickNext }:
   if (progress.teamIdx < 0) return LOADING
 
   const { team, player } = getCurrent(config, progress)
-  const gradient = `radial-gradient(circle at center, ${team.color.primary}, ${team.color.secondary})`
+  const gradient = `radial-gradient(circle at center, 
+    ${team.color.primary} 0%, 
+    ${team.color.primary} 50%, 
+    ${team.color.secondary} 100%
+  )`
 
   return (
     <div className={styles.play}>
       <h2>NEXT TURN</h2>
       <div className={styles.circleContainer}>
-        <div className={styles.circle} style={{ backgroundImage: gradient }}>
+        <div className={styles.circle} style={{ backgroundImage: gradient }} onClick={onClickNext}>
           {player.name}
         </div>
       </div>
-      <MainUiButton
-        Icon={FaForward}
-        onClick={onClickNext}
-        className={styles.mainGameButton}
-      />
+      <span className={styles.startText}>Click to start!</span>
     </div>
   )
 }

@@ -43,9 +43,11 @@ function PieChart({ slices, colors, labels, onClick, selectedIdx, Icon }: PieCha
     return polarToCartesian(center, center, textRadius, midAngle)
   }
 
+  const extraMargin = 10; // Extra margin for the SVG viewBox
+
   return (
     <svg
-      viewBox={`-2 -2 ${2 * radius + 4} ${2 * radius + 4}`}
+      viewBox={`-${extraMargin} -${extraMargin} ${2 * (radius + extraMargin)} ${2 * (radius + extraMargin)}`}
       preserveAspectRatio="xMidYMid meet"
       className={styles.pieChart}
     >
@@ -66,6 +68,8 @@ function PieChart({ slices, colors, labels, onClick, selectedIdx, Icon }: PieCha
                 opacity: isSelected ? 1 : 0.7,
                 stroke: isSelected ? 'black' : 'none',
                 strokeWidth: isSelected ? 2 : 0,
+                scale: isSelected ? 1.05 : 1,
+                transformOrigin: 'center',
               }}
             />
             {labels && i < labels.length && (

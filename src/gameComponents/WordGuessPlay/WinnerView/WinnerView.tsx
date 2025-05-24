@@ -23,7 +23,11 @@ export default function WinnerView({ config, progress, setProgress, onClickResta
     return <div className={styles.play}>It's a tie!</div>
   }
 
-  const gradient = `radial-gradient(circle at center, ${winningTeam.color.primary}, ${winningTeam.color.secondary})`
+  const gradient = `radial-gradient(circle at center, 
+    ${winningTeam.color.primary} 0%, 
+    ${winningTeam.color.primary} 50%, 
+    ${winningTeam.color.secondary} 100%
+  )`
 
   return (
     <div className={styles.play}>

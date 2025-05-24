@@ -2,38 +2,38 @@ import type ColorPalette from "../types/ColorPalette"
 
 const TEAM_COLORS: ColorPalette[] = [
   {
-    primary: '#ff0000',
-    secondary: '#d60000',
+    primary: '#ff4a4a',
+    secondary: '#ff2222',
     soft: '#ffc5c5',
   },
   {
-    primary: '#ffd800',
-    secondary: '#ffc200',
-    soft: '#ffffb7',
+    primary: '#fff86a',
+    secondary: '#f1b10d',
+    soft: '#fffbb7',
   },
   {
-    primary: '#00ff00',
-    secondary: '#00d500',
+    primary: '#86ff67',
+    secondary: '#289e06',
     soft: '#c7ffb8',
   },
   {
-    primary: '#00d9ff',
-    secondary: '#00c4ff',
+    primary: '#6fd0ff',
+    secondary: '#17a7ff',
     soft: '#a4e0ff',
   },
   {
-    primary: '#3700ff',
-    secondary: '#0003c6',
-    soft: '#d3c9ff',
+    primary: '#8b87ff',
+    secondary: '#514cec',
+    soft: '#c4c0ff',
   },
   {
-    primary: '#ff00ff',
-    secondary: '#ba00ba',
-    soft: '#ffdbff',
+    primary: '#ff6bff',
+    secondary: '#c528d6',
+    soft: '#ffccff',
   },
   {
-    primary: '#ff8000',
-    secondary: '#d15e00',
+    primary: '#ffa446',
+    secondary: '#ff8d1a',
     soft: '#ffd8be',
   },
 ]

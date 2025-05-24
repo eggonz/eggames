@@ -34,7 +34,7 @@ export default function GameSettingsPage({ isNew = false }: { isNew?: boolean })
 
   if (!isValid) return <ErrorPage code={404} />
 
-  const handleReturn = () => isNew? navigate(`/game/${game.id}/new/info`) : navigate(-1)
+  const handleReturn = () => isNew? navigate(`/game/${game.id}/new/info`) : navigate(`/game/${game.id}/play`)
 
   const handleStart = () => {
     if (!configured || !tmpConfig) return
