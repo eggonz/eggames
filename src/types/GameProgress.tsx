@@ -1,5 +1,3 @@
-import type { WordGuessView } from "../constants/WordGuessView"
-
 class GameProgress {}
 
 interface BingoProgress extends GameProgress {
@@ -16,7 +14,7 @@ interface WordGuessProgress extends GameProgress {
   secret: string | null
   teamIdx: number  // 0-indexed
   skipsLeft: number
-  view: WordGuessView
+  view: number
   roundWinnerTeamIdx: number | null  // 0-indexed
   timer: number
   timerRunning: boolean

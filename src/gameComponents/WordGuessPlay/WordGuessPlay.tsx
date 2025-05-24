@@ -24,7 +24,7 @@ interface PlayProps {
 // Main Component
 export default function WordGuessPlay({ gameId, config, progress, setProgress }: PlayProps) {
   const navigate = useNavigate()
-  const [view, setView] = useState<WordGuessView>(progress.view)
+  const [view, setView] = useState<number>(progress.view)
 
   const loader = new WordLoader<WordEntry>()
 
