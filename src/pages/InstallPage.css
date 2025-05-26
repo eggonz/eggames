@@ -62,3 +62,22 @@
 .install-message button {
   margin: 0 auto;
 }
+
+.suggestions-list {
+  list-style-type: disc;
+  margin: 0 0.5rem;
+}
+
+.suggestions-list > li {
+  margin: 2rem 0 0;
+  font-weight: bold;
+}
+
+.suggestions-sublist {
+  list-style: decimal;
+  margin-left: 0.5rem;
+}
+
+.suggestions-sublist > li {
+  margin: 1rem 0;
+}

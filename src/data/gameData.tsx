@@ -17,18 +17,12 @@ export const GAME_DATA: Game[] = [
   {
     id: "dummy",
     name: "Dummy Game",
-    description: "Dummy description",
-    peopleLabel: "2+",
+    description: "This is a dummy game for testing purposes",
+    minPeople: 2,
+    peopleLabel: "2-20",
     timeLabel: "30 min",
     ageLabel: "5+"
   },
-  // {
-  //   id: "truth-or-dare",
-  //   name: "TODO Truth or Dare",
-  //   description: "Classic party game",
-  //   peopleLabel: "3+",
-  //   ageLabel: "18+"
-  // }
 ]
 
 export function getGameById(id: string): Game | undefined {

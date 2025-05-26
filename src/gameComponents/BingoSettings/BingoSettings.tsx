@@ -92,6 +92,7 @@ export default function BingoSettings({ config, setConfig, setConfigured }: Sett
     setConfig((prev: BingoConfig) => ({
       ...prev,
       cols: value,
+      selectedPrompts: [],
     }))
   }
 
@@ -100,6 +101,7 @@ export default function BingoSettings({ config, setConfig, setConfigured }: Sett
     setConfig((prev: BingoConfig) => ({
       ...prev,
       rows: value,
+      selectedPrompts: [],
     }))
   }
 

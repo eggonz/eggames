@@ -76,12 +76,15 @@ function InstallPage() {
               <p>Either the app is already installed or <br/> your browser doesn't support PWA installation.</p>
               <div className="install-suggestions">
                 <h2>Suggestions</h2>
-                <h3>Home screen shortcut (iOS/Firefox/other):</h3>
-                <ol>
-                  <li>Open browser's options menu</li>
-                  <li><i>Add app to Home screen</i></li>
+                <ol className={"suggestions-list"}>
+                  <li>Try to open using <i>Google Chrome</i></li>
+                  <li>Create home screen shortcut (<i>iOS</i>/<i>Firefox</i>):</li>
+                  <ol className={"suggestions-sublist"}>
+                    <li>Open browser's options menu</li>
+                    <li><i>Add app to Home screen</i></li>
+                  </ol>
+                  <li>Play directly from browser:</li>
                 </ol>
-                <h3>Play directly from browser:</h3>
               </div>
               <MainUiButton Icon={FaHome} text={"Go to Home screen"} onClick={() => navigate('/')} />
             </div>
