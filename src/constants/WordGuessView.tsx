@@ -1,5 +1,5 @@
 const WordGuessView = {
-  NEXT: 0,
+  START: 0,
   CARD: 1,
   TIMEUP: 2,
   GUESSED: 3,

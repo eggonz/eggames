@@ -32,7 +32,6 @@
 }
 
 .game-card-details {
-  margin: 0 0 1rem 0;
   display: flex;
   flex-direction: row;
   justify-content: start;
@@ -40,6 +39,11 @@
   align-items: center;
 }
 
+.forbidden-people {
+  color: var(--error-color);
+  font-weight: bold;
+}
+
 .game-card-desc p {
-  margin: 0;
+  margin-bottom: 0;
 }

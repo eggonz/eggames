@@ -44,6 +44,53 @@ function PieChart({ slices, colors, labels, onClick, selectedIdx, Icon }: PieCha
   }
 
   const extraMargin = 10; // Extra margin for the SVG viewBox
+  const iconSizeRem = 1.8; // Size of the icon in the selected slice
+
+  const renderSlice= (i: number) => {
+    const startAngle = i * angle
+    const endAngle = startAngle + angle
+    const labelPos = getLabelPosition(startAngle, endAngle)
+    const isSelected = selectedIdx === i
+
+    return (
+      <g key={i}>
+        <path
+          d={describeArc(startAngle, endAngle)}
+          fill={colors[i] || '#ccc'}
+          onClick={() => onClick? onClick(i) : undefined}
+          style={{
+            cursor: onClick? 'pointer' : 'default',
+            opacity: isSelected ? 1 : 0.7,
+            stroke: isSelected ? 'black' : 'none',
+            strokeWidth: isSelected ? 2 : 0,
+            scale: isSelected ? 1.05 : 1,
+            transformOrigin: 'center',
+          }}
+        />
+        {labels && i < labels.length && (
+          <text
+            x={labelPos.x}
+            y={labelPos.y}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fill="black"
+          >
+            {labels[i] || ''}
+          </text>
+        )}
+        {Icon && i === selectedIdx && (
+          <FaLightbulb
+            x={labelPos.x - iconSizeRem * 10}
+            y={labelPos.y - iconSizeRem * 10}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fill="black"
+            style={{ fontSize: `${iconSizeRem}rem`, cursor: 'pointer' }}
+          />
+        )}
+      </g>
+    )
+  }
 
   return (
     <svg
@@ -51,50 +98,11 @@ function PieChart({ slices, colors, labels, onClick, selectedIdx, Icon }: PieCha
       preserveAspectRatio="xMidYMid meet"
       className={styles.pieChart}
     >
+      {/* Render selected slice on top */}
       {Array.from({ length: slices }, (_, i) => {
-        const startAngle = i * angle
-        const endAngle = startAngle + angle
-        const labelPos = getLabelPosition(startAngle, endAngle)
-        const isSelected = selectedIdx === i
-
-        return (
-          <g key={i}>
-            <path
-              d={describeArc(startAngle, endAngle)}
-              fill={colors[i] || '#ccc'}
-              onClick={() => onClick? onClick(i) : undefined}
-              style={{
-                cursor: onClick? 'pointer' : 'default',
-                opacity: isSelected ? 1 : 0.7,
-                stroke: isSelected ? 'black' : 'none',
-                strokeWidth: isSelected ? 2 : 0,
-                scale: isSelected ? 1.05 : 1,
-                transformOrigin: 'center',
-              }}
-            />
-            {labels && i < labels.length && (
-              <text
-                x={labelPos.x}
-                y={labelPos.y}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                fill="black"
-              >
-                {labels[i] || ''}
-              </text>
-            )}
-            {Icon && i === selectedIdx && (
-              <FaLightbulb
-                x={labelPos.x - 10}
-                y={labelPos.y - 10}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                fill="black"
-              />
-            )}
-          </g>
-        )
+        if (i !== selectedIdx) return renderSlice(i)
       })}
+      {selectedIdx !== undefined && renderSlice(selectedIdx)}
     </svg>
   )
 }

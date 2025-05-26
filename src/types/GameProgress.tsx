@@ -10,9 +10,9 @@ interface DummyProgress extends GameProgress {
 
 interface WordGuessProgress extends GameProgress {
   scores: { [teamIdx: number]: number } // team ID to score mapping
-  lastPlayerPerTeam: { [teamIdx: number]: number } // last player's index for each team
   secret: string | null
   teamIdx: number  // 0-indexed
+  playerIdx: { [teamIdx: number]: number | null } // player's index for each team
   skipsLeft: number
   view: number
   roundWinnerTeamIdx: number | null  // 0-indexed

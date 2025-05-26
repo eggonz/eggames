@@ -2,7 +2,6 @@ import { HashRouter as Router, Route, Routes } from 'react-router-dom' // Browse
 import componentTestingSheet from './utils/componentTestingSheet'
 import ErrorPage from "./pages/ErrorPage"
 import GameInfoPage from "./pages/GameInfoPage"
-import GameLandingPage from "./pages/GameLandingPage"
 import GamePlayPage from "./pages/GamePlayPage"
 import GameSettingsPage from "./pages/GameSettingsPage"
 import GamesListPage from './pages/GamesListPage'
@@ -23,7 +22,6 @@ export default function App() {
           <Route path="/install" element={<InstallPage />} />
           <Route path="/players" element={<PlayersPage />} />
           <Route path="/games" element={<GamesListPage />} />
-          <Route path='/game/:gameId' element={<RouteGuardGame><GameLandingPage/></RouteGuardGame>} />
           <Route path='/game/:gameId/new/info' element={<RouteGuardGame><GameInfoPage isNew={true}/></RouteGuardGame>} />
           <Route path='/game/:gameId/new/settings' element={<RouteGuardGame><GameSettingsPage isNew={true}/></RouteGuardGame>} />
           <Route path='/game/:gameId/play' element={<RouteGuardGame><GamePlayPage/></RouteGuardGame>} />

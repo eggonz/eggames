@@ -9,7 +9,7 @@ interface HeaderProps {
 
 export default function Header({ title, left, right}: HeaderProps) {
   return (
-    <header>
+    <header className={styles.header}>
       {title && (
         <div className={styles.headerTitle}>
           <h1>{title}</h1>

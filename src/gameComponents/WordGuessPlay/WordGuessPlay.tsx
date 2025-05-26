@@ -5,13 +5,34 @@ import WordLoader, { type WordEntry } from "../../data/WordLoader"
 import type { WordGuessConfig } from "../../types/GameConfig"
 import type { WordGuessProgress } from "../../types/GameProgress"
 import { clearStoredConfig, clearStoredProgress } from "../../utils/gameStorage"
+import { getNextIdx } from "../../utils/teamGetters"
 import CardView from "./CardView/CardView"
 import GuessedView from "./GuessedView/GuessedView"
-import NextView from "./NextView/NextView"
+import StartView from "./StartView/StartView"
 import PointsView from "./PointsView/PointsView"
 import TimeupView from "./TimeupView/TimeupView"
 import WinnerView from "./WinnerView/WinnerView"
 
+// Functions
+function moveToNextPlayer(
+  config: WordGuessConfig,
+  setProgress: React.Dispatch<React.SetStateAction<WordGuessProgress>>
+) {
+  setProgress(prev => {
+    const { nextTeamIdx, nextPlayerIdx } = getNextIdx(config, prev)
+    return ({
+      ...prev,
+      playerIdx: {
+        ...prev.playerIdx,
+        [nextTeamIdx]: nextPlayerIdx,
+      },
+      teamIdx: nextTeamIdx,
+      secret: null,
+      roundWinnerTeamIdx: null,
+      view: WordGuessView.START, // Reset view to START for the next player
+    })
+  })
+}
 
 // Interfaces
 interface PlayProps {
@@ -35,13 +56,14 @@ export default function WordGuessPlay({ gameId, config, progress, setProgress }:
   }
 
   switch (view) {
-    case WordGuessView.NEXT:
-      return <NextView
+    case WordGuessView.START:
+      return <StartView
+        loader={loader}
         config={config}
         progress={progress}
         setProgress={setProgress}
         onClickNext={() => {
-          setProgress(prev => ({ ...prev, view: WordGuessView.CARD }))
+          setProgress(prev => ({ ...prev, view: WordGuessView.CARD }))  // TODO setProgress called twice. storage updated twice
           setView(WordGuessView.CARD)
         }}
       />
@@ -86,8 +108,8 @@ export default function WordGuessPlay({ gameId, config, progress, setProgress }:
         config={config}
         progress={progress}
         onClickNext={() => {
-          setProgress(prev => ({ ...prev, view: WordGuessView.NEXT }))
-          setView(WordGuessView.NEXT)
+          moveToNextPlayer(config, setProgress)
+          setView(WordGuessView.START)
         }}
         onClickWinner={() => {
           setProgress(prev => ({ ...prev, view: WordGuessView.WINNER }))

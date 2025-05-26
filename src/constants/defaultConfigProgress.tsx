@@ -34,11 +34,11 @@ const DEFAULT_WORD_GUESS_CONFIG: WordGuessConfig = {
 
 const default_word_guess_progress = (config: WordGuessConfig): WordGuessProgress => ({
   scores: config.teams.map(() => 0),
-  lastPlayerPerTeam: config.teams.map(() => -1),
   secret: null,
-  teamIdx: -1,
+  teamIdx: 0,
+  playerIdx: config.teams.map(() => null),
   skipsLeft: 0,
-  view: WordGuessView.NEXT,
+  view: WordGuessView.START,
   roundWinnerTeamIdx: null,
   timer: 0,
   timerRunning: false,

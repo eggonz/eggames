@@ -23,7 +23,7 @@ const ComponentTestingSheet = () => {
       <section>
         <h2>Game Cards</h2>
         <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
-          <GameCard game={{ id: "test" , name: "Test", description: "Test Description", people: "3+"}} />
+          <GameCard game={{ id: "test" , name: "Test", description: "Test Description", peopleLabel: "3+"}} />
         </div>
       </section>
     </div>

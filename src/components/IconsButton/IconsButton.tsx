@@ -7,11 +7,12 @@ interface IconsButtonProps {
   color?: "red" | "green" | "blue" // Color of the button
   disabled?: boolean // Disable the button
   circle?: boolean // Circle button
+  className?: string // Additional class names
 }
 
-export default function IconsButton({ icons, onClick, color = "blue", disabled = false, circle = false }: IconsButtonProps) {
+export default function IconsButton({ icons, onClick, color = "blue", disabled = false, circle = false, className = '' }: IconsButtonProps) {
   return (
-    <button className={[styles.iconsButton, styles[color], circle? styles.circle : ''].join(' ')}
+    <button className={[styles.iconsButton, styles[color], circle? styles.circle : '', className].join(' ')}
       onClick={(e) => {
         e.preventDefault()
         e.stopPropagation()

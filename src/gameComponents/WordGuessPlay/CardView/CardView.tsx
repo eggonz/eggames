@@ -4,32 +4,13 @@ import IconDetail from "../../../components/IconDetail"
 import IconsButton from "../../../components/IconsButton"
 import MainUiButton from "../../../components/MainUiButton"
 import RotatingHourglass from "../../../components/RotatingHourglass"
-import { LOADING } from "../../../constants/elements"
-import { MAX_SKIP_TURNS } from "../../../constants/WordGuessView"
 import WordLoader, { type WordEntry } from "../../../data/WordLoader"
 import type { WordGuessConfig } from "../../../types/GameConfig"
 import type { WordGuessProgress } from "../../../types/GameProgress"
+import { formatSecret } from "../../../utils/secretFormatter"
 import { getCurrent } from "../../../utils/teamGetters"
 import { secondsToString } from "../../../utils/timeFunctions"
 import styles from "./CardView.module.css"
-
-interface PreInitProps {
-  loader: WordLoader<WordEntry>
-  config: WordGuessConfig
-  setProgress: React.Dispatch<React.SetStateAction<WordGuessProgress>>
-}
-
-function preInit({ loader, config, setProgress }: PreInitProps): void {
-  const { word, tag } = loader.getRandom()
-  const newSecret = tag? `${word}\n[${tag}]` : word
-  setProgress(prev => ({
-    ...prev,
-    secret: newSecret,
-    timer: config.turnDuration,
-    timerRunning: false,
-    skipsLeft: config.allowInfiniteSkips? -1 : MAX_SKIP_TURNS,
-  }))
-}
 
 interface CardViewProps {
   loader: WordLoader<WordEntry>
@@ -49,14 +30,18 @@ export default function CardView({ loader, config, progress, setProgress, onTime
 
     if (progress.timerRunning && progress.timer > 0) {
       intervalId = setInterval(() => {
+        let timeup = false
         setProgress(prev => {
           const newTimer = prev.timer - 1
           if (newTimer === 0) {
-            onTimeUp()
+            timeup = true
             return { ...prev, timer: 0, timerRunning: false }
           }
           return { ...prev, timer: newTimer }
         })
+        if (timeup) {
+          onTimeUp()
+        }
       }, 1000)
     }
 
@@ -65,12 +50,6 @@ export default function CardView({ loader, config, progress, setProgress, onTime
       if (intervalId) clearInterval(intervalId)
     }
   }, [progress.timerRunning, progress.timer, setProgress, onTimeUp])
-
-  // Pre-Init
-  useEffect(() => {
-    if (!loader) return
-    preInit({ loader, config, setProgress })
-  }, [])
 
   // Render
 
@@ -86,8 +65,6 @@ export default function CardView({ loader, config, progress, setProgress, onTime
 
   const handleSkip = () => {
     if (config.allowInfiniteSkips || progress.skipsLeft > 0) {
-      const { word, tag } = loader.getRandom()
-      const newSecret = tag? `${word}\n[${tag}]` : word
       setIsFlipped(false)
       // wait for animation to finish before setting the new secret
       setTimeout(() => {
@@ -95,15 +72,13 @@ export default function CardView({ loader, config, progress, setProgress, onTime
           return ({
             ...prev,
             skipsLeft: config.allowInfiniteSkips? -1 : prev.skipsLeft - 1,
-            secret: newSecret,
+            secret: formatSecret(loader.getRandom()), // Set new secret
             // timer: config.turnDuration, // TODO reset timer ??
           })
         })
       }, 300) // half of the animation duration
     }
   }
-
-  if (progress.teamIdx < 0) return LOADING
 
   const { team, player } = getCurrent(config, progress)
   if (!progress.secret) console.info("No secret")  // tmp secret is hidden at first render
@@ -129,12 +104,15 @@ export default function CardView({ loader, config, progress, setProgress, onTime
                     text={secondsToString(progress.timer)}
                     className={progress.timer < 10 ? styles.urgent : ""}
         />
-        <IconsButton
-          icons={[FaRedoAlt]}
-          onClick={handleSkip}
-          disabled={!config.allowInfiniteSkips && progress.skipsLeft === 0}
-        />
-        <span>{config.allowInfiniteSkips? <FaInfinity /> : progress.skipsLeft}</span>
+        <div className={styles.skipContainer}>
+          <IconsButton
+            icons={[FaRedoAlt]}
+            onClick={handleSkip}
+            disabled={!config.allowInfiniteSkips && progress.skipsLeft === 0}
+            className={styles.skipButton}
+          />
+          <span>{config.allowInfiniteSkips? <FaInfinity className={styles.infty} /> : progress.skipsLeft}</span>
+        </div>
       </div>
       <MainUiButton
         Icon={FaLightbulb}

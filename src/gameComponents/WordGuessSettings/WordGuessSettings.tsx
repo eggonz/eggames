@@ -15,7 +15,7 @@ import styles from './WordGuessSettings.module.css'
 
 // Constants
 const N_TEAMS_MIN = 2
-const N_TEAMS_MAX = 5
+const N_TEAMS_MAX = 6
 const T_TURN_MIN = 15
 const T_TURN_MAX = 120
 const T_TURN_STEP = 15
@@ -31,6 +31,11 @@ function estimateTime(config: WordGuessConfig): string {
     config.pointsToWin) // min
   return minutesToString(time)
 }
+
+function maxTeams() {
+  return Math.min(getStoredPlayers().length, N_TEAMS_MAX)
+}
+
 
 // Main Component
 interface SettingsProps {
@@ -54,7 +59,7 @@ export default function WordGuessSettings({ config, setConfig, setConfigured }: 
 
   const handleNumTeamsChange = (direction: -1 | 1) => {
     setConfig(prev => {
-      const n = Math.max(N_TEAMS_MIN, Math.min(N_TEAMS_MAX, prev.numTeams + direction))
+      const n = Math.max(N_TEAMS_MIN, Math.min(maxTeams(), prev.numTeams + direction))
       return ({
         ...prev,
         numTeams: n,
@@ -120,7 +125,7 @@ export default function WordGuessSettings({ config, setConfig, setConfigured }: 
                         labelRight={<FaPlus/>}
                         value={config.numTeams}
                         min={N_TEAMS_MIN}
-                        max={N_TEAMS_MAX}
+                        max={maxTeams()}
                         onClick={handleNumTeamsChange}/>
         </div>
       </div>

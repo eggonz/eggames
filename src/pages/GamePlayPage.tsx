@@ -40,7 +40,7 @@ export default function GamePlayPage() {
   if (!isValid) return <ErrorPage code={404} />
 
   const handleExit = () => {
-    const confirmLeave = window.confirm('Are you sure you want to leave the game? Your current progress will be saved.')
+    const confirmLeave = window.confirm('Are you sure you want to leave the game?\nYour current progress will be saved.')
     if (!confirmLeave) return
 
     // clearStoredConfig(game.id)

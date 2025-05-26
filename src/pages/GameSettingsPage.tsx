@@ -55,7 +55,7 @@ export default function GameSettingsPage({ isNew = false }: { isNew?: boolean })
       return
     }
 
-    const confirmOverwrite = window.confirm("Are you sure you want to overwrite the current settings, lose your game progress and start again?")
+    const confirmOverwrite = window.confirm("Are you sure you want to overwrite the current settings,\nlose your game progress and start again?")
     if (!confirmOverwrite) return
 
     // Clear progress
