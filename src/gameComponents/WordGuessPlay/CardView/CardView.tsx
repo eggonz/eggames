@@ -26,7 +26,7 @@ export default function CardView({ loader, config, progress, setProgress, onTime
 
   // Timer
   useEffect(() => {
-    let intervalId: NodeJS.Timeout | null = null
+    let intervalId: ReturnType<typeof setTimeout> | null = null
 
     if (progress.timerRunning && progress.timer > 0) {
       intervalId = setInterval(() => {
