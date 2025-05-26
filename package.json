@@ -1,7 +1,7 @@
 {
   "name": "eggames",
   "private": true,
-  "version": "1.2.1",
+  "version": "1.1.1",
   "homepage": "https://egg31uwu.github.io/eggames/",
   "type": "module",
   "scripts": {
