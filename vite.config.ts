@@ -1,5 +1,6 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
+import { name, version } from './package.json'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -11,7 +12,7 @@ export default defineConfig({
     },
   },
   define: {
-    __APP_NAME__: JSON.stringify(process.env.npm_package_name),
-    __APP_VERSION__: JSON.stringify(process.env.npm_package_version),
+    __APP_NAME__: JSON.stringify(name),
+    __APP_VERSION__: JSON.stringify(version),
   }
 })
