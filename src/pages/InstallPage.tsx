@@ -68,7 +68,7 @@ function InstallPage() {
                   <FaDownload />
                   <p>Install App</p>
               </button>
-              <p className="install-version">v1.0.0</p>
+              <p className="install-version">v{__APP_VERSION__}</p>
             </div>
           )}
           {!deferredPrompt && (

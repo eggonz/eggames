@@ -21,7 +21,7 @@ function HomePage() {
           <IconsButton icons={[FaShareAlt]}
                        onClick={() => navigate('/share')} />
         ]}
-        title="eggames"
+        title={__APP_NAME__}
       />
       <main>
         <div className="home-menu-container">
@@ -37,8 +37,8 @@ function HomePage() {
           </div>
         </div>
       </main>
-      <Footer leftText={"2025 eggames"}
-              rightText={"v1.0.0"} />
+      <Footer leftText={`2025 ${__APP_NAME__}`}
+              rightText={`v${__APP_VERSION__}`} />
     </div>
   );
 }
