@@ -9,7 +9,7 @@ export const GAME_DATA: Game[] = [
   {
     id: "word-guess",
     name: "Word Guess",
-    description: "Random word generator for pictionary/charades gameComponents",
+    description: "Random word generator for pictionary/charades games",
     minPeople: 2,
     peopleLabel: "2+",
     timeLabel: "60 min"
