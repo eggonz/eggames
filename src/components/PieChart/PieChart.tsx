@@ -58,14 +58,10 @@ function PieChart({ slices, colors, labels, onClick, selectedIdx, Icon }: PieCha
           d={describeArc(startAngle, endAngle)}
           fill={colors[i] || '#ccc'}
           onClick={() => onClick? onClick(i) : undefined}
-          style={{
-            cursor: onClick? 'pointer' : 'default',
-            opacity: isSelected ? 1 : 0.7,
-            stroke: isSelected ? 'black' : 'none',
-            strokeWidth: isSelected ? 2 : 0,
-            scale: isSelected ? 1.05 : 1,
-            transformOrigin: 'center',
-          }}
+          className={[
+            styles.slice,
+            isSelected ? styles.selected : '',
+            onClick ? styles.clickable : ''].join(' ')}
         />
         {labels && i < labels.length && (
           <text
