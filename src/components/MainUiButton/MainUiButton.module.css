@@ -31,7 +31,7 @@
 }
 
 .primary-button:disabled {
-  background-color: rgba(0,0,0 , 0.1);
+  background-color: var(--primary-button-color-disabled);
   color: white;
   cursor: not-allowed;
 }
@@ -43,4 +43,16 @@
 
 .secondary-button:hover {
   background: var(--secondary-button-color-hover);
+}
+
+.secondary-button span {
+  height: auto;
+  margin: auto;
+  line-height: 1.1rem;
+}
+
+.secondary-button:disabled {
+  background: var(--secondary-button-color-disabled);
+  color: white;
+  cursor: not-allowed;
 }
